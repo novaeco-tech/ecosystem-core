@@ -1,55 +1,47 @@
-# This is a DEVELOPMENT-ONLY file for use with DevContainers.
 version: '3.8'
 services:
   website:
-    build:
-      context: ../website
-      dockerfile: Dockerfile.dev
+    # USE THE PRE-BUILT IMAGE
+    image: ghcr.io/nova-ecosystem/dev-node:latest
     volumes:
-      # Mounts the website code for hot-reloading
-      - ../website:/workspaces/ecosystem-core/website:cached
+      # Mount the entire monorepo root
+      -..:/workspace:cached
+    # Set the working directory for this specific service
+    working_dir: /workspace/website
     ports:
-      - "3000:3000"
-    command: yarn start
+      - "3000:3000" # Docusaurus port
+    # Keep the container alive
+    command: sleep infinity
 
   app:
-    build:
-      context: ../app
-      dockerfile: Dockerfile.dev
-    volumes:
-      - ../app:/workspaces/ecosystem-core/app:cached
-      - ../tests:/workspaces/ecosystem-core/tests:cached
+    # USE THE PRE-BUILT IMAGE
+    image: ghcr.io/nova-ecosystem/dev-node:latest
+    volumes: -..:/workspace:cached
+    working_dir: /workspace/app
     ports:
-      - "8080:8080"
-    environment:
-      - FLASK_ENV=development
-      - API_URL=http://api:8000
-      - AUTH_URL=http://auth:9000
+      - "8080:8080" # React/Flask port
     depends_on:
       - api
       - auth
-    command: flask --app src/main run --host=0.0.0.0 --port=8080 --reload
+    environment:
+      - API_URL=http://api:8000
+      - AUTH_URL=http://auth:9000
+    command: sleep infinity
 
   api:
-    build:
-      context: ../api
-      dockerfile: Dockerfile.dev
-    volumes:
-      - ../api:/workspaces/ecosystem-core/api:cached
+    # USE THE PRE-BUILT IMAGE
+    image: ghcr.io/nova-ecosystem/dev-python:latest
+    volumes: -..:/workspace:cached
+    working_dir: /workspace/api
     ports:
-      - "8000:8000"
-    environment:
-      - FLASK_ENV=development
-    command: flask --app src/main run --host=0.0.0.0 --port=8000 --reload
+      - "8000:8000" # Python/Flask port
+    command: sleep infinity
 
   auth:
-    build:
-      context: ../auth
-      dockerfile: Dockerfile.dev
-    volumes:
-      - ../auth:/workspaces/ecosystem-core/auth:cached
+    # USE THE PRE-BUILT IMAGE
+    image: ghcr.io/nova-ecosystem/dev-python:latest
+    volumes: -..:/workspace:cached
+    working_dir: /workspace/auth
     ports:
-      - "9000:9000"
-    environment:
-      - FLASK_ENV=development
-    command: flask --app src/main run --host=0.0.0.0 --port=9000 --reload
+      - "9000:9000" # Auth port
+    command: sleep infinity

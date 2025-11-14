@@ -1,37 +1,27 @@
 {
     "name": "Nova Ecosystem Core",
-    // Use docker-compose to launch all services
     "dockerComposeFile": "docker-compose.yml",
-    // The service VS Code should "attach" to
+    // This is the service VS Code will 'attach' to.
+    // The other services (api, auth) will still be running.
     "service": "app",
-    "workspaceFolder": "/workspaces/ecosystem-core/app",
+    // Mount the entire monorepo root into /workspace
+    "workspaceFolder": "/workspace",
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-python.python",
-                "ms-python.vscode-pylance",
-                "ms-vscode.docker",
-                "github.vscode-pull-request-github",
-                "esbenp.prettier-vscode",
-                "eamodio.gitlens"
-            ],
-            "settings": {
-                "python.defaultInterpreterPath": "/usr/local/bin/python",
-                "python.testing.pytestArgs": [
-                    "../tests"
-                ],
-                "python.testing.unittestEnabled": false,
-                "python.testing.pytestEnabled": true
-            }
+                "dbaeumer.vscode-eslint",
+                "ms-azuretools.vscode-docker"
+            ]
         }
     },
-    // Forward all ports for all services
+    // Forward all ports for all running services
     "forwardPorts": [
-        3000, // website
-        8000, // api
-        8080, // app
-        9000 // auth
+        3000,
+        8080,
+        8000,
+        9000
     ],
-    // Run this command after the container is built
-    "postCreateCommand": "pip install -r ../tests/requirements.txt"
+    // Run this command *after* the 'app' container is created
+    "postCreateCommand": "npm install"
 }
