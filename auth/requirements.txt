@@ -1,0 +1,6 @@
+# Similar to the API, but usually includes libraries for token handling (like PyJWT).
+flask==3.0.0
+flask-cors==4.0.0
+gunicorn==21.2.0
+pyjwt==2.8.0
+pytest==8.0.0

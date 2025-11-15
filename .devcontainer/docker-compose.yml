@@ -4,44 +4,50 @@ services:
     # USE THE PRE-BUILT IMAGE
     image: ghcr.io/nova-ecosystem/dev-node:latest
     volumes:
-      # Mount the entire monorepo root
-      -..:/workspace:cached
+      - ..:/workspace:cached # Mount the entire monorepo root
     # Set the working directory for this specific service
     working_dir: /workspace/website
     ports:
       - "3000:3000" # Docusaurus port
-    # Keep the container alive
-    command: sleep infinity
+    # Auto-install Node dependencies on startup
+    command: sh -c "npm install && sleep infinity"
 
   app:
     # USE THE PRE-BUILT IMAGE
-    image: ghcr.io/nova-ecosystem/dev-node:latest
-    volumes: -..:/workspace:cached
+    image: ghcr.io/nova-ecosystem/dev-python:latest
+    volumes:
+      - ..:/workspace:cached # Mount the entire monorepo root
+    # Set the working directory for this specific service
     working_dir: /workspace/app
     ports:
-      - "8080:8080" # React/Flask port
+      - "5000:5000" # FastAPI port
     depends_on:
       - api
       - auth
     environment:
       - API_URL=http://api:8000
       - AUTH_URL=http://auth:9000
+    # The 'app' dependencies are handled by devcontainer.json postCreateCommand
     command: sleep infinity
 
   api:
     # USE THE PRE-BUILT IMAGE
     image: ghcr.io/nova-ecosystem/dev-python:latest
-    volumes: -..:/workspace:cached
+    volumes:
+      - ..:/workspace:cached
     working_dir: /workspace/api
     ports:
       - "8000:8000" # Python/Flask port
-    command: sleep infinity
+    # Auto-install Python dependencies on startup
+    command: sh -c "pip install -r requirements.txt && sleep infinity"
 
   auth:
     # USE THE PRE-BUILT IMAGE
     image: ghcr.io/nova-ecosystem/dev-python:latest
-    volumes: -..:/workspace:cached
+    volumes:
+      - ..:/workspace:cached
     working_dir: /workspace/auth
     ports:
       - "9000:9000" # Auth port
-    command: sleep infinity
+    # Auto-install Python dependencies on startup
+    command: sh -c "pip install -r requirements.txt && sleep infinity"

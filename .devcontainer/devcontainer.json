@@ -18,10 +18,9 @@
     // Forward all ports for all running services
     "forwardPorts": [
         3000,
-        8080,
+        5000,
         8000,
         9000
     ],
-    // Run this command *after* the 'app' container is created
-    "postCreateCommand": "npm install"
+    "postCreateCommand": "cd /workspace/app && pip install -r requirements.txt"
 }
