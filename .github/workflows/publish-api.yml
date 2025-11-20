@@ -1,13 +1,14 @@
-# description: Triggers on changes to the api/ folder. It reads the version from a file, packages the Python source code into a tarball (fixing the directory path error), and creates a GitHub release.
+# description: Packages API service. Includes fix for 'empty archive' error and enables manual runs.
 name: Publish API Artifact
 
 on:
   push:
     branches: [ main ]
     paths: [ 'api/**' ]
+  workflow_dispatch:
 
 permissions:
-  contents: write # Required to create Releases
+  contents: write
 
 jobs:
   publish-api:
@@ -24,8 +25,14 @@ jobs:
           mkdir -p dist
           # Copy source code to dist
           cp -r api/src/* dist/
-          # Create artifact
-          tar -czf api-release.tar.gz -C dist .
+          
+          # Debug: Show what we are about to tar
+          echo "CONTENTS OF DIST:"
+          ls -R dist
+          
+          # Robust Tar: Change directory first to avoid path issues
+          cd dist
+          tar -czf ../api-release.tar.gz .
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v2

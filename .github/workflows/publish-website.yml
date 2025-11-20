@@ -1,10 +1,11 @@
-# description: Triggers on changes to website/. It reads the version from package.json, builds the static site, packages the build output into a tarball, and creates a GitHub release.
+# description: Packages Website. Fixed triggers and tar command.
 name: Publish Website Artifact
 
 on:
   push:
     branches: [ main ]
     paths: [ 'website/**' ]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -27,9 +28,11 @@ jobs:
 
       - name: Package Artifact
         run: |
-          # Docusaurus builds to /build directory
-          # We package the BUILD output, not the source
-          tar -czf website-release.tar.gz -C website/build .
+          # Docusaurus builds to website/build
+          
+          # Robust Tar: Change to build dir first
+          cd website/build
+          tar -czf ../../website-release.tar.gz .
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v2

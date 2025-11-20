@@ -1,10 +1,11 @@
-# description: Triggers on changes to auth/. It reads the version from a file, packages the Python source code along with templates and static files into a tarball (fixing broken pipe errors), and creates a GitHub release.
+# description: Packages Auth service. Includes fix for 'empty archive' error and enables manual runs.
 name: Publish Auth Artifact
 
 on:
   push:
     branches: [ main ]
     paths: [ 'auth/**' ]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -22,8 +23,14 @@ jobs:
         run: |
           mkdir -p dist
           cp -r auth/src/* dist/
-          # Create artifact
-          tar -czf auth-release.tar.gz -C dist .
+          
+          # Debug: Show what we are about to tar
+          echo "CONTENTS OF DIST:"
+          ls -R dist
+          
+          # Robust Tar
+          cd dist
+          tar -czf ../auth-release.tar.gz .
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v2

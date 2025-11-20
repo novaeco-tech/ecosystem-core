@@ -1,10 +1,11 @@
-# description: Triggers on changes to app/. It reads the version from a file, packages the Python source code along with templates and static files into a tarball (fixing broken pipe errors), and creates a GitHub release.
+# description: Packages App service. Fixes shell syntax errors and empty archive issues.
 name: Publish App Artifact
 
 on:
   push:
     branches: [ main ]
     paths: [ 'app/**' ]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -21,14 +22,21 @@ jobs:
       - name: Build and Package App
         run: |
           mkdir -p dist
+          
           # Copy Python source files
           cp app/*.py dist/
-          # Copy templates and static files (Fixed broken pipes)
+          
+          # Copy templates/static if they exist (ignoring errors if missing)
           cp -r app/templates dist/ 2>/dev/null || true
           cp -r app/static dist/ 2>/dev/null || true
-
-          # Create artifact
-          tar -czf app-release.tar.gz -C dist .
+          
+          # Debug: Show what we are about to tar
+          echo "CONTENTS OF DIST:"
+          ls -R dist
+          
+          # Robust Tar
+          cd dist
+          tar -czf ../app-release.tar.gz .
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v2

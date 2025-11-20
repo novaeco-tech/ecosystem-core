@@ -1,7 +1,11 @@
-# description: Runs on Pull Requests. It detects which folders changed and conditionally runs tests only for the modified services. 
-name: CI (Pull Request)
+# description: Runs tests on changes. Triggers on PRs, commits to main, and manually.
+name: CI
 
-on: [pull_request]
+on:
+  pull_request:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # Enables the "Run workflow" button
 
 jobs:
   # Job 1: Detect changes
@@ -26,7 +30,8 @@ jobs:
   # Job 2: Test API (Python)
   test-api:
     needs: changed-files
-    if: ${{ needs.changed-files.outputs.api == 'true' }}
+    # Run if changed OR if triggered manually (manual runs usually want to test everything)
+    if: ${{ needs.changed-files.outputs.api == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     container: ghcr.io/nova-ecosystem/dev-python:latest
     steps:
@@ -37,7 +42,7 @@ jobs:
   # Job 3: Test App (Python)
   test-app:
     needs: changed-files
-    if: ${{ needs.changed-files.outputs.app == 'true' }}
+    if: ${{ needs.changed-files.outputs.app == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     container: ghcr.io/nova-ecosystem/dev-python:latest
     steps:
@@ -48,7 +53,7 @@ jobs:
   # Job 4: Test Auth (Python)
   test-auth:
     needs: changed-files
-    if: ${{ needs.changed-files.outputs.auth == 'true' }}
+    if: ${{ needs.changed-files.outputs.auth == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     container: ghcr.io/nova-ecosystem/dev-python:latest
     steps:
@@ -59,7 +64,7 @@ jobs:
   # Job 5: Test Website (Node.js)
   test-website:
     needs: changed-files
-    if: ${{ needs.changed-files.outputs.website == 'true' }}
+    if: ${{ needs.changed-files.outputs.website == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     container: ghcr.io/nova-ecosystem/dev-node:latest
     steps:
