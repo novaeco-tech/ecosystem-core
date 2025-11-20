@@ -1,3 +1,4 @@
+# description: Triggers on changes to app/. It reads the version from a file, packages the Python source code along with templates and static files into a tarball (fixing broken pipe errors), and creates a GitHub release.
 name: Publish App Artifact
 
 on:
@@ -22,14 +23,12 @@ jobs:
           mkdir -p dist
           # Copy Python source files
           cp app/*.py dist/
-          cp -r app/templates dist/ 2>/dev/null |
+          # Copy templates and static files (Fixed broken pipes)
+          cp -r app/templates dist/ 2>/dev/null || true
+          cp -r app/static dist/ 2>/dev/null || true
 
-| :
-          cp -r app/static dist/ 2>/dev/null |
-
-| :
           # Create artifact
-          tar -czf app-release.tar.gz -C dist.
+          tar -czf app-release.tar.gz -C dist .
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v2
@@ -38,5 +37,3 @@ jobs:
           name: "App Service v${{ env.VERSION }}"
           files: app-release.tar.gz
           prerelease: true
-      
-      # Trigger QA... (Optional: Add dispatch step here if needed)

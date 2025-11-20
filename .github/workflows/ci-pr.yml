@@ -1,3 +1,4 @@
+# description: Runs on Pull Requests. It detects which folders changed and conditionally runs tests only for the modified services. 
 name: CI (Pull Request)
 
 on: [pull_request]

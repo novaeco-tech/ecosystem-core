@@ -1,3 +1,4 @@
+# description: Triggers on changes to website/. It reads the version from package.json, builds the static site, packages the build output into a tarball, and creates a GitHub release.
 name: Publish Website Artifact
 
 on:
@@ -16,7 +17,7 @@ jobs:
 
       # Website version is in package.json, not VERSION file
       - name: Read Version
-        run: echo "VERSION=$(jq -r.version website/package.json)" >> $GITHUB_ENV
+        run: echo "VERSION=$(jq -r .version website/package.json)" >> $GITHUB_ENV
 
       - name: Install & Build
         run: |
@@ -28,7 +29,7 @@ jobs:
         run: |
           # Docusaurus builds to /build directory
           # We package the BUILD output, not the source
-          tar -czf website-release.tar.gz -C website/build.
+          tar -czf website-release.tar.gz -C website/build .
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v2
