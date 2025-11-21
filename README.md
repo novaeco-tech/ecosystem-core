@@ -1,6 +1,7 @@
 # Welcome to the Nova Ecosystem Core
 
-This is the "heart" of the Nova Ecosystem. It's a monorepo containing the four central services that power the entire platform.
+This is the "heart" of the Nova Ecosystem.
+It's a monorepo containing the four central services that power the entire platform.
 
 ## 🏗️ Architecture Overview
 
@@ -35,7 +36,35 @@ Once the container is running, the services are available locally:
 ## 🛠️ Development Workflow
 
 The ecosystem runs as **4 separate containers** (App, Website, API, Auth).
-When you open this repo in VS Code, it attaches to the **App** service by default. The other services (`website`, `api`, `auth`) are running in the background.
+When you open this repo in VS Code, it attaches to the **App** service by default.
+The other services (`website`, `api`, `auth`) are running in the background.
+
+### 🧰 Developer Tools (Nova CLI)
+
+We use the internal `nova` CLI to manage versions and automation.
+
+**Installation**
+The CLI is installed automatically in the DevContainer. If you need to reinstall it manually:
+
+```bash
+pip install "git+https://github.com/nova-ecosystem/ecosystem-devtools.git@main#subdirectory=nova-cli"
+````
+
+**Usage**
+
+  * **Patching a Service (Bug Fixes):**
+    Increments the patch version (e.g., `1.0.1` -\> `1.0.2`).
+
+    ```bash
+    nova version patch auth
+    ```
+
+  * **Releasing a Feature (Minor/Major):**
+    Updates the Global version and aligns ALL services (e.g., `1.1.0`).
+
+    ```bash
+    nova version release minor
+    ```
 
 ### 💻 Switching to Website, API, or Auth
 
@@ -46,7 +75,8 @@ To run commands for a specific service (e.g., installing a new npm package for t
 3.  Right-click the service you want (e.g., `ecosystem-core_devcontainer-website-1`).
 4.  Select **"Attach to Visual Studio Code"**.
 
-**Result:** A **new VS Code window** opens for that service. You can use the terminal in this new window to run service-specific commands (e.g., `npm install`, `pip install`).
+**Result:** A **new VS Code window** opens for that service.
+You can use the terminal in this new window to run service-specific commands (e.g., `npm install`, `pip install`).
 
 ### ⚠️ "Port Already in Use" Warning
 
@@ -57,8 +87,9 @@ If you attach to the **Website** container and try to run `npm start`, you might
 **This is normal/good.** It means the container automatically started the server for you.
 
   * **You do NOT need to run `npm start` manually.**
-  * Just edit your files. The running server will detect changes and **hot-reload automatically**.
-  * Use the terminal only for tasks like adding dependencies (`npm install <package>`).
+      * Just edit your files.
+        The running server will detect changes and **hot-reload automatically**.
+        Use the terminal only for tasks like adding dependencies (`npm install <package>`).
 
 ### Running Tests
 

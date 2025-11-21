@@ -22,5 +22,6 @@
         8000,
         9000
     ],
-    "postCreateCommand": "cd /workspace/app && pip install -r requirements.txt"
+    // Install App requirements AND the Nova CLI from the devtools repo
+    "postCreateCommand": "cd /workspace/app && pip install -r requirements.txt && pip install 'git+https://github.com/nova-ecosystem/ecosystem-devtools.git@main#subdirectory=nova-cli'"
 }
