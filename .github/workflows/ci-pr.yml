@@ -1,11 +1,10 @@
-# description: Runs tests on changes. Triggers on PRs, commits to main, and manually.
-name: CI
+name: Nova Ecosystem CI
 
 on:
   pull_request:
   push:
     branches: [ "main" ]
-  workflow_dispatch: # Enables the "Run workflow" button
+  workflow_dispatch:
 
 jobs:
   # Job 1: Detect changes
@@ -30,44 +29,65 @@ jobs:
   # Job 2: Test API (Python)
   test-api:
     needs: changed-files
-    # Run if changed OR if triggered manually (manual runs usually want to test everything)
     if: ${{ needs.changed-files.outputs.api == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
-    container: ghcr.io/nova-ecosystem/dev-python:latest
+    container:
+      image: ghcr.io/nova-ecosystem/dev-python:latest
+      # Force root user to avoid EACCES permission errors on GHA
+      options: --user root
     steps:
       - uses: actions/checkout@v4
-      - run: pip install -r api/requirements.txt
-      - run: cd api && pytest
+      
+      # We still need to install 'flask', 'requests', etc. from requirements.txt
+      # because the base image only has 'pytest', 'black', etc.
+      - name: Install Service Dependencies
+        run: pip install -r api/requirements.txt
+        
+      - name: Run Tests
+        run: cd api && pytest
 
   # Job 3: Test App (Python)
   test-app:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.app == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
-    container: ghcr.io/nova-ecosystem/dev-python:latest
+    container:
+      image: ghcr.io/nova-ecosystem/dev-python:latest
+      options: --user root
     steps:
       - uses: actions/checkout@v4
-      - run: pip install -r app/requirements.txt
-      - run: cd app && pytest
+      - name: Install Dependencies
+        run: pip install -r app/requirements.txt
+      - name: Run Tests
+        run: cd app && pytest
 
   # Job 4: Test Auth (Python)
   test-auth:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.auth == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
-    container: ghcr.io/nova-ecosystem/dev-python:latest
+    container:
+      image: ghcr.io/nova-ecosystem/dev-python:latest
+      options: --user root
     steps:
       - uses: actions/checkout@v4
-      - run: pip install -r auth/requirements.txt
-      - run: cd auth && pytest
+      - name: Install Dependencies
+        run: pip install -r auth/requirements.txt
+      - name: Run Tests
+        run: cd auth && pytest
 
   # Job 5: Test Website (Node.js)
   test-website:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.website == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
-    container: ghcr.io/nova-ecosystem/dev-node:latest
+    container:
+      image: ghcr.io/nova-ecosystem/dev-node:latest
+      options: --user root
     steps:
       - uses: actions/checkout@v4
-      - run: cd website && npm install
-      - run: cd website && npm test
+      - name: Install Dependencies
+        run: cd website && npm install
+      - name: Run Tests
+        # Ensure your package.json has a test script
+        run: cd website && npm test
