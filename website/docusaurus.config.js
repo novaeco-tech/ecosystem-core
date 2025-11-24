@@ -41,17 +41,16 @@ const config = {
         ({
             navbar: {
                 title: 'Nova Ecosystem',
-                logo: {
-                    alt: 'Nova Logo',
-                    src: 'img/logo.svg', // You can add a logo file later
-                    srcDark: 'img/logo.svg',
-                },
-                items: [],
+                items: [
+                    { to: '/docs/intro', label: 'Docs', position: 'left' },
+                    { to: '/blog', label: 'Blog', position: 'left' },
+                    { href: 'https://app.nova-ecosystem.org', label: 'Central App', position: 'right' },
+                ],
             },
             footer: {
                 style: 'dark',
                 links: [],
-                copyright: `Copyright © ${new Date().getFullYear()} Nova Ecosystem. Built with Docusaurus.`,
+                copyright: `Copyright © ${new Date().getFullYear()} Nova Ecosystem.`,
             },
             prism: {
                 theme: lightCodeTheme,
