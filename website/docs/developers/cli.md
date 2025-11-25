@@ -5,7 +5,7 @@ The Nova CLI manages versions and automation.
 ## Installation
 Installed automatically in DevContainers. Manual install:
 ```bash
-pip install "git+https://github.com/nova-ecosystem/ecosystem-devtools.git@main#subdirectory=nova-cli"
+pip install "git+https://github.com/novaeco-tech/ecosystem-devtools.git@main#subdirectory=nova-cli"
 ```
 
 ## Usage

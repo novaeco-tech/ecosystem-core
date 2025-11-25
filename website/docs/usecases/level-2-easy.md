@@ -17,7 +17,7 @@ Bakery lists stale bread. NovaHub matches it with an insect farm needing feedsto
 Diverts organic waste from landfill; provides cheap local feedstock.
 
 **User Interaction**  
-Bakery posts "50kg Bread" on NovaHub → Insect Farm gets alert → Accepts → NovaFinance processes payment.
+Bakery posts "50kg Bread" on NovaHub → Insect Farm gets alert → Accepts → NovaFin processes payment.
 
 **Ecosystem Usage**  
 NovaHub, NovaWaste, NovaMarkets
@@ -36,10 +36,10 @@ Student offers "Circular Design" tutoring. Professional books session.
 Spreads circular knowledge; income for students.
 
 **User Interaction**  
-Student lists profile on NovaSkills → Pro books slot → Pays via NovaFinance → Video link generated.
+Student lists profile on NovaSkills → Pro books slot → Pays via NovaFin → Video link generated.
 
 **Ecosystem Usage**  
-NovaSkills, NovaFinance, Identity
+NovaSkills, NovaFin, Identity
 
 ---
 
@@ -59,7 +59,7 @@ Reduces Scope 3 emissions; optimizes vehicle usage.
 Employee opens NovaMobility → Finds ride → Scans QR code to join → Payment auto‑deducted.
 
 **Ecosystem Usage**  
-NovaMobility, NovaFinance, Identity
+NovaMobility, NovaFin, Identity
 
 ---
 

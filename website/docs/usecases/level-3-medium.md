@@ -17,10 +17,10 @@ Bioplastics startup matches with Investor, Lab, and Mentor.
 Accelerates circular innovation capital deployment.
 
 **User Interaction**  
-Startup posts "Needs" on NovaHub → AI matches with Angel Investor (Capital) and NovaInfra (Lab) → Deal signed via NovaFinance.
+Startup posts "Needs" on NovaHub → AI matches with Angel Investor (Capital) and NovaInfra (Lab) → Deal signed via NovaFin.
 
 **Ecosystem Usage**  
-NovaHub, NovaFinance, NovaInfra
+NovaHub, NovaFin, NovaInfra
 
 ---
 
@@ -97,10 +97,10 @@ Coffee brand payment triggers "Fair Trade" verification from farmer.
 Social equity; verifiable ethical branding.
 
 **User Interaction**  
-Brand pays via NovaFinance → Split payment sends share to Farmer → Farmer confirms receipt → NovaEquity mints badge.
+Brand pays via NovaFin → Split payment sends share to Farmer → Farmer confirms receipt → NovaEquity mints badge.
 
 **Ecosystem Usage**  
-NovaFinance, NovaEquity, NovaAgro
+NovaFin, NovaEquity, NovaAgro
 
 ---
 
@@ -117,10 +117,10 @@ EV fleet sells battery capacity to grid during peaks.
 Stabilizes renewable grid; lowers EV TCO.
 
 **User Interaction**  
-Grid operator requests power → NovaEnergy signals Fleet → Chargers discharge → NovaFinance settles payment.
+Grid operator requests power → NovaEnergy signals Fleet → Chargers discharge → NovaFin settles payment.
 
 **Ecosystem Usage**  
-NovaEnergy, NovaMobility, NovaFinance
+NovaEnergy, NovaMobility, NovaFin
 
 ---
 
@@ -157,7 +157,7 @@ Data center pipes waste heat/water to greenhouse.
 Industrial symbiosis; energy/water efficiency.
 
 **User Interaction**  
-Match made on NovaHub → NovaInfra monitors flow sensors → NovaBalance audits savings → Billing via NovaFinance.
+Match made on NovaHub → NovaInfra monitors flow sensors → NovaBalance audits savings → Billing via NovaFin.
 
 **Ecosystem Usage**  
 NovaHub, NovaInfra, NovaBalance
@@ -197,7 +197,7 @@ Auto plant pays for "cleaning service" (Chemical Leasing).
 Reduces chemical consumption; incentivizes recovery.
 
 **User Interaction**  
-Sensors monitor cleaning quality → NovaChem tracks solvent quality → NovaWater filters waste → NovaFinance bills monthly service fee.
+Sensors monitor cleaning quality → NovaChem tracks solvent quality → NovaWater filters waste → NovaFin bills monthly service fee.
 
 **Ecosystem Usage**  
-NovaChem, NovaWater, NovaFinance
+NovaChem, NovaWater, NovaFin

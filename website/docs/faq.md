@@ -1,11 +1,11 @@
 # FAQ
 
-Frequently asked questions about the Nova Ecosystem.
+Frequently asked questions about the NovaEco.
 
 ---
 
 ## General
-**Q: What is the Nova Ecosystem?**  
+**Q: What is the NovaEco?**  
 A: A collaborative infrastructure for circular economy, built on enablers, sectors, workers, and products.
 
 **Q: How do I join as a contributor?**  

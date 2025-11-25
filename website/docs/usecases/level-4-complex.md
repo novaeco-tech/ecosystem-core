@@ -17,10 +17,10 @@ Munich creates consortium to divert 50% organic waste.
 Systemic waste reduction; public-private partnership.
 
 **User Interaction**  
-City posts challenge on NovaHub → NovaAgro, NovaWaste, NovaMobility partners join → NovaPolicy manages governance → NovaFinance distributes grant.
+City posts challenge on NovaHub → NovaAgro, NovaWaste, NovaMobility partners join → NovaPolicy manages governance → NovaFin distributes grant.
 
 **Ecosystem Usage**  
-NovaHub, NovaPolicy, NovaFinance, Multiple Sectors
+NovaHub, NovaPolicy, NovaFin, Multiple Sectors
 
 ---
 
@@ -77,10 +77,10 @@ Hospital leases MRI (pay-per-scan) and reuses surgical tools.
 Decouples healthcare from resource consumption.
 
 **User Interaction**  
-MRI scan triggers NovaFinance payment → Used tools sent to NovaInfra hub → Sterilized → Returned via NovaMobility.
+MRI scan triggers NovaFin payment → Used tools sent to NovaInfra hub → Sterilized → Returned via NovaMobility.
 
 **Ecosystem Usage**  
-NovaHealth, NovaFinance, NovaInfra
+NovaHealth, NovaFin, NovaInfra
 
 ---
 
@@ -158,10 +158,10 @@ Real-time pollution data controls city toll prices.
 Dynamic traffic management to reduce smog.
 
 **User Interaction**  
-NovaAir detects smog spike → NovaSapien raises toll price → NovaMobility notifies drivers → NovaFinance processes congestion charge.
+NovaAir detects smog spike → NovaSapien raises toll price → NovaMobility notifies drivers → NovaFin processes congestion charge.
 
 **Ecosystem Usage**  
-NovaAir, NovaSapien, NovaFinance
+NovaAir, NovaSapien, NovaFin
 
 ---
 

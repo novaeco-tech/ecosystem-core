@@ -1,16 +1,16 @@
-# Welcome to the Nova Ecosystem Core
+# Welcome to the NovaEco Core
 
-This is the "heart" of the Nova Ecosystem.
+This is the "heart" of the NovaEco.
 It's a monorepo containing the four central services that power the entire platform.
 
 ## 🏗️ Architecture Overview
 
 | Service | Path | Type | Port | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| **Gateway** | `/api` | **Python/Flask** | `8000` | Central REST API Gateway. The single "front door" for all data. |
-| **Dashboard** | `/app` | **Python/Flask** | `5000` | "Mission Control" dashboard (Server-Side Rendered). |
+| **App** | `/app` | **Python/Flask** | `5000` | "Mission Control" app (Server-Side Rendered). |
 | **Identity** | `/auth` | **Python/Flask** | `9000` | SSO & Identity provider (OAuth2). Handles login/signup. |
-| **Docs** | `/website` | **Node.js** | `3000` | The public documentation site (Docusaurus). |
+| **Gateway** | `/api` | **Python/Flask** | `8000` | Central REST API Gateway. The single "front door" for all data. |
+| **Website** | `/website` | **Node.js** | `3000` | The public landing page and documentation site (Docusaurus). |
 
 ## 🚀 Getting Started (Local Development)
 
@@ -18,7 +18,7 @@ This repository is configured to use **DevContainers** for a one-click setup.
 
 1.  Make sure you have [docker desktop](https://www.docker.com/products/docker-desktop/) installed and running.
 2.  Install the [remote containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) in VS Code.
-3.  Clone this repository: `git clone https://github.com/nova-ecosystem/ecosystem-core.git`
+3.  Clone this repository: `git clone https://github.com/novaeco-tech/ecosystem-core.git`
 4.  Open the cloned folder in VS Code.
 5.  A pop-up will appear: "Folder contains a Dev Container... Reopen in Container?". Click **"Reopen in Container"**.
 
@@ -28,8 +28,8 @@ This will build the Docker-Compose environment defined in `.devcontainer/` and a
 
 Once the container is running, the services are available locally:
 
-  * **Dashboard App:** [http://localhost:5000](http://localhost:5000)
-  * **Public Website:** [http://localhost:3000](http://localhost:3000)
+  * **App:** [http://localhost:5000](http://localhost:5000)
+  * **Website:** [http://localhost:3000](http://localhost:3000)
   * **API Health Check:** [http://localhost:8000/health](http://localhost:8000/health)
   * **Auth Health Check:** [http://localhost:9000/health](http://localhost:9000/health)
 
@@ -67,7 +67,7 @@ We use the internal `nova` CLI to manage versions and automation.
 The CLI is installed automatically in the DevContainer. If you need to reinstall it manually:
 
 ```bash
-pip install "git+https://github.com/nova-ecosystem/ecosystem-devtools.git@main#subdirectory=nova-cli"
+pip install "git+https://github.com/novaeco-tech/ecosystem-devtools.git@main#subdirectory=nova-cli"
 ````
 
 **Usage**

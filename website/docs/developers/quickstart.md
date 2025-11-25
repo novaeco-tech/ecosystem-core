@@ -1,6 +1,6 @@
 # Quickstart
 
-This guide helps new contributors get started with the Nova Ecosystem Core quickly.
+This guide helps new contributors get started with the NovaEco Core quickly.
 
 ---
 
@@ -14,12 +14,12 @@ This guide helps new contributors get started with the Nova Ecosystem Core quick
 ## Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/nova-ecosystem/ecosystem-core.git
+   git clone https://github.com/novaeco-tech/ecosystem-core.git
    ```
 2. Open the folder in VS Code.
 3. Reopen in Container when prompted.
 4. Run services locally:
-   - Dashboard: http://localhost:5000
+   - App: http://localhost:5000
    - Website: http://localhost:3000
    - API Gateway: http://localhost:8000/health
    - Auth: http://localhost:9000/health

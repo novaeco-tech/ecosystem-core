@@ -1,8 +1,8 @@
 # CODEOWNERS file
 # Each service is owned by its corresponding maintainer team.
 
-/api/      @nova-ecosystem/maintainers-core
-/app/      @nova-ecosystem/maintainers-core
-/auth/     @nova-ecosystem/maintainers-core
-/website/  @nova-ecosystem/maintainers-core
-/tests/    @nova-ecosystem/maintainers-core
+/api/      @novaeco-tech/maintainers-core
+/app/      @novaeco-tech/maintainers-core
+/auth/     @novaeco-tech/maintainers-core
+/website/  @novaeco-tech/maintainers-core
+/tests/    @novaeco-tech/maintainers-core

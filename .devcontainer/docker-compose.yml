@@ -2,7 +2,7 @@ version: '3.8'
 services:
   website:
     # USE THE PRE-BUILT IMAGE
-    image: ghcr.io/nova-ecosystem/dev-node:latest
+    image: ghcr.io/novaeco-tech/dev-node:latest
     volumes:
       - ..:/workspace:cached # Mount the entire monorepo root
     # Set the working directory for this specific service
@@ -14,7 +14,7 @@ services:
 
   app:
     # USE THE PRE-BUILT IMAGE
-    image: ghcr.io/nova-ecosystem/dev-python:latest
+    image: ghcr.io/novaeco-tech/dev-python:latest
     volumes:
       - ..:/workspace:cached # Mount the entire monorepo root
     # Set the working directory for this specific service
@@ -32,7 +32,7 @@ services:
 
   api:
     # USE THE PRE-BUILT IMAGE
-    image: ghcr.io/nova-ecosystem/dev-python:latest
+    image: ghcr.io/novaeco-tech/dev-python:latest
     volumes:
       - ..:/workspace:cached
     working_dir: /workspace/api
@@ -43,7 +43,7 @@ services:
 
   auth:
     # USE THE PRE-BUILT IMAGE
-    image: ghcr.io/nova-ecosystem/dev-python:latest
+    image: ghcr.io/novaeco-tech/dev-python:latest
     volumes:
       - ..:/workspace:cached
     working_dir: /workspace/auth

@@ -1,6 +1,6 @@
 # Sustainability Requirements
 
-The Nova Ecosystem embeds circular economy principles into its technical and governance design.
+The NovaEco embeds circular economy principles into its technical and governance design.
 
 ## Environmental
 - Support for Digital Product Passports (DPP).

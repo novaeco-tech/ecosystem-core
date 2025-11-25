@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to the **Nova Ecosystem Documentation**!
+Welcome to the **NovaEco Documentation**!
 
 This site is the single source of truth for contributors, developers, and stakeholders. It explains the architecture, requirements, use cases, APIs, developer workflows, and best practices that power the ecosystem.
 

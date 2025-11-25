@@ -1,6 +1,6 @@
 # Changelog
 
-This page summarizes major updates to the Nova Ecosystem documentation and core services.
+This page summarizes major updates to the NovaEco documentation and core services.
 
 ---
 

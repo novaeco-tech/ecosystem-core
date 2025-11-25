@@ -1,6 +1,6 @@
 # CI/CD Workflows
 
-Nova Ecosystem uses GitHub Actions for testing and publishing.
+NovaEco uses GitHub Actions for testing and publishing.
 
 ## CI (ci-pr.yml)
 - Runs on pull requests and pushes to `main`.

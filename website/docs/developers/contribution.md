@@ -1,7 +1,7 @@
 # Contribution Guide
 
 ## Code of Conduct
-All contributors must follow the [Code of Conduct](https://github.com/nova-ecosystem/.github/blob/main/CODE_OF_CONDUCT.md).
+All contributors must follow the [Code of Conduct](https://github.com/novaeco-tech/.github/blob/main/CODE_OF_CONDUCT.md).
 
 ## How to Contribute
 1. Fork the repository.

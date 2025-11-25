@@ -1,6 +1,6 @@
 # Documentation Style Guide
 
-This guide ensures all Nova Ecosystem docs remain consistent and easy to read.
+This guide ensures all NovaEco docs remain consistent and easy to read.
 
 ## Headings
 - Use `#` for page titles, `##` for sections, `###` for subsections.

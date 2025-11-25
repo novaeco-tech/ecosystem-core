@@ -5,7 +5,7 @@ import Link from '@docusaurus/Link';
 export default function Home() {
     return (
         <Layout
-            title="Nova Ecosystem"
+            title="NovaEco"
             description="The Open-Source Operating System for a Circular Economy"
         >
             <main>
@@ -19,19 +19,16 @@ export default function Home() {
                         color: 'white'
                     }}
                 >
-                    <h1>🌍 Nova Ecosystem</h1>
+                    <h1>🌍 NovaEco</h1>
                     <p style={{ maxWidth: 960, margin: '0 auto' }}>
-                        The Nova Ecosystem is the open-source operating system for the circular economy.
-                        It unites Enablers, Sectors, specialized Workers, and innovative Products
-                        into a cohesive framework that transforms sustainability from fragmented efforts
-                        into a scalable, systemic solution.
+                        The <strong>NovaEco</strong> is an open‑source operating system for the circular economy.
                     </p>
                     <div style={{ marginTop: '2rem' }}>
                         <Link className="button button--primary" to="/docs/intro">
                             Get Started
                         </Link>
-                        <Link className="button button--secondary" to="https://app.nova-ecosystem.org" style={{ marginLeft: '0.75rem' }}>
-                            Launch Central App
+                        <Link className="button button--secondary" to="https://app.novaeco.tech" style={{ marginLeft: '0.75rem' }}>
+                            Launch App
                         </Link>
                     </div>
                 </section>
@@ -40,8 +37,16 @@ export default function Home() {
                 <section style={{ padding: '2rem 4rem' }}>
                     <h2>🔎 Ecosystem overview</h2>
                     <p>
-                        The Nova Ecosystem is built on <strong>Enablers</strong> (horizontal services), <strong>Sectors</strong> (application industries),
-                        <strong>Workers</strong> (microservices), and <strong>Products</strong> (hardware/software innovations).
+                        At the heart of the ecosystem are a couple of central services which glue everything together:
+                    </p>
+                    <ul>
+                        <li><strong><a href="https://app.novaeco.tech">App</a></strong> — Central app for onboarding, discovery, and ecosystem management.</li>
+                        <li><strong><a href="https://auth.novaeco.tech">Identity</a></strong> — Digital Passport & Trust Profile for unified login and credentials across the ecosystem.</li>
+                        <li><strong><a href="https://api.novaeco.tech">Gateway</a></strong> — API gateway for secure, managed access to ecosystem services.</li>
+                        <li><strong><a href="https://novaeco.tech/docs">Docs</a></strong> — Comprehensive documentation hub for architecture, use cases, and developer guides.</li>
+                    </ul>
+                    <p>
+                        It is designed as a <strong>System‑of‑Systems</strong>: interconnected <strong>Horizontal Enablers</strong> (services), <strong>Vertical Sectors</strong> (application industries), <strong>Workers</strong> (microservices), and <strong>Products</strong> (hardware/software innovations) that together enable sustainable collaboration, compliance, and innovation.
                     </p>
 
                     <div style={{ overflowX: 'auto' }}>
@@ -56,68 +61,64 @@ export default function Home() {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td title="Digital Passport & Trust Profile for unified login and credentials"><a href="https://auth.nova-ecosystem.org">Identity — SSO & profile</a></td>
+                                    <td title="Collaboration Engine, project wizard for needs/offers/problems"><a href="https://novahub.network">NovaHub — project wizard</a></td>
                                     <td title="Regenerative agriculture and food systems"><a href="https://novaagro.tech">NovaAgro — farming & food</a></td>
                                     <td title="Syncs EU databases and ERPs to keep Digital Product Passports current">NovaMaterial — DPP sync</td>
                                     <td title="Autonomous electric robot for regenerative farming tasks">DurasAGV — agricultural robot</td>
                                 </tr>
                                 <tr>
-                                    <td title="Collaboration Engine, project wizard for needs/offers/problems"><a href="https://novahub.network">NovaHub — project wizard</a></td>
-                                    <td title="Water purification, desalination, smart grids"><a href="https://novawater.tech">NovaWater</a></td>
+                                    <td title="Fintech hub for green bonds, ESG-linked finance"><a href="https://novafin.finance">NovaFin — capital engine</a></td>
+                                    <td title="Water purification, desalination, smart grids"><a href="https://novawater.tech">NovaWater — water systems</a></td>
                                     <td title="Automated LCA calculations triggered by transactions">NovaBalance — LCA engine</td>
                                     <td title="Smart reusable packaging with tracker and e-ink label">NovaBox — reusable packaging</td>
                                 </tr>
                                 <tr>
-                                    <td title="Fintech hub for green bonds, ESG-linked finance"><a href="https://novafin.finance">NovaFin — capital engine</a></td>
+                                    <td title="Exchange for materials and environmental assets"><a href="https://novatrade.markets">NovaMarkets — trading backbone</a></td>
                                     <td title="Circular construction & buildings-as-material-banks"><a href="https://novabuild.tech">NovaBuild — construction</a></td>
                                     <td title="Finds waste-to-resource symbiosis matches">NovaHub — symbiosis matcher</td>
                                     <td title="Retrofit robotic arm with vision for AI sorting">SortBotX1 — sorting robot</td>
                                 </tr>
                                 <tr>
-                                    <td title="Exchange for materials and environmental assets"><a href="https://novatrade.markets">NovaMarkets — trading backbone</a></td>
+                                    <td title="AI, robotics, IoT, digital twins"><a href="https://novasapien.ai">NovaSapien — intelligence & robotics</a></td>
                                     <td title="Circular fashion & textile recycling"><a href="https://novatextile.tech">NovaTextile — fashion & textile</a></td>
                                     <td title="Computer vision inference for sorting robots">NovaSapien — AI sorter</td>
                                     <td title="Industrial-grade NFC/RFID tag linking to passports">CirclID — industrial tag</td>
                                 </tr>
                                 <tr>
-                                    <td title="AI, robotics, IoT, digital twins"><a href="https://novasapien.ai">NovaSapien — intelligence & robotics</a></td>
+                                    <td title="Renewable energy, smart grids, storage"><a href="https://novaenergy.tech">NovaEnergy — power systems</a></td>
                                     <td title="Advanced sorting, recycling, urban mining"><a href="https://novawaste.tech">NovaWaste — recycling</a></td>
                                     <td title="Policy-as-code compliance scanning across supply chains">NovaPolicy — policy guard</td>
                                     <td title="CAD plugin that generates compliant DPPs">MaterialPassportGenerator — SaaS tool</td>
                                 </tr>
                                 <tr>
-                                    <td title="Renewable energy, smart grids, storage"><a href="https://novaenergy.tech">NovaEnergy — power systems</a></td>
+                                    <td title="R&D for biomaterials and new recycling tech"><a href="https://novamaterial.tech">NovaMaterial — materials lab</a></td>
                                     <td title="Carbon capture, pollution monitoring, air quality"><a href="https://novaair.systems">NovaAir — air systems</a></td>
                                     <td title="Optimizes reverse logistics routes">NovaMobility — routing</td>
                                     <td title="Bi-directional EV charger enabling V2H/V2G">WattShareController — charger</td>
                                 </tr>
                                 <tr>
-                                    <td title="R&D for biomaterials and new recycling tech"><a href="https://novamaterial.tech">NovaMaterial — materials lab</a></td>
+                                    <td title="Reverse logistics, EV fleets, take-back loops"><a href="https://novamobility.tech">NovaMobility — logistics</a></td>
                                     <td title="Reusable devices, sustainable hospital operations"><a href="https://novahealth.systems">NovaHealth — healthcare</a></td>
                                     <td title="Coordinates EV fleets to stabilize the grid">NovaEnergy — V2G coordinator</td>
-                                    <td title="Urban furniture with moss filters and sensors">PureAir Station — air bench</td>
+                                    <td title="Urban furniture with moss filters and sensors">PureAirStation — air bench</td>
                                 </tr>
                                 <tr>
-                                    <td title="Reverse logistics, EV fleets, take-back loops"><a href="https://novamobility.tech">NovaMobility — logistics</a></td>
+                                    <td title="Shared physical infrastructure and hubs"><a href="https://novainfra.systems">NovaInfra — infrastructure backbone</a></td>
                                     <td title="Circular packaging systems and deposit schemes"><a href="https://novapack.tech">NovaPack — packaging</a></td>
                                     <td title="Crawls public data for urban mining sources">NovaHub — urban miner</td>
-                                    <td title="Computer-vision bin to prevent mis-sorting in hospitals">MedCycle Bin — smart bin</td>
+                                    <td title="Computer-vision bin to prevent mis-sorting in hospitals">MedCycleBin — smart bin</td>
                                 </tr>
                                 <tr>
-                                    <td title="Shared physical infrastructure and hubs"><a href="https://novainfra.systems">NovaInfra — infra backbone</a></td>
+                                    <td title="Education and reskilling for green-collar workers"><a href="https://novaskills.education">NovaSkills — human capital</a></td>
                                     <td title="Electronics repair/refurbishment and device layer"><a href="https://novatronix.tech">NovaTronix — electronics</a></td>
                                     <td title="Anonymizes healthcare data to protect privacy">NovaHealth — privacy shield</td>
                                     <td title="Automated disassembly rig for textile preparation">ReformFabric — textile rig</td>
                                 </tr>
                                 <tr>
-                                    <td title="Education and reskilling for green-collar workers"><a href="https://novaskills.education">NovaSkills — human capital</a></td>
+                                    <td title="Governance standards and rulebook"><a href="https://novapolicy.global">NovaPolicy — governance</a></td>
                                     <td title="Green chemistry and chemical leasing models"><a href="https://novachem.tech">NovaChem — chemicals</a></td>
                                     <td title="Executes performance-based financing settlements">NovaFin — green contracts</td>
-                                    <td title="Standardized toolset for repair cafes">RefurbLab Kit — repair tools</td>
-                                </tr>
-                                <tr>
-                                    <td title="Governance standards and rulebook"><a href="https://novapolicy.global">NovaPolicy — governance</a></td>
-                                    <td></td><td></td><td></td>
+                                    <td title="Standardized toolset for repair cafes">RefurbLabKit — repair tools</td>
                                 </tr>
                                 <tr>
                                     <td title="Environmental auditor for carbon/water/waste"><a href="https://novabalance.earth">NovaBalance — environmental auditor</a></td>
@@ -132,6 +133,9 @@ export default function Home() {
                         <p style={{ marginTop: '0.5rem', color: '#666' }}>
                             Note: Workers and Products shown are representative examples; the list evolves as the ecosystem grows.
                         </p>
+                        <p>
+                            👉 Explore the full <Link to="/docs/architecture/overview">Architecture Overview</Link> for detailed descriptions and interactions.
+                        </p>
                     </div>
                 </section>
 
@@ -140,7 +144,7 @@ export default function Home() {
                     <h2>📊 Use case highlights</h2>
                     <p>
                         We demonstrate the ecosystem’s scalability and interoperability through four distinct, non‑overlapping levels: <strong> Onboarding & Control</strong>, <strong>Transactional Efficiency</strong>, <strong>Value Chain Coordination</strong>, and <strong>Systemic Transformation</strong>.<br />
-                        Together these levels provide a complete view of how the Nova Ecosystem supports individual entry, simple exchanges, coordinated value chains, and complex systemic change across the circular economy.
+                        Together these levels provide a complete view of how the NovaEco supports individual entry, simple exchanges, coordinated value chains, and complex systemic change across the circular economy.
                     </p>
 
 
@@ -225,8 +229,8 @@ export default function Home() {
                 < section style={{ padding: '2rem 4rem' }}>
                     <h2>🤝 Collaboration & legal</h2>
                     <p>
-                        Contributions are governed by our <a href="https://github.com/nova-ecosystem/.github/blob/main/CONTRIBUTING.md">Contribution Guide</a> and
-                        <a href="https://github.com/nova-ecosystem/.github/blob/main/CODE_OF_CONDUCT.md"> Code of Conduct</a>. Sponsorship agreements are managed via
+                        Contributions are governed by our <a href="https://github.com/novaeco-tech/.github/blob/main/CONTRIBUTING.md">Contribution Guide</a> and
+                        <a href="https://github.com/novaeco-tech/.github/blob/main/CODE_OF_CONDUCT.md"> Code of Conduct</a>. Sponsorship agreements are managed via
                         <a href="https://circular.engineering"> Circular Engineering Nova GmbH</a>.
                     </p>
                 </section >

@@ -8,7 +8,7 @@ API_URL = os.environ.get("API_URL", "http://localhost:8000")
 
 @app.route('/')
 def dashboard():
-    # Example: The Dashboard calls the API to get status
+    # Example: The App calls the API to get status
     try:
         # This call happens inside the docker network
         response = requests.get(f"{API_URL}/health")

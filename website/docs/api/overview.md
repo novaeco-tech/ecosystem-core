@@ -1,6 +1,6 @@
 # API Overview
 
-The Nova Ecosystem exposes APIs through the **Gateway** service (`/api`) and the **Auth** service (`/auth`).
+The NovaEco exposes APIs through the **Gateway** service (`/api`) and the **Auth** service (`/auth`).
 
 ## Principles
 - **Unified Gateway:** All requests flow through a single entry point.

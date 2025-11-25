@@ -1,6 +1,6 @@
 # Developer Guide
 
-This guide provides practical steps for working with the Nova Ecosystem Core.
+This guide provides practical steps for working with the NovaEco Core.
 
 ## Local Development
 - Use DevContainers for consistent environments.

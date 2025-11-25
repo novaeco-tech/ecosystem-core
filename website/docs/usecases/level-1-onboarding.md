@@ -18,7 +18,7 @@ An individual or SME registers, verifies their identity, and establishes a "Trus
 Lack of trust prevents circular collaboration (e.g., *“Is this recycled plastic safe?”*).
 
 **User Interaction**  
-User visits `auth.nova-ecosystem.org` → Registers via Email → Uploads proof of business → Admin verifies → “Verified” badge issued.
+User visits `auth.novaeco.tech` → Registers via Email → Uploads proof of business → Admin verifies → “Verified” badge issued.
 
 **Ecosystem Usage**  
 Identity (Core), NovaPolicy (Verification Standards), NovaHub (Profile Display)
@@ -59,7 +59,7 @@ Users view a personalized dashboard aggregating real-time impact metrics (CO₂,
 “You can’t manage what you don’t measure.” Visibility drives behavioral change.
 
 **User Interaction**  
-Login to `app.nova-ecosystem.org` → NovaBalance queries workers → Dashboard renders “CO₂ Saved” widget from NovaAir and “Water Saved” from NovaWater.
+Login to `app.novaeco.tech` → NovaBalance queries workers → Dashboard renders “CO₂ Saved” widget from NovaAir and “Water Saved” from NovaWater.
 
 **Ecosystem Usage**  
 NovaBalance (Aggregator), Identity (Preferences), NovaAir/Water (Data Sources)
@@ -99,7 +99,7 @@ Users discover and connect to sector-specific apps (e.g., NovaTronix repair shop
 Circular solutions exist but are invisible. Centralized discovery drives adoption.
 
 **User Interaction**  
-User browses `nova-ecosystem.org/marketplace` → Clicks “Electronics Repair” → Redirects to `novatronix.tech` with Auth Token.
+User browses `novaeco.tech/marketplace` → Clicks “Electronics Repair” → Redirects to `novatronix.tech` with Auth Token.
 
 **Ecosystem Usage**  
 NovaMarkets (Directory), Identity (SSO), NovaTronix (Target)

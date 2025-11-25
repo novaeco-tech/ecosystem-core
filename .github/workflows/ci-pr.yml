@@ -1,4 +1,4 @@
-name: Nova Ecosystem CI
+name: NovaEco CI
 
 on:
   pull_request:
@@ -32,7 +32,7 @@ jobs:
     if: ${{ needs.changed-files.outputs.api == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/nova-ecosystem/dev-python:latest
+      image: ghcr.io/novaeco-tech/dev-python:latest
       # Force root user to avoid EACCES permission errors on GHA
       options: --user root
     steps:
@@ -52,7 +52,7 @@ jobs:
     if: ${{ needs.changed-files.outputs.app == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/nova-ecosystem/dev-python:latest
+      image: ghcr.io/novaeco-tech/dev-python:latest
       options: --user root
     steps:
       - uses: actions/checkout@v4
@@ -67,7 +67,7 @@ jobs:
     if: ${{ needs.changed-files.outputs.auth == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/nova-ecosystem/dev-python:latest
+      image: ghcr.io/novaeco-tech/dev-python:latest
       options: --user root
     steps:
       - uses: actions/checkout@v4
@@ -82,7 +82,7 @@ jobs:
     if: ${{ needs.changed-files.outputs.website == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/nova-ecosystem/dev-node:latest
+      image: ghcr.io/novaeco-tech/dev-node:latest
       options: --user root
     steps:
       - uses: actions/checkout@v4

@@ -1,6 +1,6 @@
 # Non-Functional Requirements
 
-The Nova Ecosystem must meet performance, scalability, and compliance standards.
+The NovaEco must meet performance, scalability, and compliance standards.
 
 ## Performance
 - Low latency API responses (&lt;200ms for core endpoints).

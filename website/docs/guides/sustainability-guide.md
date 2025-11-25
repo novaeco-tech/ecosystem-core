@@ -1,6 +1,6 @@
 # Sustainability Guide
 
-Nova Ecosystem embeds sustainability into every layer.
+NovaEco embeds sustainability into every layer.
 
 ## Environmental
 - Support Digital Product Passports (DPP).

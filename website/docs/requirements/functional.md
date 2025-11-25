@@ -1,6 +1,6 @@
 # Functional Requirements
 
-The Nova Ecosystem must deliver clear, user‑facing functionality across enablers, sectors, workers, and products.
+The NovaEco must deliver clear, user‑facing functionality across enablers, sectors, workers, and products.
 
 ## Core Functions
 - **User Onboarding:** Registration, identity management, consent handling.
