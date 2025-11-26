@@ -17,7 +17,7 @@ Bioplastics startup matches with Investor, Lab, and Mentor.
 Accelerates circular innovation capital deployment.
 
 **User Interaction**  
-Startup uses NovaHub wizard to define capital, lab, and mentorship needs. NovaHub broadcasts these requirements. Investors connect via NovaFin.
+Startup uses NovaHub wizard to define capital, lab, and mentorship needs. NovaHub broadcasts these requirements. Investors connect via NovaTrade (to find the opportunity) and fund via NovaFin (to transfer capital).
 
 **Ecosystem Usage**  
 NovaHub, NovaFin, NovaInfra

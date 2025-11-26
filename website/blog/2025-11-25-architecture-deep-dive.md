@@ -30,7 +30,7 @@ Cross‑cutting foundational services:
 - NovaHub (innovation, wizard, orchestrator)  
 - NovaFin (tokens, payments, investment)  
 - NovaTrade (marketplace)  
-- NovaSapiens (shared ML models)  
+- NovaSapien (shared ML models)  
 - NovaEnergy (renewables, auditing)  
 - NovaMaterial (digital product passports)  
 - NovaMobility (logistics, transport)  

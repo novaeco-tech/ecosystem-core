@@ -7,10 +7,18 @@ It's a monorepo containing the four central services that power the entire platf
 
 | Service | Path | Type | Port | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| **App** | `/app` | **Python/Flask** | `5000` | "Mission Control" app (Server-Side Rendered). |
+| **App** | `/app` | **Python/Flask** | `5000` | **"Mission Control" Dashboard.** Handles onboarding, identity, and high-level aggregation. |
 | **Identity** | `/auth` | **Python/Flask** | `9000` | SSO & Identity provider (OAuth2). Handles login/signup. |
 | **Gateway** | `/api` | **Python/Flask** | `8000` | Central REST API Gateway. The single "front door" for all data. |
 | **Website** | `/website` | **Node.js** | `3000` | The public landing page and documentation site (Docusaurus). |
+
+### 🎮 The "Mission Control" Concept
+The **App** (`/app`) acts as the "Home Screen" for the ecosystem. It is **read-heavy** and focuses on three specific functions:
+1.  **Onboarding & Identity:** Handles Sign-up, Profile management, and Trust verification.
+2.  **Aggregated Dashboard:** Displays a high-level summary of user activity across the ecosystem (e.g., "Total CO₂ Saved", "3 Active Projects").
+3.  **App Launchpad:** Provides deep-links to jump into specific Sector/Enabler apps (e.g., clicking a project takes you to `novaagro.tech` for execution).
+
+---
 
 ## 🚀 Getting Started (Local Development)
 
