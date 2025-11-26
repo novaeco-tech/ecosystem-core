@@ -17,7 +17,7 @@ Bioplastics startup matches with Investor, Lab, and Mentor.
 Accelerates circular innovation capital deployment.
 
 **User Interaction**  
-Startup posts "Needs" on NovaHub → AI matches with Angel Investor (Capital) and NovaInfra (Lab) → Deal signed via NovaFin.
+Startup uses NovaHub wizard to define capital, lab, and mentorship needs. NovaHub broadcasts these requirements. Investors connect via NovaFin.
 
 **Ecosystem Usage**  
 NovaHub, NovaFin, NovaInfra

@@ -7,7 +7,7 @@
 ## <a id="E1"></a> [E1] The Waste Match
 
 **Description**  
-Bakery lists stale bread. NovaHub matches it with an insect farm needing feedstock.
+Bakery lists waste. NovaHub defines the resource requirement. NovaTrade executes the match and transfer..
 
 **Challenges**  
 - Small volume logistics  

@@ -17,7 +17,7 @@ Munich creates consortium to divert 50% organic waste.
 Systemic waste reduction; public-private partnership.
 
 **User Interaction**  
-City posts challenge on NovaHub → NovaAgro, NovaWaste, NovaMobility partners join → NovaPolicy manages governance → NovaFin distributes grant.
+City posts challenge. NovaHub decomposes this into sub-projects: Organic Waste collection (NovaWaste), Logistics (NovaMobility), and Public Awareness (NovaSkills).
 
 **Ecosystem Usage**  
 NovaHub, NovaPolicy, NovaFin, Multiple Sectors

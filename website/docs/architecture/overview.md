@@ -24,7 +24,7 @@ These services provide the foundation for onboarding, governance, API integratio
 
 Cross‑cutting foundational services:
 
-- **NovaHub** – project creation, innovation, wizard.  
+- **NovaHub** – Innovation Wizard & Orchestrator. Decomposes high-level intent (e.g., "Start a circular farm") into atomic requirements (assets, skills, infrastructure) to be fulfilled by other pillars.
 - **NovaFin** – tokens, staking, payments, revenue sharing, investment.  
 - **NovaTrade** – decentralized marketplace for goods, services, and assets.  
 - **NovaSapien** – shared artificial intelligence and ML models.  

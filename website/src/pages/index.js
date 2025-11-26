@@ -67,7 +67,7 @@ export default function Home() {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td title="Collaboration Engine, project wizard for needs/offers/problems"><a href="https://novahub.network">NovaHub — project wizard</a></td>
+                                    <td title="Innovation Wizard: Decomposes complex problems into atomic ecosystem tasks"><a href="https://novahub.network">NovaHub — Innovation Wizard</a></td>
                                     <td title="Regenerative agriculture and food systems"><a href="https://novaagro.tech">NovaAgro — farming & food</a></td>
                                     <td title="Syncs EU databases and ERPs to keep Digital Product Passports current">NovaMaterial — DPP sync</td>
                                     <td title="Autonomous electric robot for regenerative farming tasks">DurasAGV — agricultural robot</td>
