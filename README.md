@@ -59,15 +59,15 @@ By default, the App runs in the background. If you want to **attach a debugger (
 3.  Open the Command Palette (`Ctrl+Shift+P` / `F1`) and select **"Dev Containers: Rebuild Container"**.
 4.  Once rebuilt, the App will **not** be running. You can now press **F5** or run `python app.py` in the terminal to start it with the debugger attached.
 
-### 🧰 Developer Tools (Nova CLI)
+### 🧰 Developer Tools (NovaEco CLI)
 
-We use the internal `nova` CLI to manage versions and automation.
+We use the internal `novaeco` CLI to manage versions and automation.
 
 **Installation**
 The CLI is installed automatically in the DevContainer. If you need to reinstall it manually:
 
 ```bash
-pip install "git+https://github.com/novaeco-tech/ecosystem-devtools.git@main#subdirectory=nova-cli"
+pip install "git+https://github.com/novaeco-tech/ecosystem-devtools.git@main#subdirectory=novaeco-cli"
 ````
 
 **Usage**
@@ -76,14 +76,14 @@ pip install "git+https://github.com/novaeco-tech/ecosystem-devtools.git@main#sub
     Increments the patch version (e.g., `1.0.1` -\> `1.0.2`).
 
     ```bash
-    nova version patch auth
+    novaeco version patch auth
     ```
 
   * **Releasing a Feature (Minor/Major):**
     Updates the Global version and aligns ALL services (e.g., `1.1.0`).
 
     ```bash
-    nova version release minor
+    novaeco version release minor
     ```
 
 ### 💻 Switching to Website, API, or Auth

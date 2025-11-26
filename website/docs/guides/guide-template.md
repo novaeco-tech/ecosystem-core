@@ -14,7 +14,7 @@ Explain the goal of this guide in 2–3 sentences.
 
 ## Prerequisites
 List any tools, knowledge, or setup required before following this guide.  
-- Example: Docker installed, access to NovaHub, API token.
+- Example: Docker installed, access to NovaEco, API token.
 
 ---
 

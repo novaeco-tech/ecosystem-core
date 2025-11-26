@@ -24,7 +24,7 @@ These services provide the foundation for onboarding, governance, API integratio
 
 Cross‑cutting foundational services:
 
-- **NovaHub** – project creation, community coordination, ecosystem‑wide search.  
+- **NovaHub** – project creation, innovation, wizard.  
 - **NovaFin** – tokens, staking, payments, revenue sharing, investment.  
 - **NovaTrade** – decentralized marketplace for goods, services, and assets.  
 - **NovaSapien** – shared artificial intelligence and ML models.  

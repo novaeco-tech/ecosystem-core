@@ -27,10 +27,10 @@ NovaEco is designed as a **system‑of‑systems**: interconnected **Horizontal 
 ## Horizontal Enablers
 
 Cross‑cutting foundational services:
-- NovaHub (coordination, search)  
-- NovaFinance (tokens, payments, investment)  
+- NovaHub (innovation, wizard)  
+- NovaFin (tokens, payments, investment)  
 - NovaTrade (marketplace)  
-- NovaAI (shared ML models)  
+- NovaSapiens (shared ML models)  
 - NovaEnergy (renewables, auditing)  
 - NovaMaterial (digital product passports)  
 - NovaMobility (logistics, transport)  

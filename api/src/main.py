@@ -8,7 +8,7 @@ def health():
 
 @app.route('/')
 def root():
-    return jsonify({"message": "Welcome to the Nova API Gateway"})
+    return jsonify({"message": "Welcome to the NovaEco API Gateway"})
 
 if __name__ == '__main__':
     # Host 0.0.0.0 is CRITICAL for docker accessibility

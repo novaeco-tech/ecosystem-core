@@ -3,7 +3,7 @@
 This glossary defines common terms used across the NovaEco.
 
 ## Core Concepts
-- **Enabler** — Horizontal service that provides foundational capabilities (e.g., Identity, NovaHub, NovaFin).
+- **Enabler** — Horizontal service that provides foundational capabilities (e.g., NovaHub, NovaFin).
 - **Sector** — Application industry where circular solutions are deployed (e.g., NovaAgro, NovaBuild).
 - **Worker** — Microservice that performs a specialized task (e.g., NovaMaterial — DPP sync).
 - **Product** — Hardware or software innovation built on the ecosystem (e.g., SortBot X1, NovaBox).

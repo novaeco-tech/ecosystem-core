@@ -21,7 +21,7 @@ The NovaEco Core uses **DevContainers** for one‑click setup.
 ---
 
 ## Related Pages
-- [Nova CLI](./cli.md)
+- [NovaEco CLI](./cli.md)
 - [Workflows](./workflows.md)
 - [Contribution Guide](./contribution.md)
 - [API Overview](../api/overview.md)

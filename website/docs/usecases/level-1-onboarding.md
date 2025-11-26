@@ -21,7 +21,7 @@ Lack of trust prevents circular collaboration (e.g., *“Is this recycled plasti
 User visits `auth.novaeco.tech` → Registers via Email → Uploads proof of business → Admin verifies → “Verified” badge issued.
 
 **Ecosystem Usage**  
-Identity (Core), NovaPolicy (Verification Standards), NovaHub (Profile Display)
+Identity (Core), NovaPolicy (Verification Standards), Central App (Profile Display)
 
 ---
 
@@ -182,7 +182,7 @@ Cities are “mines,” but lack of coordination leads to landfilling.
 City Planner starts “Project Munich North” in NovaHub → Imports NovaBuild demolition data → NovaSapien predicts yield → NovaWaste reserves capacity.
 
 **Ecosystem Usage**  
-NovaHub (Orchestration), NovaBuild, NovaWaste, NovaSapien
+Central App (Orchestration), NovaBuild, NovaWaste, NovaSapien
 
 ---
 

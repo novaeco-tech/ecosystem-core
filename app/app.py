@@ -17,7 +17,7 @@ def dashboard():
         api_status = {"status": "offline"}
 
     html = f"""
-    <h1>Nova Mission Control</h1>
+    <h1>NovaEco Mission Control</h1>
     <p>Status: Online</p>
     <p>API Connection: {api_status}</p>
     """
