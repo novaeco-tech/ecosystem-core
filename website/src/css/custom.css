@@ -53,6 +53,20 @@
     padding: 0 1rem;
 }
 
+/* Force the footer columns to spread out (Community Left <-> Legal Right) */
+@media (min-width: 997px) {
+    .footer__links {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    /* Optional: Align the text inside the Legal column to the right */
+    .footer__col:last-child {
+        text-align: right;
+        align-items: flex-end;
+    }
+}
+
 html[data-theme='dark'].docusaurus-highlight-code-line {
     background-color: rgba(0, 0, 0, 0.3);
 }

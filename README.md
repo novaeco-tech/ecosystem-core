@@ -76,7 +76,7 @@ The CLI is installed automatically in the DevContainer. If you need to reinstall
 
 ```bash
 pip install "git+https://github.com/novaeco-tech/ecosystem-devtools.git@main#subdirectory=novaeco-cli"
-````
+```
 
 **Usage**
 

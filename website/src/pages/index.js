@@ -6,11 +6,11 @@ export default function Home() {
     return (
         <Layout
             title="NovaEco"
-            description="Open-source operating system for circular economy and sustainability"
+            description="Open-source Digital Public Infrastructure for the circular economy"
         >
             <main>
 
-                {/* Hero Section (Executive Summary) */}
+                {/* Hero Section */}
                 <section
                     style={{
                         padding: '4rem 4rem',
@@ -21,35 +21,26 @@ export default function Home() {
                 >
                     <h1>🌍 NovaEco</h1>
                     <p style={{ maxWidth: 960, margin: '0 auto', fontSize: '1.0rem', lineHeight: '1.8' }}>
-                        <strong>NovaEco</strong> is the open‑source operating system for the circular economy —
-                        empowering individuals, communities, and organizations to design, share, and scale sustainable solutions together.
+                        <strong>NovaEco</strong> is the open‑source <strong>Digital Public Infrastructure</strong> for the circular economy.
+                        It connects individuals and siloed sectors to <strong>foster innovation</strong>, measure impact, and <strong>collaborate</strong> within a federated system-of-systems.
                     </p>
                     <div style={{ marginTop: '2rem' }}>
-                        <Link className="button button--primary" to="/docs/intro">
-                            Get Started
-                        </Link>
-                        <Link
-                            className="button button--secondary"
-                            to="https://app.novaeco.tech"
-                            style={{ marginLeft: '0.75rem' }}
-                        >
-                            Launch App
-                        </Link>
+                        {/* ... buttons ... */}
                     </div>
                 </section>
 
 
-                {/* Four-column Ecosystem Table (short descriptions + tooltips) */}
+                {/* Four-column Ecosystem Table */}
                 <section style={{ padding: '2rem 4rem' }}>
                     <h2>🔎 Ecosystem overview</h2>
                     <p>
-                        At the heart of the ecosystem are a couple of central services which glue everything together:
+                        The ecosystem is anchored by <strong>four core services</strong> that provide unified identity, orchestration, and access management:
                     </p>
                     <ul>
-                        <li><strong><a href="https://app.novaeco.tech">App</a></strong> — Central app for onboarding, discovery, and ecosystem management.</li>
-                        <li><strong><a href="https://auth.novaeco.tech">Identity</a></strong> — Digital Passport & Trust Profile for unified login and credentials across the ecosystem.</li>
-                        <li><strong><a href="https://api.novaeco.tech">Gateway</a></strong> — API gateway for secure, managed access to ecosystem services.</li>
-                        <li><strong><a href="https://novaeco.tech/docs">Docs</a></strong> — Comprehensive documentation hub for architecture, use cases, and developer guides.</li>
+                        <li><strong><a href="https://app.novaeco.tech">App</a></strong> — Mission Control for onboarding, discovery, and ecosystem management.</li>
+                        <li><strong><a href="https://auth.novaeco.tech">Identity</a></strong> — Digital Passport & Trust Profile for unified login.</li>
+                        <li><strong><a href="https://api.novaeco.tech">Gateway</a></strong> — API gateway for secure, managed access to all services.</li>
+                        <li><strong><Link to="/docs/intro">Docs</Link></strong> — Architecture, use cases, and developer guides.</li>
                     </ul>
                     <p>
                         It is designed as a <strong>System‑of‑Systems</strong>: interconnected <strong>Horizontal Enablers</strong> (services), <strong>Vertical Sectors</strong> (application industries), <strong>Workers</strong> (microservices), and <strong>Products</strong> (hardware/software innovations) that together enable sustainable collaboration, compliance, and innovation.
@@ -67,7 +58,7 @@ export default function Home() {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td title="Innovation Wizard, decomposes complex problems into atomic ecosystem tasks"><a href="https://novahub.network">NovaHub — innovation wizard</a></td>
+                                    <td title="Innovation Wizard: decomposes complex problems into atomic ecosystem tasks"><a href="https://novahub.network">NovaHub — innovation wizard</a></td>
                                     <td title="Regenerative agriculture and food systems"><a href="https://novaagro.tech">NovaAgro — farming & food</a></td>
                                     <td title="Syncs EU databases and ERPs to keep Digital Product Passports current">NovaMaterial — DPP sync</td>
                                     <td title="Autonomous electric robot for regenerative farming tasks">DurasAGV — agricultural robot</td>
@@ -158,35 +149,35 @@ export default function Home() {
                     <h3>Level 1: Onboarding & Control (Foundational integration)</h3>
                     <p><em>Focus: onboarding, IAM, API setup, inter‑enabler/sector/worker/product integration, data aggregation, dashboards, compliance.</em></p>
                     <ul>
-                        <li><Link to="/docs/usecases/level-1-onboarding#O1">[O1] User Onboarding</Link> — Individual registers and joins the ecosystem via Identity, creating a trusted profile.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#O2">[O2] API Key Generation</Link> — Developer generates API keys to integrate enabler/sector services securely.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#O3">[O3] Sustainability Dashboard</Link> — User views personal or organizational impact metrics aggregated across enablers.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#O4">[O4] Cross‑Sector Data Aggregation</Link> — DPP and LCA data ingested from multiple sectors for holistic insights.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#O5">[O5] Circular Marketplace Access</Link> — User discovers and connects to sector apps and workers through the central marketplace.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#O6">[O6] Community Governance</Link> — Contributors propose and vote on changes via NovaPolicy governance modules.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#O7">[O7] Multi‑Tenant Access Management</Link> — Organizations manage roles, teams, and permissions across apps.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#O8">[O8] Ecosystem‑Wide LCA Calculation</Link> — Automated life‑cycle assessment across products and sectors.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#O9">[O9] Urban Mining Coordination</Link> — Central app orchestrates urban mining projects across enablers and sectors.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#O10">[O10] Central Audit & Compliance Dashboard</Link> — Unified compliance and ESG dashboard spanning all enablers/sectors.</li >
+                        <li><Link to="/docs/usecases/level-1-onboarding#o1-user-onboarding-trust-profile">[O1] User Onboarding</Link> — Individual registers and joins the ecosystem via Identity, creating a trusted profile.</li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o2-api-key-generation">[O2] API Key Generation</Link> — Developer generates API keys to integrate enabler/sector services securely.</li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o3-sustainability-dashboard">[O3] Sustainability Dashboard</Link> — User views personal or organizational impact metrics aggregated across enablers.</li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o4-cross-sector-data-aggregation">[O4] Cross‑Sector Data Aggregation</Link> — DPP and LCA data ingested from multiple sectors for holistic insights.</li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o5-circular-marketplace-discovery">[O5] Circular Marketplace Access</Link> — User discovers and connects to sector apps and workers through the central marketplace.</li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o6-community-governance">[O6] Community Governance</Link> — Contributors propose and vote on changes via NovaPolicy governance modules.</li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o7-multi-tenant-access-management">[O7] Multi‑Tenant Access Management</Link> — Organizations manage roles, teams, and permissions across apps.</li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o8-ecosystem-wide-lca-calculation">[O8] Ecosystem‑Wide LCA Calculation</Link> — Automated life‑cycle assessment across products and sectors.</li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o9-urban-mining-coordination">[O9] Urban Mining Coordination</Link> — Central app orchestrates urban mining projects across enablers and sectors.</li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o10-central-audit--compliance-dashboard">[O10] Central Audit & Compliance Dashboard</Link> — Unified compliance and ESG dashboard spanning all enablers/sectors.</li>
                     </ul>
                     <p style={{ marginTop: '1rem' }}>
                         👉 Explore the full elaboration of the use case matrix for <Link to="/docs/usecases/level-1-onboarding">Level 1: Onboarding & Control</Link>
                     </p>
 
                     {/* Level 2: Easy (Transactional Efficiency) */}
-                    < h3 > Level 2: Easy(Transactional efficiency)</h3 >
+                    <h3>Level 2: Easy (Transactional efficiency)</h3>
                     <p><em>Focus: simple, low‑friction transactions involving 1–2 stakeholders.</em></p>
                     <ul>
-                        <li><Link to="/docs/usecases/level-2-easy#E1">[E1] The Waste Match</Link> — Bakery waste matched with a local insect farm via NovaHub.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#E2">[E2] Green Tutor</Link> — Circular design tutoring booked on NovaSkills, paid via NovaFin.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#E3">[E3] Ride to Factory</Link> — BMW employees carpool using NovaMobility, micro‑pay via NovaFin.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#E4">[E4] Citizen Sensor</Link> — River water testing uploaded via NovaWater; verified by NovaBalance.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#E5">[E5] Material Scout</Link> — Architect catalogs reusable bricks using AI vision; passported in NovaMaterial.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#E6">[E6] Ugly Veggie Box</Link> — Farm lists imperfect produce for direct sale on NovaTrade.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#E7">[E7] Solar Log</Link> — Homeowner logs daily green energy with NovaEnergy; impact in NovaBalance.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#E8">[E8] Device Return</Link> — Clinic requests pickup via NovaHealth & NovaWaste.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#E9">[E9] Pollen Alert</Link> — Hyper‑local air quality notifications via NovaAir & NovaSapien.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#E10">[E10] Universal Bowl</Link> — Reusable takeout tracked by Identity; reverse logistics via NovaMobility.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#e1-the-waste-match">[E1] The Waste Match</Link> — Bakery waste matched with a local insect farm via NovaHub.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#e2-green-tutor">[E2] Green Tutor</Link> — Circular design tutoring booked on NovaSkills, paid via NovaFin.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#e3-ride-to-factory">[E3] Ride to Factory</Link> — BMW employees carpool using NovaMobility, micro‑pay via NovaFin.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#e4-citizen-sensor">[E4] Citizen Sensor</Link> — River water testing uploaded via NovaWater; verified by NovaBalance.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#e5-material-scout">[E5] Material Scout</Link> — Architect catalogs reusable bricks using AI vision; passported in NovaMaterial.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#e6-ugly-veggie-box">[E6] Ugly Veggie Box</Link> — Farm lists imperfect produce for direct sale on NovaTrade.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#e7-solar-log">[E7] Solar Log</Link> — Homeowner logs daily green energy with NovaEnergy; impact in NovaBalance.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#e8-device-return">[E8] Device Return</Link> — Clinic requests pickup via NovaHealth & NovaWaste.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#e9-pollen-alert">[E9] Pollen Alert</Link> — Hyper‑local air quality notifications via NovaAir & NovaSapien.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#e10-universal-bowl">[E10] Universal Bowl</Link> — Reusable takeout tracked by Identity; reverse logistics via NovaMobility.</li>
                     </ul>
                     <p style={{ marginTop: '1rem' }}>
                         👉 Explore the full elaboration of the use case matrix for <Link to="/docs/usecases/level-2-easy">Level 2: Easy (Transactional Efficiency)</Link>
@@ -196,16 +187,16 @@ export default function Home() {
                     <h3>Level 3: Medium (Value chain coordination)</h3>
                     <p><em>Focus: B2B transactions, multi‑stakeholder coordination, compliance checks, simple audits.</em></p>
                     <ul>
-                        <li><Link to="/docs/usecases/level-3-medium#M1">[M1] Startup Funding</Link> — NovaHub matches capital, mentorship, lab space.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#M2">[M2] Furniture Loop</Link> — Siemens chairs reused by Munich Re; logistics via NovaMobility.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#M3">[M3] Compliance Check</Link> — Textile importer certs validated by NovaPolicy + NovaSapien.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#M4">[M4] Smart Bin Route</Link> — Route optimization via NovaMobility & NovaSapien.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#M5">[M5] Fair Wage Audit</Link> — Split payments via NovaFin; NovaEquity badge on confirmation.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#M6">[M6] V2G Balancing</Link> — EV fleet sells capacity via NovaEnergy; settlement via NovaFin.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#M7">[M7] Plastic Passport</Link> — DPP for rPET via NovaMaterial & NovaPolicy.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#M8">[M8] Greywater Share</Link> — Data center heat/greywater to greenhouse via NovaInfra; audited in NovaBalance.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#M9">[M9] Corporate Refurb</Link> — Bank laptops refurbished, data‑wipe certified; resale via NovaTrade.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#M10">[M10] Solvent Lease</Link> — Filtration via NovaWater; QA via NovaSapien.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#m1-startup-funding">[M1] Startup Funding</Link> — NovaHub matches capital, mentorship, lab space.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#m2-furniture-loop">[M2] Furniture Loop</Link> — Siemens chairs reused by Munich Re; logistics via NovaMobility.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#m3-compliance-check">[M3] Compliance Check</Link> — Textile importer certs validated by NovaPolicy + NovaSapien.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#m4-smart-bin-route">[M4] Smart Bin Route</Link> — Route optimization via NovaMobility & NovaSapien.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#m5-fair-wage-audit">[M5] Fair Wage Audit</Link> — Split payments via NovaFin; NovaEquity badge on confirmation.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#m6-v2g-balancing">[M6] V2G Balancing</Link> — EV fleet sells capacity via NovaEnergy; settlement via NovaFin.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#m7-plastic-passport">[M7] Plastic Passport</Link> — DPP for rPET via NovaMaterial & NovaPolicy.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#m8-greywater-share">[M8] Greywater Share</Link> — Data center heat/greywater to greenhouse via NovaInfra; audited in NovaBalance.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#m9-corporate-refurb">[M9] Corporate Refurb</Link> — Bank laptops refurbished, data‑wipe certified; resale via NovaTrade.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#m10-solvent-lease">[M10] Solvent Lease</Link> — Filtration via NovaWater; QA via NovaSapien.</li>
                     </ul>
                     <p style={{ marginTop: '1rem' }}>
                         👉 Explore the full elaboration of the use case matrix for <Link to="/docs/usecases/level-3-medium">Level 3: Medium (Value Chain Coordination)</Link>
@@ -215,40 +206,40 @@ export default function Home() {
                     <h3>Level 4: Complex (Systemic transformation)</h3>
                     <p><em>Focus: system‑of‑systems, real‑time AI optimization, policy‑as‑code, cross‑border compliance.</em></p>
                     <ul>
-                        <li><Link to="/docs/usecases/level-4-complex#C1">[C1] City Challenge</Link> — Munich consortium (Agro, Waste, Logistics), grants via NovaFin, governance via NovaPolicy.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C2">[C2] Building‑as‑Bank</Link> — Assets tracked for futures; LCA via NovaBalance; listing via NovaTrade.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C3">[C3] Fiber‑to‑Fiber</Link> — AI sorting via NovaSapien; chemical recycling via NovaMaterial; logistics via NovaMobility.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C4">[C4] Circular Hospital</Link> — Pay‑per‑scan leasing via NovaFin; sterilization hub via NovaInfra.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C5">[C5] Automated Carbon Trading</Link> — Sensors verify capture; credits via NovaTrade; community dividend via NovaEquity.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C6">[C6] Autonomous Logistics</Link> — DurasAGV swarm coordinated by NovaSapien; charging via NovaEnergy.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C7">[C7] Algorithmic Governance</Link> — EU laws as code; gatekeeping via NovaTrade; Identity and NovaMaterial compliance.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C8">[C8] Urban Air Twin</Link> — Dynamic toll pricing via NovaFin; pollution data via NovaAir.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C9">[C9] Global Green Corps</Link> — Remote ops via NovaInfra; fair pay audited via NovaEquity.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C10">[C10] City‑Wide Loop</Link> — Unified cup deposit; washing via NovaWater; logistics via NovaMobility.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#c1-city-challenge">[C1] City Challenge</Link> — Munich consortium (Agro, Waste, Logistics), grants via NovaFin, governance via NovaPolicy.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#c2-building-as-bank">[C2] Building‑as‑Bank</Link> — Assets tracked for futures; LCA via NovaBalance; listing via NovaTrade.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#c3-fiber-to-fiber">[C3] Fiber‑to‑Fiber</Link> — AI sorting via NovaSapien; chemical recycling via NovaMaterial; logistics via NovaMobility.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#c4-circular-hospital">[C4] Circular Hospital</Link> — Pay‑per‑scan leasing via NovaFin; sterilization hub via NovaInfra.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#c5-automated-carbon-trading">[C5] Automated Carbon Trading</Link> — Sensors verify capture; credits via NovaTrade; community dividend via NovaEquity.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#c6-autonomous-logistics">[C6] Autonomous Logistics</Link> — DurasAGV swarm coordinated by NovaSapien; charging via NovaEnergy.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#c7-algorithmic-governance">[C7] Algorithmic Governance</Link> — EU laws as code; gatekeeping via NovaTrade; Identity and NovaMaterial compliance.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#c8-urban-air-twin">[C8] Urban Air Twin</Link> — Dynamic toll pricing via NovaFin; pollution data via NovaAir.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#c9-global-green-corps">[C9] Global Green Corps</Link> — Remote ops via NovaInfra; fair pay audited via NovaEquity.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#c10-city-wide-loop">[C10] City‑Wide Loop</Link> — Unified cup deposit; washing via NovaWater; logistics via NovaMobility.</li>
                     </ul>
                     <p style={{ marginTop: '1rem' }}>
                         👉 Explore the full elaboration of the use case matrix for <Link to="/docs/usecases/level-4-complex">Level 4: Complex (Systemic Transformation)</Link>
                     </p>
-                </section >
+                </section>
 
                 {/* Collaboration & Legal */}
-                < section style={{ padding: '2rem 4rem' }}>
+                <section style={{ padding: '2rem 4rem' }}>
                     <h2>🤝 Collaboration & legal</h2>
                     <p>
                         Contributions are governed by our <a href="https://github.com/novaeco-tech/.github/blob/main/CONTRIBUTING.md">Contribution Guide</a> and
                         <a href="https://github.com/novaeco-tech/.github/blob/main/CODE_OF_CONDUCT.md"> Code of Conduct</a>. Sponsorship agreements are managed via
                         <a href="https://circular.engineering"> Circular Engineering Nova GmbH</a>.
                     </p>
-                </section >
+                </section>
 
                 {/* Blog */}
-                < section style={{ padding: '2rem 4rem' }}>
+                <section style={{ padding: '2rem 4rem' }}>
                     <h2>📰 Latest updates</h2>
                     <p>
                         Check our <Link to="/blog">Blog</Link> for news, releases, and ecosystem stories.
                     </p>
-                </section >
-            </main >
-        </Layout >
+                </section>
+            </main>
+        </Layout>
     );
 }

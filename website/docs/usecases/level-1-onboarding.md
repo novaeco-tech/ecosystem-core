@@ -4,7 +4,7 @@
 
 ---
 
-## <a id="O1"></a> [O1] User Onboarding & Trust Profile
+## User Onboarding & Trust Profile
 
 **Description**  
 An individual or SME registers, verifies their identity, and establishes a "Trust Profile" holding credentials (e.g., Trade Register extract, ISO certs).
@@ -25,7 +25,7 @@ Identity (OAuth2), NovaPolicy (Verification Standards), Central App (Profile Dis
 
 ---
 
-## <a id="O2"></a> [O2] API Key Generation
+## [O2] API Key Generation
 
 **Description**  
 A developer generates secure API keys to integrate external systems (ERP, IoT) with the ecosystem’s data streams.
@@ -46,7 +46,7 @@ Identity (OAuth2), NovaInfra (API Gateway), NovaHub (Dev Portal)
 
 ---
 
-## <a id="O3"></a> [O3] Sustainability Dashboard
+## [O3] Sustainability Dashboard
 
 **Description**  
 Users view a personalized dashboard aggregating real-time impact metrics (CO₂, waste diverted) relevant to their role.
@@ -66,7 +66,7 @@ NovaBalance (Aggregator), Identity (Preferences), NovaAir/NovaWater (Data Source
 
 ---
 
-## <a id="O4"></a> [O4] Cross-Sector Data Aggregation
+## [O4] Cross-Sector Data Aggregation
 
 **Description**  
 The system ingests Digital Product Passport (DPP) and LCA data from multiple sectors to create a holistic view of a product’s history.
@@ -86,7 +86,7 @@ NovaMaterial, NovaBalance, NovaHub (Search), NovaSapien (Normalization)
 
 ---
 
-## <a id="O5"></a> [O5] Circular Marketplace Discovery
+## [O5] Circular Marketplace Discovery
 
 **Description**  
 Users discover and connect to sector-specific apps (e.g., NovaTronix repair shops) via a central “App Store.”
@@ -106,7 +106,7 @@ NovaTrade (Directory), Identity (SSO), NovaTronix (Target)
 
 ---
 
-## <a id="O6"></a> [O6] Community Governance
+## [O6] Community Governance
 
 **Description**  
 Contributors propose and vote on ecosystem changes (e.g., “Add new bioplastic standard”) via NovaPolicy.
@@ -126,7 +126,7 @@ NovaPolicy (Logic), Identity (Reputation Score), NovaHub (Forum)
 
 ---
 
-## <a id="O7"></a> [O7] Multi-Tenant Access Management
+## [O7] Multi-Tenant Access Management
 
 **Description**  
 Large organizations manage teams, roles, and granular permissions across the ecosystem.
@@ -146,7 +146,7 @@ Identity (RBAC), NovaHub (Team View)
 
 ---
 
-## <a id="O8"></a> [O8] Ecosystem-Wide LCA Calculation
+## [O8] Ecosystem-Wide LCA Calculation
 
 **Description**  
 Automated background process recalculates Life Cycle Assessments (LCA) as new data (e.g., grid mix) enters the system.
@@ -166,7 +166,7 @@ NovaBalance (Calc), NovaEnergy (Data), NovaMaterial (Object)
 
 ---
 
-## <a id="O9"></a> [O9] Urban Mining Coordination
+## [O9] Urban Mining Coordination
 
 **Description**  
 A project management tool orchestrating complex urban mining logistics (demolition → sorting → reuse).
@@ -186,7 +186,7 @@ Central App (Orchestration), NovaBuild, NovaWaste, NovaSapien
 
 ---
 
-## <a id="O10"></a> [O10] Central Audit & Compliance Dashboard
+## [O10] Central Audit & Compliance Dashboard
 
 **Description**  
 Regulators/Auditors view compliance status across all sectors, flagging violations (e.g., “Missing Child Labor Cert”).

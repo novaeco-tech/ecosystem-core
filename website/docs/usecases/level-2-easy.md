@@ -4,7 +4,7 @@
 
 ---
 
-## <a id="E1"></a> [E1] The Waste Match
+## [E1] The Waste Match
 
 **Description** 
 Bakery lists waste. NovaHub defines the resource requirement structure. NovaTrade executes the match and transfer.
@@ -24,7 +24,7 @@ NovaHub, NovaTrade, NovaWaste, NovaFin
 
 ---
 
-## <a id="E2"></a> [E2] Green Tutor
+## [E2] Green Tutor
 
 **Description**  
 Student offers "Circular Design" tutoring. Professional books session.
@@ -43,7 +43,7 @@ NovaSkills, NovaFin, Identity
 
 ---
 
-## <a id="E3"></a> [E3] Ride to Factory
+## [E3] Ride to Factory
 
 **Description**  
 BMW employees carpool to Dingolfing plant. Riders micro‑pay drivers.
@@ -63,7 +63,7 @@ NovaMobility, NovaFin, Identity
 
 ---
 
-## <a id="E4"></a> [E4] Citizen Sensor
+## [E4] Citizen Sensor
 
 **Description**  
 Citizens test river water and upload data/photos.
@@ -82,7 +82,7 @@ NovaWater, NovaBalance, NovaSapien
 
 ---
 
-## <a id="E5"></a> [E5] Material Scout
+## [E5] Material Scout
 
 **Description**  
 Architect scans demolition site bricks to catalog them for reuse.
@@ -101,7 +101,7 @@ NovaBuild, NovaSapien, NovaMaterial
 
 ---
 
-## <a id="E6"></a> [E6] Ugly Veggie Box
+## [E6] Ugly Veggie Box
 
 **Description**  
 Farm sells "imperfect" produce directly to consumers.
@@ -120,7 +120,7 @@ NovaAgro, NovaTrade, NovaMobility
 
 ---
 
-## <a id="E7"></a> [E7] Solar Log
+## [E7] Solar Log
 
 **Description**  
 Homeowner logs solar production to blockchain.
@@ -139,7 +139,7 @@ NovaEnergy, NovaBalance, Identity
 
 ---
 
-## <a id="E8"></a> [E8] Device Return
+## [E8] Device Return
 
 **Description**  
 Clinic requests pickup for used single‑use devices.
@@ -159,7 +159,7 @@ NovaHealth, NovaWaste, NovaMobility
 
 ---
 
-## <a id="E9"></a> [E9] Pollen Alert
+## [E9] Pollen Alert
 
 **Description**  
 Hyper‑local air quality alerts for allergy sufferers.
@@ -178,7 +178,7 @@ NovaAir, NovaSapien, Identity
 
 ---
 
-## <a id="E10"></a> [E10] Universal Bowl
+## [E10] Universal Bowl
 
 **Description**  
 Reusable takeout bowl system with deposit.

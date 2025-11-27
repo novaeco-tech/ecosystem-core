@@ -4,7 +4,7 @@
 
 ---
 
-## <a id="C1"></a> [C1] City Challenge
+## [C1] City Challenge
 
 **Description**  
 Munich creates consortium to divert 50% organic waste.
@@ -24,7 +24,7 @@ NovaHub, NovaPolicy, NovaFin, Multiple Sectors
 
 ---
 
-## <a id="C2"></a> [C2] Building-as-Bank
+## [C2] Building-as-Bank
 
 **Description**  
 Building designed as material bank; components tracked for future resale.
@@ -44,7 +44,7 @@ NovaBuild, NovaMaterial, NovaTrade, NovaBalance
 
 ---
 
-## <a id="C3"></a> [C3] Fiber-to-Fiber
+## [C3] Fiber-to-Fiber
 
 **Description**  
 AI sorting + chemical recycling closes textile loop.
@@ -64,7 +64,7 @@ NovaTextile, NovaSapien, NovaMaterial
 
 ---
 
-## <a id="C4"></a> [C4] Circular Hospital
+## [C4] Circular Hospital
 
 **Description**  
 Hospital leases MRI (pay-per-scan) and reuses surgical tools.
@@ -84,7 +84,7 @@ NovaHealth, NovaFin, NovaInfra
 
 ---
 
-## <a id="C5"></a> [C5] Automated Carbon Trading
+## [C5] Automated Carbon Trading
 
 **Description**  
 Sensors verify forest capture; credits minted and sold to steel plant.
@@ -104,7 +104,7 @@ NovaBalance, NovaTrade, NovaAir, NovaEquity
 
 ---
 
-## <a id="C6"></a> [C6] Autonomous Logistics
+## [C6] Autonomous Logistics
 
 **Description**  
 Swarm of DurasAGV robots manages farm logistics autonomously.
@@ -125,7 +125,7 @@ NovaAgro, NovaSapien, NovaEnergy, NovaMobility
 
 ---
 
-## <a id="C7"></a> [C7] Algorithmic Governance
+## [C7] Algorithmic Governance
 
 **Description**  
 EU laws encoded as rules; non-compliant suppliers blocked.
@@ -145,7 +145,7 @@ NovaPolicy, NovaTrade, Identity
 
 ---
 
-## <a id="C8"></a> [C8] Urban Air Twin
+## [C8] Urban Air Twin
 
 **Description**  
 Real-time pollution data controls city toll prices.
@@ -165,7 +165,7 @@ NovaAir, NovaSapien, NovaFin
 
 ---
 
-## <a id="C9"></a> [C9] Global Green Corps
+## [C9] Global Green Corps
 
 **Description**  
 Remote engineer operates recycling robot in Kenya via VR.
@@ -185,7 +185,7 @@ NovaSkills, NovaInfra, NovaEquity
 
 ---
 
-## <a id="C10"></a> [C10] City-Wide Loop
+## [C10] City-Wide Loop
 
 **Description**  
 Unified reusable cup system across entire city.

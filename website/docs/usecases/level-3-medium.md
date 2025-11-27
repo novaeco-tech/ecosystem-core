@@ -4,7 +4,7 @@
 
 ---
 
-## <a id="M1"></a> [M1] Startup Funding
+## [M1] Startup Funding
 
 **Description**  
 Bioplastics startup matches with Investor, Lab, and Mentor.
@@ -24,7 +24,7 @@ NovaHub, NovaFin, NovaInfra
 
 ---
 
-## <a id="M2"></a> [M2] Furniture Loop
+## [M2] Furniture Loop
 
 **Description**  
 Siemens sells 500 used chairs to Munich Re.
@@ -44,7 +44,7 @@ NovaTrade, NovaMobility, NovaBuild
 
 ---
 
-## <a id="M3"></a> [M3] Compliance Check
+## [M3] Compliance Check
 
 **Description**  
 Textile importer validates supplier certs against EU laws.
@@ -64,7 +64,7 @@ NovaPolicy, NovaSapien, NovaTextile
 
 ---
 
-## <a id="M4"></a> [M4] Smart Bin Route
+## [M4] Smart Bin Route
 
 **Description**  
 Waste route optimized based on bin fullness sensors.
@@ -84,7 +84,7 @@ NovaWaste, NovaMobility, NovaSapien
 
 ---
 
-## <a id="M5"></a> [M5] Fair Wage Audit
+## [M5] Fair Wage Audit
 
 **Description**  
 Coffee brand payment triggers "Fair Trade" verification from farmer.
@@ -104,7 +104,7 @@ NovaFin, NovaEquity, NovaAgro
 
 ---
 
-## <a id="M6"></a> [M6] V2G Balancing
+## [M6] V2G Balancing
 
 **Description**  
 EV fleet sells battery capacity to grid during peaks.
@@ -124,7 +124,7 @@ NovaEnergy, NovaMobility, NovaFin
 
 ---
 
-## <a id="M7"></a> [M7] Plastic Passport
+## [M7] Plastic Passport
 
 **Description**  
 Recycler generates DPP for rPET pellets batch.
@@ -144,7 +144,7 @@ NovaMaterial, NovaPolicy, NovaWaste
 
 ---
 
-## <a id="M8"></a> [M8] Greywater Share
+## [M8] Greywater Share
 
 **Description** 
 Industrial symbiosis project where a data center pipes waste heat/water to a greenhouse.
@@ -164,7 +164,7 @@ NovaHub, NovaTrade, NovaInfra, NovaBalance, NovaFin
 
 ---
 
-## <a id="M9"></a> [M9] Corporate Refurb
+## [M9] Corporate Refurb
 
 **Description**  
 Bank refurbishes 500 laptops for resale.
@@ -184,7 +184,7 @@ NovaTronix, NovaTrade, NovaSkills
 
 ---
 
-## <a id="M10"></a> [M10] Solvent Lease
+## [M10] Solvent Lease
 
 **Description**  
 Auto plant pays for "cleaning service" (Chemical Leasing).

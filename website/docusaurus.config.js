@@ -50,8 +50,31 @@ const config = {
         },
         footer: {
             style: 'dark',
-            links: [],
-            copyright: `Copyright © ${new Date().getFullYear()} NovaEco.`,
+            links: [
+                {
+                    title: 'Community',
+                    items: [
+                        {
+                            label: 'GitHub',
+                            href: 'https://github.com/novaeco-tech',
+                        },
+                        {
+                            label: 'Discussions',
+                            href: 'https://github.com/orgs/novaeco-tech/discussions',
+                        },
+                    ],
+                },
+                {
+                    title: 'Legal',
+                    items: [
+                        {
+                            label: 'Imprint',
+                            href: 'https://circular.engineering',
+                        },
+                    ],
+                },
+            ],
+            copyright: `Copyright © ${new Date().getFullYear()} Circular Engineering Nova GmbH.`,
         },
         prism: { theme: lightCodeTheme, darkTheme: darkCodeTheme },
     },
