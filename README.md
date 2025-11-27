@@ -1,16 +1,20 @@
-# Welcome to the NovaEco Core
+# 🌍 NovaEco Core
 
-This is the "heart" of the NovaEco.
-It's a monorepo containing the four central services that power the entire platform.
+**NovaEco** is the open‑source **Digital Public Infrastructure** for the circular economy.  
+It connects individuals and siloed sectors to **foster innovation**, measure impact, and **collaborate** within a federated system-of-systems.
+
+This repository (`ecosystem-core`) is the "heart" of the system. It is a monorepo containing the four central services that anchor the entire platform.
 
 ## 🏗️ Architecture Overview
 
+The ecosystem is anchored by these **four core services**:
+
 | Service | Path | Type | Port | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| **App** | `/app` | **Python/Flask** | `5000` | **"Mission Control" Dashboard.** Handles onboarding, identity, and high-level aggregation. |
-| **Identity** | `/auth` | **Python/Flask** | `9000` | SSO & Identity provider (OAuth2). Handles login/signup. |
-| **Gateway** | `/api` | **Python/Flask** | `8000` | Central REST API Gateway. The single "front door" for all data. |
-| **Website** | `/website` | **Node.js** | `3000` | The public landing page and documentation site (Docusaurus). |
+| **App** | `/app` | **Python/Flask** | `5000` | **Mission Control.** Onboarding, discovery, and ecosystem management. |
+| **Identity** | `/auth` | **Python/Flask** | `9000` | **Digital Passport.** SSO & Trust Profile for unified login. |
+| **Gateway** | `/api` | **Python/Flask** | `8000` | **API Gateway.** Secure, managed access to all services. |
+| **Website** | `/website` | **Node.js** | `3000` | **Docs & Landing.** Architecture, use cases, and guides. |
 
 ### 🎮 The "Mission Control" Concept
 The **App** (`/app`) acts as the "Home Screen" for the ecosystem. It is **read-heavy** and focuses on three specific functions:
