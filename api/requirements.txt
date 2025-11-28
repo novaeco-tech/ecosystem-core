@@ -1,7 +1,5 @@
-# We include Flask (framework), CORS (to allow your frontend to talk to it), and Gunicorn (production-ready server).
 flask==3.0.0
 flask-cors==4.0.0
 gunicorn==21.2.0
 requests==2.31.0
-pytest==8.0.0
 python-dotenv==1.0.0

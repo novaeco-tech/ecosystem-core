@@ -39,7 +39,7 @@ jobs:
       - name: Install & Test
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
-          pip install -r auth/requirements.txt
+          pip install -r auth/requirements-dev.txt
           cd auth && pytest
 
       # 3. Build Package

@@ -39,7 +39,7 @@ jobs:
       - name: Install & Test
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
-          pip install -r app/requirements.txt
+          pip install -r app/requirements-dev.txt
           cd app && pytest
 
       # 3. Build Package
