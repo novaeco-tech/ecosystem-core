@@ -1,4 +1,4 @@
-# description: Packages API service. Includes fix for 'empty archive' error and enables manual runs.
+# description: Packages API service and signals Ecosystem QA.
 name: Publish API Artifact
 
 on:
@@ -49,10 +49,6 @@ jobs:
           mkdir -p dist
           cp -r api/src/* dist/
           cp api/requirements.txt dist/
-          # Debug contents
-          echo "CONTENTS OF DIST:"
-          ls -R dist
-          # Robust Tar
           cd dist
           tar -czf ../ecosystem-core-api.tar.gz .
 
@@ -78,6 +74,7 @@ jobs:
           generate_release_notes: true
 
       # 6. Signal QA
+      # This payload MUST match what generate_candidate.py expects
       - name: Dispatch to Ecosystem QA
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         uses: peter-evans/repository-dispatch@v3
