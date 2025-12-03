@@ -82,11 +82,10 @@ jobs:
         with:
           token: ${{ steps.generate_qa_token.outputs.token }}
           repository: novaeco-tech/ecosystem-qa
-          event-type: qa-run
+          event-type: qa-trigger
           client-payload: >-
             {
-              "repo": "ecosystem-core", 
-              "service": "website",
-              "tag": "${{ env.TAG_NAME }}", 
-              "artifact_name": "ecosystem-core-website.tar.gz"
+              "component": "ecosystem-core-website",
+              "version": "${{ env.TAG_NAME }}",
+              "category": "core"
             }
