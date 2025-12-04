@@ -1,0 +1,17 @@
+syntax = "proto3";
+package novaeco.auth.v1;
+
+service AuthService {
+  // Used by internal services (Agro, Trade) to validate tokens quickly
+  rpc ValidateToken (ValidateRequest) returns (ValidateResponse);
+}
+
+message ValidateRequest {
+  string token = 1;
+}
+
+message ValidateResponse {
+  bool is_valid = 1;
+  string user_id = 2;
+  string role = 3;
+}

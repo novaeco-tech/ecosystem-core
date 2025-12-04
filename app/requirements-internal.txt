@@ -1,0 +1,3 @@
+# The App (Mission Control) consumes data via the API Gateway (REST).
+# Currently, no internal gRPC clients are required.
+# This file is preserved for architectural consistency (QA Graphing).

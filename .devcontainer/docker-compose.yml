@@ -16,15 +16,15 @@ services:
     # USE THE PRE-BUILT IMAGE
     image: ghcr.io/novaeco-tech/dev-python:latest
     volumes:
-      - ..:/workspace:cached # Mount the entire monorepo root
-    # Set the working directory for this specific service
+      - ..:/workspace:cached
     working_dir: /workspace/app
     ports:
-      - "5000:5000" # FastAPI port
+      - "5000:5000" # FastAPI/Flask port
     depends_on:
       - api
       - auth
     environment:
+      # Internal Docker DNS names
       - API_URL=http://api:8000
       - AUTH_URL=http://auth:9000
     # Auto-install and START the server
@@ -38,6 +38,9 @@ services:
     working_dir: /workspace/api
     ports:
       - "8000:8000" # Python/Flask port
+    environment:
+      - AUTH_URL=http://auth:9000
+      - AGRO_URL=http://novaagro-api:8000 # For integration testing mocking
     # Auto-install and START the server
     command: sh -c "pip install -r requirements.txt && python src/main.py"
 
@@ -48,6 +51,7 @@ services:
       - ..:/workspace:cached
     working_dir: /workspace/auth
     ports:
-      - "9000:9000" # Auth port
+      - "9000:9000" # HTTP port (Login UI)
+      - "9090:9090" # gRPC port (Internal Token Validation) - Added for host debugging
     # Auto-install and START the server
     command: sh -c "pip install -r requirements.txt && python src/main.py"

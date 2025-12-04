@@ -1,4 +1,4 @@
-# description: Packages App service. Fixes shell syntax errors and empty archive issues.
+# description: Packages App service (Mission Control) and signals NovaEco QA.
 name: Publish App Artifact
 
 on:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write # Required to create tags and releases
 
 jobs:
   check-and-release:
@@ -16,14 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Needed to check existing tags
 
       # 1. Check if Version Bumped
       - name: Check Version & Tag
         id: check
         run: |
           VERSION=$(cat app/VERSION)
-          TAG_NAME="ecosystem-core-app-v$VERSION"
+          TAG_NAME="novaeco-app-v$VERSION"
           
           if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
             echo "Tag $TAG_NAME already exists. Skipping release."
@@ -47,12 +47,25 @@ jobs:
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
           mkdir -p dist
+          
+          # Copy Source Code (Flask App structure)
           cp app/*.py dist/
-          cp app/requirements.txt dist/
+          # Copy the src directory containing logic/config
+          cp -r app/src dist/
+          
+          # Copy assets if they exist
           cp -r app/templates dist/ 2>/dev/null || true
           cp -r app/static dist/ 2>/dev/null || true
+          
+          # Copy Dependencies (Vital for QA Graphing)
+          cp app/requirements.txt dist/
+          if [ -f app/requirements-internal.txt ]; then
+            cp app/requirements-internal.txt dist/
+          fi
+          
+          # Create Tarball
           cd dist
-          tar -czf ../ecosystem-core-app.tar.gz .
+          tar -czf ../novaeco-app.tar.gz .
 
       # 4. Generate QA Token
       - name: Generate QA Token
@@ -70,22 +83,23 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG_NAME }}
-          name: "Ecosystem Core App v${{ env.VERSION }}"
-          files: ecosystem-core-app.tar.gz
+          name: "NovaEco Core App v${{ env.VERSION }}"
+          files: novaeco-app.tar.gz
           prerelease: true
           generate_release_notes: true
 
       # 6. Signal QA
-      - name: Dispatch to Ecosystem QA
+      - name: Dispatch to NovaEco QA
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ steps.generate_qa_token.outputs.token }}
-          repository: novaeco-tech/ecosystem-qa
+          repository: novaeco-tech/novaeco-qa
           event-type: qa-trigger
           client-payload: >-
             {
-              "component": "ecosystem-core-app",
+              "component": "novaeco-app",
               "version": "${{ env.TAG_NAME }}",
-              "category": "core"
+              "category": "core",
+              "artifacts": ["novaeco-app.tar.gz"]
             }

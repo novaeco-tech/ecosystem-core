@@ -1,4 +1,4 @@
-# description: Packages Website. Fixed triggers and tar command.
+# description: Packages Website. Fixed triggers, tar command, and QA signaling.
 name: Publish Website Artifact
 
 on:
@@ -23,7 +23,7 @@ jobs:
         id: check
         run: |
           VERSION=$(jq -r .version website/package.json)
-          TAG_NAME="ecosystem-core-website-v$VERSION"
+          TAG_NAME="novaeco-website-v$VERSION"
           
           if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
             echo "Tag $TAG_NAME already exists. Skipping release."
@@ -49,10 +49,15 @@ jobs:
         run: |
           cd website
           npm run build
+          
+          # Copy package.json to build dir so QA can read dependencies
+          # This corresponds to Step 1e (Dependency Graph reliability)
+          cp package.json build/
+          
           # Change to build dir to package
           cd build
           # Create Fully Qualified Name (../../ to return to root)
-          tar -czf ../../ecosystem-core-website.tar.gz .
+          tar -czf ../../novaeco-website.tar.gz .
 
       # 4. Generate QA Token
       - name: Generate QA Token
@@ -70,22 +75,23 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG_NAME }}
-          name: "Ecosystem Core Website v${{ env.VERSION }}"
-          files: ecosystem-core-website.tar.gz
+          name: "NovaEco Website v${{ env.VERSION }}"
+          files: novaeco-website.tar.gz
           prerelease: true
           generate_release_notes: true
 
       # 6. Signal QA
-      - name: Dispatch to Ecosystem QA
+      - name: Dispatch to NovaEco QA
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ steps.generate_qa_token.outputs.token }}
-          repository: novaeco-tech/ecosystem-qa
+          repository: novaeco-tech/novaeco-qa
           event-type: qa-trigger
           client-payload: >-
             {
-              "component": "ecosystem-core-website",
+              "component": "novaeco-website",
               "version": "${{ env.TAG_NAME }}",
-              "category": "core"
+              "category": "core",
+              "artifacts": ["novaeco-website.tar.gz"]
             }

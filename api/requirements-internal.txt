@@ -1,0 +1,3 @@
+# Internal NovaEco Dependencies
+# Used by QA to build the dependency graph (DAG)
+novaeco-auth-client>=0.1.0

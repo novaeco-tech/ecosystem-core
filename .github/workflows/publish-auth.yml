@@ -1,4 +1,4 @@
-# description: Packages Auth service. Includes fix for 'empty archive' error and enables manual runs.
+# description: Packages Auth service and Auth Client SDK. Signals NovaEco QA.
 name: Publish Auth Artifact
 
 on:
@@ -8,7 +8,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write # Required to create tags and releases
+  packages: write # Required if you were pushing to GHCR/PyPI (future proofing)
 
 jobs:
   check-and-release:
@@ -16,14 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Needed to check existing tags
 
       # 1. Check if Version Bumped
       - name: Check Version & Tag
         id: check
         run: |
           VERSION=$(cat auth/VERSION)
-          TAG_NAME="ecosystem-core-auth-v$VERSION"
+          TAG_NAME="novaeco-auth-v$VERSION"
           
           if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
             echo "Tag $TAG_NAME already exists. Skipping release."
@@ -42,17 +43,39 @@ jobs:
           pip install -r auth/requirements-dev.txt
           cd auth && pytest
 
-      # 3. Build Package
-      - name: Build and Package Auth
+      # 3. Build Service Package (The Dockerable Code)
+      - name: Build and Package Auth Service
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
-          mkdir -p dist
-          cp -r auth/src/* dist/
-          cp auth/requirements.txt dist/
-          cd dist
-          tar -czf ../ecosystem-core-auth.tar.gz .
+          mkdir -p dist_service
+          cp -r auth/src/* dist_service/
+          
+          # Copy Dependencies (External & Internal) for QA Graphing
+          cp auth/requirements.txt dist_service/
+          if [ -f auth/requirements-internal.txt ]; then
+            cp auth/requirements-internal.txt dist_service/
+          fi
+          
+          cd dist_service
+          tar -czf ../novaeco-auth.tar.gz .
 
-      # 4. Generate QA Token
+      # 4. Build Client SDK (The gRPC Library for other sectors)
+      # This corresponds to Step 1c: "novaeco-auth-client is the internal ProtoBuf auth client"
+      - name: Build Auth Client SDK
+        if: steps.check.outputs.SHOULD_RELEASE == 'true'
+        run: |
+          # Install build tools
+          pip install grpcio-tools build
+          
+          # Ensure script is executable and run it
+          chmod +x scripts/build_client.sh
+          ./scripts/build_client.sh
+          
+          # The script outputs the .whl file to dist/client/dist/
+          # We move it to root for easier release attachment
+          mv dist/client/dist/*.whl ./novaeco-auth-client.whl
+
+      # 5. Generate QA Token
       - name: Generate QA Token
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         id: generate_qa_token
@@ -62,28 +85,31 @@ jobs:
           private-key: ${{ secrets.QA_APP_PRIVATE_KEY }}
           owner: novaeco-tech
 
-      # 5. Create Release & Tag
+      # 6. Create Release & Tag
       - name: Create GitHub Release
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG_NAME }}
-          name: "Ecosystem Core Auth v${{ env.VERSION }}"
-          files: ecosystem-core-auth.tar.gz
+          name: "NovaEco Core Auth v${{ env.VERSION }}"
+          files: |
+            novaeco-auth.tar.gz
+            novaeco-auth-client.whl
           prerelease: true
           generate_release_notes: true
 
-      # 6. Signal QA
-      - name: Dispatch to Ecosystem QA
+      # 7. Signal QA
+      - name: Dispatch to NovaEco QA
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ steps.generate_qa_token.outputs.token }}
-          repository: novaeco-tech/ecosystem-qa
+          repository: novaeco-tech/novaeco-qa
           event-type: qa-trigger
           client-payload: >-
             {
-              "component": "ecosystem-core-auth",
+              "component": "novaeco-auth",
               "version": "${{ env.TAG_NAME }}",
-              "category": "core"
+              "category": "core",
+              "artifacts": ["novaeco-auth.tar.gz", "novaeco-auth-client.whl"]
             }

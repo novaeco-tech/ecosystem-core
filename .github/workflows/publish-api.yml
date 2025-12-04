@@ -1,4 +1,4 @@
-# description: Packages API service and signals Ecosystem QA.
+# description: Packages API service and signals NovaEco QA.
 name: Publish API Artifact
 
 on:
@@ -22,9 +22,13 @@ jobs:
       - name: Check Version & Tag
         id: check
         run: |
+          # Read version from file
           VERSION=$(cat api/VERSION)
-          TAG_NAME="ecosystem-core-api-v$VERSION"
           
+          # Define Tag Naming Convention: [component]-v[version]
+          TAG_NAME="novaeco-api-v$VERSION"
+          
+          # Check if tag exists
           if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
             echo "Tag $TAG_NAME already exists. Skipping release."
             echo "SHOULD_RELEASE=false" >> $GITHUB_OUTPUT
@@ -35,22 +39,33 @@ jobs:
             echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
           fi
 
-      # 2. Defensive Testing
+      # 2. Defensive Testing (Unit Tests)
       - name: Install & Test
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
           pip install -r api/requirements-dev.txt
           cd api && pytest
 
-      # 3. Build Package
+      # 3. Build Package (The Artifact)
       - name: Build and Package API
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
+          # Create staging directory
           mkdir -p dist
+          
+          # Copy Source Code
           cp -r api/src/* dist/
+          
+          # Copy Dependency Files (Vital for QA Graphing)
           cp api/requirements.txt dist/
+          if [ -f api/requirements-internal.txt ]; then
+            cp api/requirements-internal.txt dist/
+          fi
+          
+          # Create Tarball
+          # -C dist . ensures the tarball doesn't contain a parent 'dist' folder
           cd dist
-          tar -czf ../ecosystem-core-api.tar.gz .
+          tar -czf ../novaeco-api.tar.gz .
 
       # 4. Generate QA Token (GitHub App)
       - name: Generate QA Token
@@ -68,23 +83,24 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG_NAME }}
-          name: "Ecosystem Core API v${{ env.VERSION }}"
-          files: ecosystem-core-api.tar.gz
+          name: "NovaEco Core API v${{ env.VERSION }}"
+          files: novaeco-api.tar.gz
           prerelease: true
           generate_release_notes: true
 
       # 6. Signal QA
-      # This payload MUST match what generate_candidate.py expects
-      - name: Dispatch to Ecosystem QA
+      # Payload matches generate_candidate.py expectations
+      - name: Dispatch to NovaEco QA
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ steps.generate_qa_token.outputs.token }}
-          repository: novaeco-tech/ecosystem-qa
+          repository: novaeco-tech/novaeco-qa
           event-type: qa-trigger
           client-payload: >-
             {
-              "component": "ecosystem-core-api",
+              "component": "novaeco-api",
               "version": "${{ env.TAG_NAME }}",
-              "category": "core"
+              "category": "core",
+              "artifacts": ["novaeco-api.tar.gz"]
             }
