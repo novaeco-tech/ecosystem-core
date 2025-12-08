@@ -1,4 +1,4 @@
-name: NovaEco Core CI
+name: NovaEco CI
 
 on:
   pull_request:
