@@ -21,6 +21,8 @@
     "remoteEnv": {
         "PATH": "${containerEnv:PATH}:/home/appuser/.local/bin"
     },
+    
+    // Feature block is good to keep for general utility (sudo, zsh)
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
             "installSudo": true,
@@ -32,6 +34,5 @@
     // 1. Install CLI
     // 2. Install Integration Test Deps (e.g. Faker, requests)
     // 3. Install E2E Test Deps (e.g. pytest-playwright)
-    // 4. Install Browsers
-    "postCreateCommand": "pip install 'git+https://github.com/novaeco-tech/novaeco-devtools.git@main#subdirectory=novaeco-cli' && pip install -r /workspace/tests/integration/requirements.txt && pip install -r /workspace/tests/e2e/requirements.txt && playwright install && sudo env PYTHONPATH=/home/appuser/.local/lib/python3.11/site-packages /home/appuser/.local/bin/playwright install-deps"
+    "postCreateCommand": "pip install 'git+https://github.com/novaeco-tech/novaeco-devtools.git@main#subdirectory=novaeco-cli' && pip install -r /workspace/tests/integration/requirements.txt && pip install -r /workspace/tests/e2e/requirements.txt"
 }
