@@ -13,6 +13,9 @@ permissions:
 jobs:
   check-and-release:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/novaeco-tech/dev-python:latest
+      options: --user root # Required to write artifacts to the mounted volume
     steps:
       - uses: actions/checkout@v4
         with:

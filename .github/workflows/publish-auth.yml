@@ -14,6 +14,9 @@ permissions:
 jobs:
   check-and-release:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/novaeco-tech/dev-python:latest
+      options: --user root # Required to write artifacts to the mounted volume
     steps:
       - uses: actions/checkout@v4
         with:
@@ -63,10 +66,7 @@ jobs:
       # This corresponds to Step 1c: "novaeco-auth-client is the internal ProtoBuf auth client"
       - name: Build Auth Client SDK
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
-        run: |
-          # Install build tools
-          pip install grpcio-tools build
-          
+        run: |          
           # Ensure script is executable and run it
           chmod +x scripts/build_client.sh
           ./scripts/build_client.sh
