@@ -93,8 +93,8 @@ Every definition artifact on the **Left** corresponds to a specific test suite o
 
 | Phase | Responsibility | Inputs | Action | Artifact (Output) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Definition**<br>(Left) | **Developer**<br>(Local) | API Specs,<br>Algorithms | Write code logic, algorithmic efficiency rules, and docstrings. | **Source Code**<br>`[repo]/api/src/`<br>*(e.g., calculations.py)* |
-| **Verification**<br>(Right) | **Developer**<br>(Local) | Source Code | Test logic with mocked dependencies. | **Unit Test Report**<br>`[repo]/api/tests/unit/`<br>*(Coverage %, Benchmark)* |
+| **Definition**<br />(Left) | **Developer**<br />(Local) | API Specs,<br />Algorithms | Write code logic, algorithmic efficiency rules, and docstrings. | **Source Code**<br />`[repo]/api/src/`<br />*(e.g., calculations.py)* |
+| **Verification**<br />(Right) | **Developer**<br />(Local) | Source Code | Test logic with mocked dependencies. | **Unit Test Report**<br />`[repo]/api/tests/unit/`<br />*(Coverage %, Benchmark)* |
 
 **Example Requirements:**
 

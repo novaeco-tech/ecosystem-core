@@ -49,8 +49,6 @@ jobs:
           mkdir -p dist
           
           # Copy Source Code (Flask App structure)
-          cp app/*.py dist/
-          # Copy the src directory containing logic/config
           cp -r app/src dist/
           
           # Copy assets if they exist

@@ -15,11 +15,12 @@ mkdir -p ${OUT_DIR}/novaeco_auth_client
 
 # 2. Compile ProtoBuf -> Python
 # Generates auth_pb2.py and auth_pb2_grpc.py
+# Use -I flag to point directly to v1 so the output is flat
 python -m grpc_tools.protoc \
-    -I./auth/api/proto \
+    -I./auth/api/proto/v1 \
     --python_out=${OUT_DIR}/novaeco_auth_client \
     --grpc_python_out=${OUT_DIR}/novaeco_auth_client \
-    ${PROTO_SRC}/auth.proto
+    auth.proto
 
 # 3. Fix Relative Imports (Standard Protocol Buffer issue in Python)
 # This changes 'import auth_pb2' to 'from . import auth_pb2' so it works as a package

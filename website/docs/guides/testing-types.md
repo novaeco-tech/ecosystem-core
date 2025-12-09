@@ -28,7 +28,7 @@ Use this reference to understand *how* to implement a specific test type listed 
 ### Micro-Benchmarking
 * **Goal:** Verify algorithmic efficiency of critical hot-paths.
 * **Tools:** `pytest-benchmark`.
-* **Constraint:** Strict timing budgets (e.g., "Hashing must take < 5ms").
+* **Constraint:** Strict timing budgets (e.g., "Hashing must take &lt; 5ms").
 
 ### API Contract Testing
 * **Goal:** Generate and verify Pact contracts between Consumer and Producer.
