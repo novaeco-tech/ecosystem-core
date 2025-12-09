@@ -3,10 +3,10 @@
 This glossary defines common terms used across the NovaEco.
 
 ## Core Concepts
-- **Enabler** — Horizontal service that provides foundational capabilities (e.g., NovaHub, NovaFin).
-- **Sector** — Application industry where circular solutions are deployed (e.g., NovaAgro, NovaBuild).
-- **Worker** — Microservice that performs a specialized task (e.g., NovaMaterial — DPP sync).
-- **Product** — Hardware or software innovation built on the ecosystem (e.g., SortBot X1, NovaBox).
+- **Enabler** — Horizontal service that provides foundational capabilities (e.g., **NovaTrade**, **NovaBalance**).
+- **Sector** — Application industry where circular solutions are deployed (e.g., **NovaAgro**, **NovaBuild**).
+- **Worker** — Microservice that performs a specialized task (e.g., **LCACalc**, **TradeSettlement**).
+- **Product** — Hardware or software innovation built on the ecosystem (e.g., **DurasAGV**, **UrbanMiner**).
 
 ## Technical Terms
 - **ADR (Architecture Decision Record)** — Documented decision about system design.
@@ -36,4 +36,4 @@ This glossary defines common terms used across the NovaEco.
 
 [⬅️ Back to Intro](./intro.md)
 
-[⬅️ Previous: Developer Guide](./guides/dev-guide.md)  
+[⬅️ Previous: Developer Guide](./guides/dev-guide.md)

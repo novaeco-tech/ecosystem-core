@@ -1,0 +1,61 @@
+# Git
+.git
+.gitignore
+
+# Docker
+docker-compose.yml
+.devcontainer
+Dockerfile*
+
+# Node.js
+node_modules
+npm-debug.log
+yarn-error.log
+.npm
+.yarn
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+venv
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.pytest_cache
+
+# Build Artifacts
+dist
+build
+eggs
+.eggs
+*.egg-info
+*.egg
+
+# Editor / OS
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Testing & Coverage
+tests
+coverage
+htmlcov
+
+# Documentation
+website/build
+website/.docusaurus

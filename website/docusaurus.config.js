@@ -31,7 +31,7 @@ const config = {
     onBrokenLinks: 'throw',
     favicon: 'img/favicon.ico',
     organizationName: 'novaeco-tech',
-    projectName: 'ecosystem-core',
+    projectName: 'novaeco',
 
     i18n: { defaultLocale: 'en', locales: ['en'] },
 
@@ -47,7 +47,7 @@ const config = {
             {
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    editUrl: 'https://github.com/novaeco-tech/ecosystem-core/tree/main/website/',
+                    editUrl: 'https://github.com/novaeco-tech/novaeco/tree/main/website/',
                 },
                 blog: {
                     showReadingTime: true,
@@ -95,7 +95,7 @@ const config = {
                     ],
                 },
             ],
-            // Displays: "System Version: v2025.11.01" in Prod, or "v0.1.0" in Dev
+            // Displays: "System Version: v2026.11.01" in Prod, or "v0.1.0" in Dev
             copyright: `Copyright © ${new Date().getFullYear()} Circular Engineering Nova GmbH. <br/> <span style="font-size: 0.8em; opacity: 0.6;">System Version: ${currentVersion}</span>`,
         },
         prism: { theme: lightCodeTheme, darkTheme: darkCodeTheme },

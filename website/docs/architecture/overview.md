@@ -5,16 +5,16 @@ It is designed as a **system‑of‑systems**: interconnected **Horizontal Enabl
 
 ---
 
-## 🌐 Core Services (ecosystem-core)
+## 🌐 Core Services (`novaeco`)
 
-At the heart of the ecosystem is the `ecosystem-core` monorepo, which contains the tightly‑coupled central services:
+At the heart of the ecosystem is the `novaeco` monorepo, which contains the tightly‑coupled central services:
 
-| Service     | Path       | Type            | Port | Public URL | Docs Reference |
-|-------------|------------|-----------------|------|------------|----------------|
-| **App**       | `/app`   | Python/Flask    | 5000 | [app.novaeco.tech](https://app.novaeco.tech) | [Use Cases L1](../usecases/level-1-onboarding.md) |
-| **Identity**  | `/auth`  | Python/Flask    | 9000 | [auth.novaeco.tech](https://auth.novaeco.tech) | [API Auth](../api/auth.md) |
-| **Gateway**   | `/api`   | Python/Flask    | 8000 | [api.novaeco.tech](https://api.novaeco.tech) | [API Gateway](../api/gateway.md) |
-| **Website**   | `/website` | Node.js/Docusaurus | 3000 | [novaeco.tech](https://novaeco.tech) | [Intro](../intro.md) |
+| Service | Subdomain | Description | Docs Reference |
+| :--- | :--- | :--- | :--- |
+| **Mission Control** | `app.novaeco.tech` | Unified dashboard and launchpad for all ecosystem applications. | [Use Cases L1](../usecases/level-1-onboarding.md) |
+| **Gateway** | `api.novaeco.tech` | Single public API entry point for all external traffic. | [API Gateway](../api/gateway.md) |
+| **Identity** | `auth.novaeco.tech` | Centralized SSO, MFA, and Trust Profile issuance service. | [API Auth](../api/auth.md) |
+| **Docs** | `novaeco.tech` | Public landing page and technical documentation hub. | [Intro](../intro.md) |
 
 These services provide the foundation for onboarding, governance, API integration, and contributor visibility.
 
@@ -22,49 +22,57 @@ These services provide the foundation for onboarding, governance, API integratio
 
 ## 🧩 Horizontal Enablers
 
-Cross‑cutting foundational services:
+Cross‑cutting foundational services consumed by all sectors.
 
-- **NovaHub** – innovation wizard, complex problem decomposition, orchestration.
-- **NovaFin** – tokens, staking, payments, revenue sharing, investment.  
-- **NovaTrade** – decentralized marketplace for goods, services, and assets.  
-- **NovaSapien** – shared artificial intelligence and ML models.  
-- **NovaEnergy** – renewable energy production, distribution, and auditing.  
-- **NovaMaterial** – Digital Product Passports (DPPs), lifecycle tracking of raw/recycled materials.  
-- **NovaMobility** – circular logistics and sustainable transport coordination.  
-- **NovaInfra** – shared digital/physical infrastructure.  
-- **NovaSkills** – education, skill‑sharing, labor coordination.  
-- **NovaPolicy** – governance, compliance, legal frameworks.  
-- **NovaBalance** – environmental auditing, proof of ecological impact.  
-- **NovaEquity** – social auditing, proof of fairness and social impact.
+| Enabler | Subdomain | Description |
+| :--- | :--- | :--- |
+| **NovaBalance** | `balance.novaeco.tech` | Environmental audit engine for carbon, water, and mass. |
+| **NovaEquity** | `equity.novaeco.tech` | Social audit engine tracking fair wages and labor rights. |
+| **NovaFin** | `finance.novaeco.tech` | Ledger for payments, staking, and ESG token settlements. |
+| **NovaInfra** | `infrastructure.novaeco.tech` | Registry for IoT devices and fleet management command. |
+| **NovaLogistics** | `logistics.novaeco.tech` | Optimization engine for reverse logistics and circular transport. |
+| **NovaMaterial** | `materials.novaeco.tech` | Engine for Digital Product Passports and material lineage. |
+| **NovaMind** | `mind.novaeco.tech` | Shared AI models and inference engine for all sectors. |
+| **NovaPolicy** | `policy.novaeco.tech` | Policy-as-Code engine for automated regulatory compliance. |
+| **NovaSkills** | `skills.novaeco.tech` | Verification system for human labor certifications and degrees. |
+| **NovaTrade** | `trade.novaeco.tech` | Marketplace for matching orders and discovering circular assets. |
 
 ---
 
 ## 🏭 Vertical Sectors
 
-Industry‑specific applications that consume enabler services:
+Industry‑specific applications that consume enabler services.
 
-- **NovaAgro** – sustainable agriculture, bio‑nutrients, post‑harvest processing.
-- **NovaWater** – water resource management, sustainable use, ecosystem restoration.
-- **NovaBuild** – sustainable construction, circular building materials, built environment.  
-- **NovaTextile** – lifecycle of textiles, sustainable sourcing, recycling, reuse.  
-- **NovaWaste** – waste‑to‑value streams, recycling, circular waste management.  
-- **NovaAir** – air quality monitoring, environmental credits.  
-- **NovaHealth** – circular economy principles in healthcare and life sciences. 
-- **NovaPack** – reusable and circular packaging systems, deposit models, reverse logistics, inventory management.
-- **NovaTronix** – sustainable electronics and e‑waste management, modular design, repair, recycling, and material recovery.
-- **NovaChem** – sustainable chemical processes, leasing models, and closed‑loop industrial chemistry.
+| Sector | Subdomain | Description |
+| :--- | :--- | :--- |
+| **NovaAgro** | `agriculture.novaeco.tech` | Management of regenerative agriculture and sustainable food systems. |
+| **NovaAir** | `air.novaeco.tech` | Air quality monitoring and carbon capture credit verification. |
+| **NovaBuild** | `build.novaeco.tech` | Management of construction lifecycles and material banks. |
+| **NovaChem** | `chemicals.novaeco.tech` | Chemical leasing models and hazardous material tracking. |
+| **NovaEnergy** | `energy.novaeco.tech` | Renewable grid balancing and vehicle-to-grid energy coordination. |
+| **NovaMake** | `make.novaeco.tech` | Distributed manufacturing via 3D printing and CNC networks. |
+| **NovaNature** | `nature.novaeco.tech` | Biodiversity monitoring and reforestation project management. |
+| **NovaPack** | `packaging.novaeco.tech` | Reusable packaging systems and deposit return schemes. |
+| **NovaRecycle** | `recycling.novaeco.tech` | Management of recycling centers and urban mining recovery. |
+| **NovaRetail** | `retail.novaeco.tech` | Product-as-a-Service management and consumer take-back schemes. |
+| **NovaTronix** | `electronics.novaeco.tech` | E-waste management and electronics repair documentation. |
+| **NovaTextile** | `textiles.novaeco.tech` | Circular fashion management and fiber-to-fiber recycling loops. |
+| **NovaWater** | `water.novaeco.tech` | Management of industrial water cycles and treatment systems. |
 
 ---
 
 ## ⚙️ Workers
 
-Decoupled, single‑purpose backend services (e.g., `novahub-worker-sync`, `novabalance-worker-impact-calculator`).  
-They handle background jobs such as:
+Decoupled, single‑purpose backend services for high-throughput tasks.
 
-- Data ingestion and normalization  
-- Automated LCA calculations  
-- Compliance checks  
-- Logistics optimization  
+| Worker | Subdomain | Description |
+| :--- | :--- | :--- |
+| **Quality** | `quality.air.novaeco.tech` | Ingests and normalizes data from air quality sensors. |
+| **Bioacoustics** | `bio.nature.novaeco.tech` | Identifies species from audio streams using AI models. |
+| **IoTIngest** | `ingest.infrastructure.novaeco.tech` | High-throughput processor for raw telemetry from sensors. |
+| **LCACalc** | `lca.balance.novaeco.tech` | Calculates real-time environmental impact from material BOMs. |
+| **SlicerCheck** | `slicer.make.novaeco.tech` | Verifies 3D model printability for manufacturing jobs. |
+| **TradeSettlement** | `settle.finance.novaeco.tech` | Asynchronously batches and commits transactions to the ledger. |
 
 Workers are independent for scalability and fault isolation.
 
@@ -72,13 +80,14 @@ Workers are independent for scalability and fault isolation.
 
 ## 📦 Products
 
-Flagship applications that consume multiple enablers and sectors:
+Flagship applications combining multiple sectors.
 
-- **DurasAGV** – autonomous logistics robots integrating AI and Agro.  
-- **Urban Mining Coordination** – orchestration app combining Build, Waste, and Mobility.  
-- **Reusable Packaging Systems** – products integrating Pack, Mobility, and Water.  
-- **City‑Wide Loop** – unified reusable cup system across entire cities.  
-- **Circular Hospital** – healthcare equipment leasing and reuse models.
+| Product | Subdomain | Description |
+| :--- | :--- | :--- |
+| **DurasAGV** | `duras-agv.novaeco.tech` | Autonomous agricultural robot for regenerative farming tasks. |
+| **NovaLab** | `lab.novaeco.tech` | Innovation engine for designing and launching circular projects. |
+| **RetailLoop** | `retail-loop.novaeco.tech` | E-commerce plugin for resale and product take-back. |
+| **UrbanMiner** | `urban-miner.novaeco.tech` | Dashboard for city councils to map municipal waste streams. |
 
 ---
 
@@ -131,17 +140,17 @@ graph TD
   Enablers --> Sectors[NovaAgro / NovaWater / NovaBuild / NovaTextile / NovaWaste / NovaAir / NovaHealth / NovaChem / NovaTronix / NovaPack]
   Sectors --> Workers[Background Jobs / Calculators / Sync Services]
   Workers --> Products[Flagship Apps: DurasAGV / Urban Mining / Reusable Packaging / City-Wide Loop / Circular Hospital]
-```
+````
 
 ---
 
 ## 🌱 Principles
 
-- **Open Source** – all repos are public, community‑driven.  
-- **Transparency** – ADRs, Use Cases, Guides, and Glossary ensure clarity.  
-- **Scalability** – monorepo model with containerized services.  
-- **Auditability** – NovaBalance and NovaEquity enablers provide verifiable impact.  
-- **Circularity** – every sector and product reinforces sustainable loops.
+  - **Open Source** – all repos are public, community‑driven.
+  - **Transparency** – ADRs, Use Cases, Guides, and Glossary ensure clarity.
+  - **Scalability** – monorepo model with containerized services.
+  - **Auditability** – NovaBalance and NovaEquity enablers provide verifiable impact.
+  - **Circularity** – every sector and product reinforces sustainable loops.
 
 ---
 

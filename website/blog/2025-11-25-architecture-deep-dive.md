@@ -20,61 +20,63 @@ NovaEco is designed as a **system‑of‑systems**: interconnected **Horizontal 
 - **App** → [app.novaeco.tech](https://app.novaeco.tech)  
 - **Gateway** → [api.novaeco.tech](https://api.novaeco.tech)  
 - **Identity** → [auth.novaeco.tech](https://auth.novaeco.tech)  
-- **Docs** → [novaeco.tech/docs](https://novaeco.tech/docs)
+- **Docs** → [novaeco.tech](https://novaeco.tech)
 
 ---
 
 ## Horizontal Enablers
 
 Cross‑cutting foundational services:
-- NovaHub (innovation, wizard, orchestrator)  
-- NovaFin (tokens, payments, investment)  
-- NovaTrade (marketplace)  
-- NovaSapien (shared ML models)  
-- NovaEnergy (renewables, auditing)  
-- NovaMaterial (digital product passports)  
-- NovaMobility (logistics, transport)  
-- NovaInfra (shared infra)  
-- NovaSkills (education, labor coordination)  
-- NovaPolicy (governance, compliance)  
-- NovaBalance (environmental auditing)  
-- NovaEquity (social auditing)
+- **NovaBalance** (environmental auditing)
+- **NovaEquity** (social auditing)
+- **NovaFin** (ledger, payments, staking)
+- **NovaInfra** (IoT registry, fleet command)
+- **NovaLogistics** (optimization, circular transport)
+- **NovaMaterial** (digital product passports)
+- **NovaMind** (shared AI models)
+- **NovaPolicy** (policy-as-code, compliance)
+- **NovaSkills** (labor verification)
+- **NovaTrade** (marketplace, matching)
 
 ---
 
 ## Vertical Sectors
 
 Industry‑specific applications:
-- NovaAgro (sustainable agriculture)  
-- NovaWater (water resource management)  
-- NovaBuild (construction, materials)  
-- NovaTextile (textiles lifecycle)  
-- NovaWaste (waste‑to‑value)  
-- NovaAir (air quality monitoring)  
-- NovaHealth (circular healthcare)  
-- NovaPack (circular packaging)
-- NovaTronix (sustainable electronics)
-- NovaChem (sustainable chemical processes)
+- **NovaAgro** (regenerative agriculture)
+- **NovaAir** (air quality, carbon capture)
+- **NovaBuild** (construction, material banks)
+- **NovaChem** (chemical leasing)
+- **NovaEnergy** (renewable grid, V2G)
+- **NovaMake** (distributed manufacturing)
+- **NovaNature** (biodiversity, reforestation)
+- **NovaPack** (reusable packaging)
+- **NovaRecycle** (recycling, urban mining)
+- **NovaRetail** (product-as-a-service)
+- **NovaTronix** (e-waste, repair)
+- **NovaTextile** (circular fashion)
+- **NovaWater** (industrial water cycles)
 
 ---
 
 ## Workers
 
-Independent background services for:
-- Data ingestion  
-- LCA calculations  
-- Compliance checks  
-- Logistics optimization
+Independent background services for high-throughput tasks, such as:
+- **Quality** (NovaAir sensor ingest)
+- **Bioacoustics** (Species identification)
+- **LCACalc** (Real-time impact calculation)
+- **SlicerCheck** (3D printability verification)
+- **TradeSettlement** (Ledger batching)
 
 ---
 
 ## Products
 
 Flagship applications that consume multiple enablers/sectors:
-- **DurasAGV** (autonomous logistics robots)  
-- **City‑Wide Loop** (reusable cup system)  
-- **Circular Hospital** (equipment leasing and reuse)  
-- **Urban Mining Coordination** (construction + waste + mobility)
+- **DurasAGV** (Autonomous agricultural robot)
+- **NovaLab** (Innovation engine for circular projects)
+- **RetailLoop** (E-commerce plugin for resale)
+- **UrbanMiner** (City council waste dashboard)
 
 ---
 
@@ -82,7 +84,7 @@ Flagship applications that consume multiple enablers/sectors:
 
 - **Open Source** — community‑driven repos  
 - **Transparency** — ADRs, use cases, glossary  
-- **Scalability** — monorepo + containers  
+- **Scalability** — federated monorepo + containers  
 - **Auditability** — Balance & Equity enablers  
 - **Circularity** — every sector reinforces sustainable loops
 

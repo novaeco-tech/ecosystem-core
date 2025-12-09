@@ -5,22 +5,27 @@ It connects individuals and siloed sectors to **foster innovation**, measure imp
 
 This repository (`novaeco`) is the "heart" of the system. It is a monorepo containing the four central services that anchor the entire platform.
 
+---
+
 ## 🏗️ Architecture Overview
 
-The NovaEco is anchored by these **four core services**:
+The Core repository hosts the kernel services that provide identity, access, and orchestration for the wider ecosystem.
 
-| Service | Path | Type | Port | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| **App** | `/app` | **Python/Flask** | `5000` | **Mission Control.** Onboarding, discovery, and NovaEco management. |
-| **Identity** | `/auth` | **Python/Flask** | `9000` | **Digital Passport.** SSO & Trust Profile for unified login. |
-| **Gateway** | `/api` | **Python/Flask** | `8000` | **API Gateway.** Secure, managed access to all services. |
-| **Website** | `/website` | **Node.js** | `3000` | **Docs & Landing.** Architecture, use cases, and guides. |
+| Service | Path | Type | Port | Public URL | Description |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Mission Control** | `/app` | Python/Flask | `5000` | `app.novaeco.tech` | **Dashboard.** Onboarding, discovery, and launchpad. |
+| **Identity** | `/auth` | Python/Flask | `9000` | `auth.novaeco.tech` | **Digital Passport.** SSO & Trust Profile. |
+| **Gateway** | `/api` | Python/Flask | `8000` | `api.novaeco.tech` | **API Gateway.** Secure access to all services. |
+| **Docs** | `/website` | Node.js | `3000` | `novaeco.tech` | **Documentation.** Architecture and use cases. |
+
+> **Looking for the rest of the ecosystem?** > NovaEco includes 10+ Enablers (e.g., NovaTrade, NovaMaterial) and 13+ Sectors (e.g., NovaAgro).  
+> 👉 **[View Full Architecture & Service List](http://localhost:3000/docs/architecture/overview)** (once running) or visit [novaeco.tech](https://novaeco.tech).
 
 ### 🎮 The "Mission Control" Concept
 The **App** (`/app`) acts as the "Home Screen" for the NovaEco. It is **read-heavy** and focuses on three specific functions:
 1.  **Onboarding & Identity:** Handles Sign-up, Profile management, and Trust verification.
-2.  **Aggregated Dashboard:** Displays a high-level summary of user activity across the NovaEco (e.g., "Total CO₂ Saved", "3 Active Projects").
-3.  **App Launchpad:** Provides deep-links to jump into specific Sector/Enabler apps (e.g., clicking a project takes you to `novaagro.tech` for execution).
+2.  **Aggregated Dashboard:** Displays a high-level summary of user activity (e.g., "Total CO₂ Saved").
+3.  **App Launchpad:** Provides deep-links to jump into specific Sector apps (e.g., clicking "Farming" takes you to `agriculture.novaeco.tech`).
 
 ---
 
@@ -28,11 +33,14 @@ The **App** (`/app`) acts as the "Home Screen" for the NovaEco. It is **read-hea
 
 This repository is configured to use **DevContainers** for a one-click setup.
 
-1.  Make sure you have [docker desktop](https://www.docker.com/products/docker-desktop/) installed and running.
-2.  Install the [remote containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) in VS Code.
-3.  Clone this repository: `git clone https://github.com/novaeco-tech/novaeco.git`
+1.  Make sure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
+2.  Install the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension in VS Code.
+3.  Clone this repository:  
+    ```bash
+    git clone https://github.com/novaeco-tech/novaeco.git
+    ```
 4.  Open the cloned folder in VS Code.
-5.  A pop-up will appear: "Folder contains a Dev Container... Reopen in Container?". Click **"Reopen in Container"**.
+5.  A pop-up will appear: *"Folder contains a Dev Container... Reopen in Container?"*. Click **"Reopen in Container"**.
 
 This will build the Docker-Compose environment defined in `.devcontainer/` and automatically start all four services.
 
@@ -40,18 +48,19 @@ This will build the Docker-Compose environment defined in `.devcontainer/` and a
 
 Once the container is running, the services are available locally:
 
-  * **App:** [http://localhost:5000](http://localhost:5000)
-  * **Website:** [http://localhost:3000](http://localhost:3000)
-  * **API Health Check:** [http://localhost:8000/health](http://localhost:8000/health)
-  * **Auth Health Check:** [http://localhost:9000/health](http://localhost:9000/health)
+* **Mission Control:** [http://localhost:5000](http://localhost:5000)
+* **Website/Docs:** [http://localhost:3000](http://localhost:3000)
+* **API Health:** [http://localhost:8000/health](http://localhost:8000/health)
+* **Auth Health:** [http://localhost:9000/health](http://localhost:9000/health)
+
+---
 
 ## 🛠️ Development Workflow
 
-The NovaEco Core runs as **4 separate containers** (App, Website, API, Auth).
+The NovaEco Core runs as **4 separate containers** (App, Website, API, Auth).  
 When you open this repo in VS Code, it attaches to the **App** service by default.
 
-**✅ All services start automatically.**
-You do not need to run `python app.py` or `npm start` manually. All four services launch immediately, connect to each other, and watch your files for changes (hot-reload).
+**✅ All services start automatically.** You do not need to run `python app.py` or `npm start` manually. All four services launch immediately, connect to each other, and watch your files for changes (**hot-reload**).
 
 ### 🐛 Debugging the App (Manual Start)
 
@@ -59,7 +68,6 @@ By default, the App runs in the background. If you want to **attach a debugger (
 
 1.  Open `.devcontainer/docker-compose.yml`.
 2.  Find the `app` service and change the `command` line:
-
     ```yaml
     # CHANGE FROM (Auto-Start):
     # command: sh -c "pip install -r requirements.txt && python app.py"
@@ -67,17 +75,14 @@ By default, the App runs in the background. If you want to **attach a debugger (
     # TO (Debug Mode):
     command: sleep infinity
     ```
-
 3.  Open the Command Palette (`Ctrl+Shift+P` / `F1`) and select **"Dev Containers: Rebuild Container"**.
-4.  Once rebuilt, the App will **not** be running. You can now press **F5** or run `python app.py` in the terminal to start it with the debugger attached.
+4.  Once rebuilt, the App will **not** be running. You can now press **F5** or run `python -m src.app_service` in the terminal to start it with the debugger attached.
 
 ### 🧰 Developer Tools (NovaEco CLI)
 
 We use the internal `novaeco` CLI to manage versions and automation.
 
-**Installation**
-The CLI is installed automatically in the DevContainer. If you need to reinstall it manually:
-
+**Installation** The CLI is installed automatically in the DevContainer. If you need to reinstall it manually:
 ```bash
 pip install "git+https://github.com/novaeco-tech/novaeco-devtools.git@main#subdirectory=novaeco-cli"
 ```
@@ -90,7 +95,6 @@ pip install "git+https://github.com/novaeco-tech/novaeco-devtools.git@main#subdi
     ```bash
     novaeco version patch auth
     ```
-
   * **Releasing a Feature (Minor/Major):**
     Updates the Global version and aligns ALL services (e.g., `1.1.0`).
 
@@ -114,16 +118,16 @@ You can use the terminal in this new window to run service-specific commands (e.
 
 If you attach to the **Website** container and try to run `npm start`, you might see:
 
-> *" Something is already running on port 3000"*
+> *"Something is already running on port 3000"*
 
 **This is normal/good.** It means the container automatically started the server for you.
 
   * **You do NOT need to run `npm start` manually.**
-      * Just edit your files.
-        The running server will detect changes and **hot-reload automatically**.
-        Use the terminal only for tasks like adding dependencies (`npm install <package>`).
+  * Just edit your files. The running server will detect changes and **hot-reload automatically**.
 
-### Running Tests
+---
+
+## 🧪 Running Tests
 
   * **Python Tests (App, API, Auth):**
     ```bash
@@ -137,6 +141,12 @@ If you attach to the **Website** container and try to run `npm start`, you might
     ```
   * **Integration Tests:**
     ```bash
-    # Run in the main window
+    # Run in the main window(App) or API/Auth attached windows
     pytest tests/integration
+    ```
+
+  * **End 2 End (E2E) Tests:**
+    ```bash
+    # Run in the main window (App) or API/Auth attached windows
+    pytest tests/e2e
     ```

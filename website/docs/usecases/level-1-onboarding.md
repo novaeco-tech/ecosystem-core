@@ -1,205 +1,244 @@
 # Level 1: Onboarding & Control (Foundational Integration)
 
-**Focus:** Setup, IAM, API integration, data aggregation, and dashboard visibility.
+**Focus:** Identity, Access, Device Registry, and Basic Transparency.
+**Goal:** Validating that every entity enters the system securely via the correct component.
 
 ---
 
-## User Onboarding & Trust Profile
+## [O1] The Citizen Passport
 
-**Description**  
-An individual or SME registers, verifies their identity, and establishes a "Trust Profile" holding credentials (e.g., Trade Register extract, ISO certs).
+**Description**
+A resident registers via the central `auth` service to access city recycling services and green infrastructure. Their Trust Profile is verified via email or local government API integration.
 
-**Challenges**  
-- Friction vs. Security balance  
-- GDPR compliance  
-- Cross-border verification  
+**Challenges**
+- Balancing ease of access with security (preventing bot accounts).
+- Ensuring data privacy (GDPR) for citizen data.
 
-**Sustainability Problem**  
-Lack of trust prevents circular collaboration (e.g., *“Is this recycled plastic safe?”*).
+**Sustainability Problem**
+Without a digital identity, citizens cannot participate in incentive schemes (e.g., getting credits for recycling) or access shared resources securely.
 
-**User Interaction**  
-User visits `auth.novaeco.tech` → Registers via Email → Uploads proof of business → Admin verifies → “Verified” badge issued.
+**User Interaction**
+User visits `auth.novaeco.tech` → Registers with email → Clicks verification link → `Core/Auth` issues a standard "Citizen" Trust Profile → User logs into `app.novaeco.tech`.
 
-**Ecosystem Usage**  
-Identity (OAuth2), NovaPolicy (Verification Standards), Central App (Profile Display)
-
----
-
-## [O2] API Key Generation
-
-**Description**  
-A developer generates secure API keys to integrate external systems (ERP, IoT) with the ecosystem’s data streams.
-
-**Challenges**  
-- Rate limiting  
-- Secure secret storage  
-- Preventing abuse  
-
-**Sustainability Problem**  
-Siloed data prevents systemic optimization. APIs allow external systems to “speak circular.”
-
-**User Interaction**  
-Developer logs into `novahub.network/developer` → Selects scopes (`read:waste`, `write:dpp`) → Generates Key → System provisions tenant.
-
-**Ecosystem Usage**  
-Identity (OAuth2), NovaInfra (API Gateway), NovaHub (Dev Portal)
+**Ecosystem Usage**
+`Core/Auth` (Identity Provider), `Core/App` (Dashboard)
 
 ---
 
-## [O3] Sustainability Dashboard
+## [O2] The Corporate KYC
 
-**Description**  
-Users view a personalized dashboard aggregating real-time impact metrics (CO₂, waste diverted) relevant to their role.
+**Description**
+A textile factory uploads ISO 14001 or other sustainability certificates to `NovaSkills` to unlock B2B trading capabilities.
 
-**Challenges**  
-- Data normalization across sectors  
-- Real-time latency  
+**Challenges**
+- Verifying the authenticity of uploaded documents.
+- Handling expiration and renewal of certificates automatically.
 
-**Sustainability Problem**  
-“You can’t manage what you don’t measure.” Visibility drives behavioral change.
+**Sustainability Problem**
+"Greenwashing" is rampant. Trusted, verified actors are needed to build a legitimate circular supply chain.
 
-**User Interaction**  
-Login to `app.novaeco.tech` → NovaBalance queries workers → Dashboard renders “CO₂ Saved” widget from NovaAir and “Water Saved” from NovaWater.
+**User Interaction**
+Factory Admin logs into `NovaSkills` → Uploads PDF of ISO 14001 cert → `NovaPolicy` validates the issuer → `NovaTrade` updates the company's profile to "Verified Supplier".
 
-**Ecosystem Usage**  
-NovaBalance (Aggregator), Identity (Preferences), NovaAir/NovaWater (Data Sources)
-
----
-
-## [O4] Cross-Sector Data Aggregation
-
-**Description**  
-The system ingests Digital Product Passport (DPP) and LCA data from multiple sectors to create a holistic view of a product’s history.
-
-**Challenges**  
-- Semantic interoperability (mapping data standards)  
-- Handling missing data  
-
-**Sustainability Problem**  
-Fragmentation. A shirt’s impact includes NovaAgro (cotton) and NovaChem (dye) data.
-
-**User Interaction**  
-User searches “Recycled Beam” → System queries `novamaterial-worker-dpp-sync` → Merges with `novabalance-worker-impact-calculator` → Displays total footprint.
-
-**Ecosystem Usage**  
-NovaMaterial, NovaBalance, NovaHub (Search), NovaSapien (Normalization)
+**Ecosystem Usage**
+`NovaSkills` (Credential Store), `NovaPolicy` (Verification Logic), `NovaTrade` (Marketplace Permissions)
 
 ---
 
-## [O5] Circular Marketplace Discovery
+## [O3] Sensor Enrollment
 
-**Description**  
-Users discover and connect to sector-specific apps (e.g., NovaTronix repair shops) via a central “App Store.”
+**Description**
+A technician scans a QR code on a new air quality monitor to register it in `NovaInfra`, establishing its "Physical Twin" in the digital system.
 
-**Challenges**  
-- Curation quality  
-- Seamless SSO handoff  
+**Challenges**
+- Secure device provisioning (preventing spoofed data).
+- Scalability when enrolling thousands of sensors.
 
-**Sustainability Problem**  
-Circular solutions exist but are invisible. Centralized discovery drives adoption.
+**Sustainability Problem**
+We cannot manage what we cannot measure. Accurate, tamper-proof environmental data is the foundation of the circular economy.
 
-**User Interaction**  
-User browses `novaeco.tech/marketplace` → Clicks “Electronics Repair” → Redirects to `novatronix.tech` with Auth Token.
+**User Interaction**
+Technician scans QR code via mobile app → `NovaInfra` registers device ID → `NovaAir` assigns it to a location → `IoTIngest` worker begins listening for telemetry.
 
-**Ecosystem Usage**  
-NovaTrade (Directory), Identity (SSO), NovaTronix (Target)
-
----
-
-## [O6] Community Governance
-
-**Description**  
-Contributors propose and vote on ecosystem changes (e.g., “Add new bioplastic standard”) via NovaPolicy.
-
-**Challenges**  
-- Voter apathy  
-- “Whale” voting dominance  
-
-**Sustainability Problem**  
-Top-down mandates fail. Bottom-up governance ensures the system meets actual needs.
-
-**User Interaction**  
-User goes to NovaPolicy → Views proposal → Stakes reputation tokens to vote “Yes” → Smart contract records vote.
-
-**Ecosystem Usage**  
-NovaPolicy (Logic), Identity (Reputation Score), NovaHub (Forum)
+**Ecosystem Usage**
+`NovaInfra` (Device Registry), `NovaAir` (Sector Context), `IoTIngest` (Data Pipeline)
 
 ---
 
-## [O7] Multi-Tenant Access Management
+## [O4] Material Declaration
 
-**Description**  
-Large organizations manage teams, roles, and granular permissions across the ecosystem.
+**Description**
+A chemical supplier defines a new "Bio-Solvent" SKU in `NovaMaterial`, populating its safety data and chemical composition to solve the "black box" problem.
 
-**Challenges**  
-- Mapping complex corporate hierarchies  
-- Strict data isolation  
+**Challenges**
+- Intellectual Property (IP) protection vs. Transparency.
+- Standardizing chemical data formats (JSON-LD).
 
-**Sustainability Problem**  
-Corporate silos. The ESG team needs to see what Procurement is buying to align goals.
+**Sustainability Problem**
+Recyclers cannot recover materials if they don't know the chemical ingredients. Transparency is essential for safe recycling.
 
-**User Interaction**  
-Admin creates “Procurement Team” in Identity → Assigns read/write to NovaTrade and read-only to NovaBalance.
+**User Interaction**
+Supplier logs into `NovaMaterial` → Enters CAS numbers and hazards → `NovaPolicy` checks against restricted substance lists → Product Passport is created.
 
-**Ecosystem Usage**  
-Identity (RBAC), NovaHub (Team View)
-
----
-
-## [O8] Ecosystem-Wide LCA Calculation
-
-**Description**  
-Automated background process recalculates Life Cycle Assessments (LCA) as new data (e.g., grid mix) enters the system.
-
-**Challenges**  
-- Computational load  
-- Versioning of LCA datasets  
-
-**Sustainability Problem**  
-Static LCAs are obsolete. Dynamic LCAs provide a real-time truth.
-
-**User Interaction**  
-(System) NovaEnergy updates grid intensity → `novabalance-worker-impact-calculator` triggers → Updates all relevant Product Passports.
-
-**Ecosystem Usage**  
-NovaBalance (Calc), NovaEnergy (Data), NovaMaterial (Object)
+**Ecosystem Usage**
+`NovaMaterial` (DPP Engine), `NovaChem` (Chemical Domain Logic), `NovaPolicy` (Compliance Check)
 
 ---
 
-## [O9] Urban Mining Coordination
+## [O5] The Innovation Profile
 
-**Description**  
-A project management tool orchestrating complex urban mining logistics (demolition → sorting → reuse).
+**Description**
+A startup creates a "Solver Profile" in `NovaLab` to find funding for a new bioplastic, showcasing their technology readiness level (TRL) and impact potential.
 
-**Challenges**  
-- Syncing physical logistics with digital planning  
-- Uncertain material yields  
+**Challenges**
+- Matching solutions to the right problems (taxonomy).
+- Vetting early-stage startups.
 
-**Sustainability Problem**  
-Cities are “mines,” but lack of coordination leads to landfilling.
+**Sustainability Problem**
+Capital often flows to the wrong places. A structured profile helps connect genuine problem solvers with impact investors.
 
-**User Interaction**  
-City Planner starts “Project Munich North” in NovaHub → Imports NovaBuild demolition data → NovaSapien predicts yield → NovaWaste reserves capacity.
+**User Interaction**
+Founder fills out "Innovation Wizard" in `NovaLab` → Selects "Bioplastics" category → System suggests relevant grants → Profile becomes visible to investors.
 
-**Ecosystem Usage**  
-Central App (Orchestration), NovaBuild, NovaWaste, NovaSapien
+**Ecosystem Usage**
+`NovaLab` (Innovation Engine), `Core/App` (Discovery Interface)
 
 ---
 
-## [O10] Central Audit & Compliance Dashboard
+## [O6] Wallet Creation
 
-**Description**  
-Regulators/Auditors view compliance status across all sectors, flagging violations (e.g., “Missing Child Labor Cert”).
+**Description**
+A farm instantiates a `NovaTrade` wallet to receive payments for ecosystem services like carbon sequestration or water retention.
 
-**Challenges**  
-- Presenting complex legal data simply  
-- Data immutability  
+**Challenges**
+- Financial inclusion for unbanked or rural stakeholders.
+- Regulatory compliance (KYC/AML) for financial accounts.
 
-**Sustainability Problem**  
-Greenwashing. Verified, immutable compliance data builds trust.
+**Sustainability Problem**
+Farmers are often the stewards of the land but are rarely paid for the "ecosystem services" (clean air, soil health) they provide.
 
-**User Interaction**  
-Auditor logs in → Filters “Pending Reviews” → Drills into NovaTextile chain → Verifies NovaEquity proof → Approves.
+**User Interaction**
+Farmer logs into `NovaTrade` → Clicks "Create Wallet" → `NovaFin` provisions a ledger account → Wallet address is linked to their `NovaAgro` farm profile.
 
-**Ecosystem Usage**  
-NovaPolicy (Rules), NovaEquity (Social), NovaBalance (Env)
+**Ecosystem Usage**
+`NovaTrade` (Interface), `NovaFin` (Ledger/Banking), `NovaAgro` (Business Context)
+
+---
+
+## [O7] Printer Capability
+
+**Description**
+A FabLab registers a 3D printer's specifications (e.g., "Prusa i3, PLA/PETG compatible") in `NovaMake` to accept local manufacturing jobs.
+
+**Challenges**
+- Standardizing machine capabilities data.
+- Verifying machine calibration/quality.
+
+**Sustainability Problem**
+Distributed manufacturing reduces shipping emissions, but only if we know *where* the capacity exists locally.
+
+**User Interaction**
+FabLab manager adds machine in `NovaMake` → Selects "PLA" and "PETG" materials → `NovaInfra` records the location → Machine appears on the "Local Capacity Map".
+
+**Ecosystem Usage**
+`NovaMake` (Manufacturing Matcher), `NovaInfra` (Physical Asset Registry)
+
+---
+
+## [O8] Retailer Plugin
+
+**Description**
+An e-commerce shop installs the `RetailLoop` plugin to enable a "One-Click Resale" button for their customers, closing the loop on sold items.
+
+**Challenges**
+- Integration with diverse e-commerce platforms (Shopify, WooCommerce).
+- Reverse logistics cost estimation.
+
+**Sustainability Problem**
+Take-back schemes are often too difficult for users. Frictionless, one-click resale embedded in the store increases participation.
+
+**User Interaction**
+Shop owner installs plugin → Authenticates with `NovaRetail` → Customers now see "Sell this back" on their order history page.
+
+**Ecosystem Usage**
+`RetailLoop` (Plugin Product), `NovaRetail` (Resale Logic)
+
+---
+
+## [O9] Vehicle Registration
+
+**Description**
+A logistics firm adds an electric van to `NovaLogistics` to become eligible for "Green Routing" jobs within the ecosystem.
+
+**Challenges**
+- Verifying vehicle emission class.
+- Real-time availability tracking.
+
+**Sustainability Problem**
+Decarbonizing transport requires prioritizing zero-emission vehicles for ecosystem logistics.
+
+**User Interaction**
+Fleet manager uploads vehicle registration to `NovaLogistics` → `NovaInfra` validates EV status → Vehicle is tagged "Zero-Emission" for route optimization.
+
+**Ecosystem Usage**
+`NovaLogistics` (Fleet Management), `NovaInfra` (Asset Registry)
+
+---
+
+## [O10] Developer Access
+
+**Description**
+A climate-tech developer generates an API Key in the `Gateway` to build a custom water monitoring app using NovaEco data.
+
+**Challenges**
+- API rate limiting and quota management.
+- Preventing data scraping abuse.
+
+**Sustainability Problem**
+Open Data democratizes innovation. Allowing third-party devs to build on the platform accelerates solution deployment.
+
+**User Interaction**
+Developer logs into `novahub.network` → navigates to Developer Portal → Requests `read:water` scope → `Core/Gateway` issues a secure API Key.
+
+**Ecosystem Usage**
+`Core/Gateway` (API Management), `Core/Docs` (Documentation)
+
+---
+
+## [O11] Worker Certification
+
+**Description**
+A repair technician uploads their "Electronics Repair L2" certificate to `NovaSkills` to validate their right to perform official repairs.
+
+**Challenges**
+- Verifying diverse global certification standards.
+- Preventing forged documents.
+
+**Sustainability Problem**
+The "Right to Repair" needs a skilled workforce. Verifying skills ensures repairs are safe and effective, extending product life.
+
+**User Interaction**
+Technician uploads cert to `NovaSkills` → Admin or AI verifies issuer → `NovaTronix` grants permission to log "Official Repairs" on devices.
+
+**Ecosystem Usage**
+`NovaSkills` (Credentialing), `NovaTronix` (Repair Sector)
+
+---
+
+## [O12] Biodiversity Plot
+
+**Description**
+A forester defines a GPS boundary for a new reforestation project in `NovaNature`, establishing the "Natural Asset" that will be monitored.
+
+**Challenges**
+- Accurate geospatial mapping.
+- Defining land ownership/rights.
+
+**Sustainability Problem**
+To pay for nature restoration, we must clearly define *where* it is happening and measure the baseline.
+
+**User Interaction**
+Forester draws polygon on map in `NovaNature` app → System calculates area → `NovaInfra` registers the geospatial asset → Baseline monitoring begins.
+
+**Ecosystem Usage**
+`NovaNature` (Biodiversity Logic), `NovaInfra` (Geospatial Registry)
