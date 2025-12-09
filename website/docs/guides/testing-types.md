@@ -11,7 +11,7 @@ Use this reference to understand *how* to implement a specific test type listed 
 ### Unit Testing
 * **Goal:** Isolate and verify single functions or classes.
 * **Tools:** `pytest` (Python), `jest` (Node).
-* **Best Practices:** Mock all external dependencies (DB, Network). Target <100ms runtime.
+* **Best Practices:** Mock all external dependencies (DB, Network). Target &lt; 100ms runtime.
 * **Input:** Source Code. **Output:** Coverage Report.
 
 ### Static Analysis
