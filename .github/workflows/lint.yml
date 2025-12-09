@@ -1,4 +1,5 @@
-name: NovaEco Static Analysis
+# FILE: repos/novaeco/.github/workflows/ci.yml
+name: NovaEco Core CI
 
 on:
   pull_request:
@@ -7,14 +8,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Job 1: Smart Path Filtering (Same as CI)
-  changes:
+  # Job 1: Detect changes
+  changed-files:
     runs-on: ubuntu-latest
     outputs:
       api: ${{ steps.filter.outputs.api }}
       app: ${{ steps.filter.outputs.app }}
       auth: ${{ steps.filter.outputs.auth }}
       website: ${{ steps.filter.outputs.website }}
+      performance: ${{ steps.filter.outputs.performance }}
+      integration: ${{ steps.filter.outputs.integration }}
+      e2e: ${{ steps.filter.outputs.e2e }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v2
@@ -26,70 +30,154 @@ jobs:
             auth: ['auth/**']
             website: ['website/**']
 
-  # Job 2: Lint Python Services (Ruff)
-  # We group these into one matrix job for efficiency, but only run if changed
-  lint-python:
-    needs: changes
-    # Run if ANY Python service changed
-    if: ${{ needs.changes.outputs.api == 'true' || needs.changes.outputs.app == 'true' || needs.changes.outputs.auth == 'true' }}
+            # Filter A: Performance (Micro-benchmarks)
+            performance:
+              - 'api/**'
+              - 'app/**'
+              - 'auth/**'
+              - 'tests/performance/**'
+            
+            # Filter B: Integration (API Level)
+            integration:
+              - 'api/**'
+              - 'auth/**'
+              - 'app/**'
+              - 'tests/integration/**'
+              - '.devcontainer/docker-compose.yml'
+            
+            # Filter C: E2E (UI Level)
+            e2e:
+              - 'api/**'
+              - 'auth/**'
+              - 'app/**'
+              - 'tests/e2e/**'
+              - '.devcontainer/docker-compose.yml'
+
+  # Job 2: Unit Test API
+  test-api:
+    needs: changed-files
+    if: ${{ needs.changed-files.outputs.api == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        service: [api, app, auth]
+    container:
+      image: ghcr.io/novaeco-tech/dev-python:latest
+      options: --user root
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: pip install -r api/requirements.txt
+      - name: Run Unit Tests
+        run: cd api && pytest tests/unit
+
+  # Job 3: Unit Test App
+  test-app:
+    needs: changed-files
+    if: ${{ needs.changed-files.outputs.app == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/novaeco-tech/dev-python:latest
+      options: --user root
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: pip install -r app/requirements.txt
+      - name: Run Unit Tests
+        run: cd app && pytest tests/unit
+
+  # Job 4: Unit Test Auth
+  test-auth:
+    needs: changed-files
+    if: ${{ needs.changed-files.outputs.auth == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/novaeco-tech/dev-python:latest
+      options: --user root
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: pip install -r auth/requirements.txt
+      - name: Run Unit Tests
+        run: cd auth && pytest tests/unit
+
+  # Job 5: Unit Test Website
+  test-website:
+    needs: changed-files
+    if: ${{ needs.changed-files.outputs.website == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/novaeco-tech/dev-node:latest
+      options: --user root
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: cd website && npm install
+      - name: Run Tests
+        run: cd website && npm test -- tests/unit
+
+  # Job 6: Performance Tests (Micro-benchmarks)
+  # Runs INSIDE container because it tests code logic, not HTTP
+  test-performance:
+    needs: changed-files
+    if: ${{ needs.changed-files.outputs.performance == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/novaeco-tech/dev-python:latest
+      options: --user root
     steps:
       - uses: actions/checkout@v4
       
-      # We skip the step logic if this specific service didn't change
-      # This allows us to use one matrix job for all 3 services
-      - name: Check if service changed
-        id: check
+      - name: Install Dependencies
+        # Only needed if requirements.txt has libs NOT in the golden image
+        run: pip install -r tests/performance/requirements.txt
+        
+      - name: Run Micro-benchmarks
+        run: pytest tests/performance/micro
+
+  # Job 7: Integration Tests (API Level)
+  # Runs on Host to orchestrate Docker Compose
+  test-integration:
+    needs: changed-files
+    if: ${{ needs.changed-files.outputs.integration == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start Environment
+        run: docker compose -f .devcontainer/docker-compose.yml up -d --build --wait
+
+      - name: Install Integration Dependencies
         run: |
-          CHANGED="${{ needs.changes.outputs[matrix.service] }}"
-          echo "should_run=$CHANGED" >> $GITHUB_OUTPUT
+          docker compose -f .devcontainer/docker-compose.yml exec -T app \
+            pip install -r /workspace/tests/integration/requirements.txt
+
+      - name: Run Integration Tests
+        run: |
+          docker compose -f .devcontainer/docker-compose.yml exec -T app \
+            pytest /workspace/tests/integration
+
+  # Job 8: E2E Tests (Playwright)
+  # Runs on Host to drive browsers against the Docker stack
+  test-e2e:
+    needs: changed-files
+    if: ${{ needs.changed-files.outputs.e2e == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        if: steps.check.outputs.should_run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install Ruff
-        if: steps.check.outputs.should_run == 'true'
-        run: pip install ruff
-
-      - name: Run Ruff (Linting)
-        if: steps.check.outputs.should_run == 'true'
+      - name: Install E2E Dependencies
         run: |
-          echo "🔍 Linting ${{ matrix.service }}..."
-          # Run check on the service directory
-          ruff check ${{ matrix.service }}
-          
-      - name: Run Ruff (Formatting Check)
-        if: steps.check.outputs.should_run == 'true'
-        run: |
-          echo "🔍 Checking format for ${{ matrix.service }}..."
-          # Fails if code is not formatted correctly
-          ruff format --check ${{ matrix.service }}
+          pip install -r tests/e2e/requirements.txt
+          playwright install --with-deps
 
-  # Job 3: Lint Website (ESLint)
-  lint-website:
-    needs: changes
-    if: ${{ needs.changes.outputs.website == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: website/package-lock.json
+      - name: Start Environment
+        run: docker compose -f .devcontainer/docker-compose.yml up -d --wait
 
-      - name: Install Dependencies
-        run: cd website && npm ci
+      - name: Run Playwright Tests
+        run: pytest tests/e2e
+        env:
+          APP_URL: http://localhost:5000
 
-      - name: Run ESLint
-        # Assumes you have a 'lint' script in package.json or runs directly
-        run: cd website && npx eslint . --ext .js,.jsx,.ts,.tsx
