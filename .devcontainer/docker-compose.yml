@@ -11,6 +11,12 @@ services:
       - "3000:3000" # Docusaurus port
     # Installs deps and starts Docusaurus
     command: sh -c "npm install && npm start"
+    # Wait for Docusaurus port to be available
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
 
   app:
     # USE THE PRE-BUILT IMAGE
