@@ -12,13 +12,7 @@
                 "tamasfe.even-better-toml",
                 "zxh404.vscode-proto3",
                 "ms-playwright.playwright"
-            ],
-            // Help Pylance find your code in the monorepo
-            "settings": {
-                "python.analysis.extraPaths": [
-                    "/workspace/novaeco/app/src"
-                ]
-            }
+            ]
         }
     },
     "forwardPorts": [
@@ -41,7 +35,6 @@
     },
     
     // 1. Install CLI
-    // 2. Install Dev Deps (e.g. black, isort, mypy, flake8)
-    // 3. Install Test Deps (e.g. e2e, integration, performance)
-    "postCreateCommand": "pip install 'git+https://github.com/novaeco-tech/novaeco-devtools.git@main#subdirectory=novaeco-cli' && pip install -r app/requirements-dev.txt && pip install -r tests/requirements.txt"
+    // 2. Install Test Deps (e.g. e2e, integration, performance)
+    "postCreateCommand": "pip install 'git+https://github.com/novaeco-tech/novaeco-devtools.git@main#subdirectory=novaeco-cli' && pip install -r tests/requirements.txt"
 }
