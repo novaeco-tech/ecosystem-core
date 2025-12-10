@@ -1,4 +1,3 @@
-# FILE: repos/novaeco/.github/workflows/ci.yml
 name: NovaEco Core CI
 
 on:
@@ -53,7 +52,7 @@ jobs:
               - 'auth/**'
               - 'tests/performance/**'
 
-  # Job 2: Unit Test API
+  # Job 2: Unit Test API (Runs in Container)
   test-api:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.api == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -68,7 +67,7 @@ jobs:
       - name: Run Unit Tests
         run: cd api && pytest tests/unit
 
-  # Job 3: Unit Test App
+  # Job 3: Unit Test App (Runs in Container)
   test-app:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.app == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -83,7 +82,7 @@ jobs:
       - name: Run Unit Tests
         run: cd app && pytest tests/unit
 
-  # Job 4: Unit Test Auth
+  # Job 4: Unit Test Auth (Runs in Container)
   test-auth:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.auth == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -98,7 +97,7 @@ jobs:
       - name: Run Unit Tests
         run: cd auth && pytest tests/unit
 
-  # Job 5: Unit Test Website
+  # Job 5: Unit Test Website (Runs in Node Container)
   test-website:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.website == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -109,12 +108,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: cd website && npm install
+        run: cd website && npm ci
       - name: Run Tests
         run: cd website && npm test -- tests/unit
 
-  # Job 6: Integration Tests (API Level)
-  # Runs on Host to orchestrate Docker Compose
+  # Job 6: Integration Tests (Runs on Host to Manage Docker)
   test-integration:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.integration == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -123,9 +121,11 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Start Environment
+        # --wait ensures services pass healthchecks before proceeding
         run: docker compose -f .devcontainer/docker-compose.yml up -d --build --wait
 
       - name: Install Integration Dependencies
+        # Installs inside the running app container
         run: |
           docker compose -f .devcontainer/docker-compose.yml exec -T app \
             pip install -r /workspace/tests/integration/requirements.txt
@@ -135,8 +135,7 @@ jobs:
           docker compose -f .devcontainer/docker-compose.yml exec -T app \
             pytest /workspace/tests/integration
 
-  # Job 7: E2E Tests (Playwright)
-  # Runs on Host to drive browsers against the Docker stack
+  # Job 7: E2E Tests (Runs on Host to Drive Browser)
   test-e2e:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.e2e == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -144,17 +143,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python (Host)
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install E2E Dependencies
+      - name: Install E2E Dependencies (Host)
         run: |
           pip install -r tests/e2e/requirements.txt
           playwright install --with-deps
 
       - name: Start Environment
+        # --wait ensures services pass healthchecks before proceeding
         run: docker compose -f .devcontainer/docker-compose.yml up -d --wait
 
       - name: Run Playwright Tests
@@ -162,8 +162,7 @@ jobs:
         env:
           APP_URL: http://localhost:5000
 
-  # Job 8: Performance Tests (Micro-benchmarks)
-  # Runs INSIDE container because it tests code logic, not HTTP
+  # Job 8: Performance Tests (Runs in Container)
   test-performance:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.performance == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -175,7 +174,6 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Install Dependencies
-        # Only needed if requirements.txt has libs NOT in the golden image
         run: pip install -r tests/performance/requirements.txt
         
       - name: Run Micro-benchmarks

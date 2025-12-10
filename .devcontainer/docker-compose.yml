@@ -27,8 +27,10 @@ services:
     ports:
       - "5000:5000" # FastAPI/Flask port
     depends_on:
-      - api
-      - auth
+      api:
+        condition: service_healthy # Wait for API to be ready
+      auth:
+        condition: service_healthy # Wait for Auth to be ready
     environment:
       # Internal Docker DNS names
       - API_URL=http://api:8000        # Used by app/src/config.py
@@ -37,6 +39,12 @@ services:
       - APP_URL=http://localhost:5000  # Used by tests (Localhost works inside the container)
     # Auto-install and START the server
     command: sh -c "pip install -r requirements-dev.txt && python -m src.app_service"
+    # Wait for Flask port to be available
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
 
   api:
     # USE THE PRE-BUILT IMAGE
@@ -51,6 +59,12 @@ services:
       - AGRO_URL=http://novaagro-api:8000 # For integration testing mocking
     # Auto-install and START the server
     command: sh -c "pip install -r requirements-dev.txt && python -m src.api_service"
+    # Wait for API Health endpoint
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   auth:
     # USE THE PRE-BUILT IMAGE
@@ -63,3 +77,9 @@ services:
       - "9090:9090" # gRPC port (Internal Token Validation) - Added for host debugging
     # Auto-install and START the server
     command: sh -c "pip install -r requirements-dev.txt && python -m src.auth_service"
+    # Wait for Auth Health endpoint
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
