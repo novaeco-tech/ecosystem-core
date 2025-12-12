@@ -26,7 +26,7 @@ const sidebars = {
         'architecture/overview',
         'architecture/adr-001-core-services',
         'architecture/adr-002-auth',
-        'architecture/adr-003-api-gateway',
+        'architecture/adr-003-hybrid-api-access',
         'architecture/adr-004-docs-site',
         'architecture/adr-005-internal-grpc',
         'architecture/adr-006-federated-ui',
