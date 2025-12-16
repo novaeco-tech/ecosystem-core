@@ -14,16 +14,16 @@ Relying solely on JSON for machine-to-machine communication introduces significa
 ## Decision
 We adopt **gRPC with Protocol Buffers (ProtoBuf)** as the standard protocol for **synchronous machine-to-machine communication**, regardless of whether the consumer is internal or external.
 
-1.  **Internal Mesh:** Services (e.g., `NovaAgro` $\leftrightarrow$ `NovaFin`) communicate directly via gRPC.
-2.  **Public Access:** External agents access these same gRPC interfaces via the **Multiplexed Gateway** (`api.novaeco.tech`) on Port 443 (see ADR-003).
-3.  **Schema-First:** The `.proto` files are the source of truth. We publish generated SDKs (e.g., `novaeco-auth-client`) to ensure external developers have a strongly-typed, pre-validated interface.
+1.  **Internal Mesh:** Core services (e.g., `NovaAgro` $\leftrightarrow$ `Auth`) communicate directly via gRPC for maximum throughput.
+2.  **Public Access:** External agents access specific gRPC interfaces (e.g., `VerificationService`) via the **Multiplexed Gateway** (`api.novaeco.tech`) on Port 443 (see [ADR-003](./adr-003-hybrid-api-access.md)).
+3.  **Schema-First Development:** The `.proto` files are the single source of truth. We use them to automatically generate and publish client SDKs (e.g., `novaeco-auth-client`) to PyPI/npm.
 
 ## Consequences
 ### Positive
 - **Strict Contracts:** ProtoBuf enforces schema compatibility, preventing integration bugs before deployment.
 - **Unified Surface:** External agents get the same high-performance interface as internal services.
-- **Code Generation:** We automatically generate and publish client SDKs for Python, Node, and Go, reducing integration effort for partners.
+- **Productivity:** Developers (internal and external) simply import the generated SDK to get a fully-typed, auto-validated client.
 
 ### Negative
-- **Versioning Rigor:** Since our `.proto` definitions are now public APIs, we must adhere to strict semantic versioning (e.g., never renaming fields, only deprecating) to avoid breaking external clients.
-- **Tooling:** Debugging requires specialized tools (like `grpcurl`) rather than standard browsers or `curl`.
+- **Versioning Rigor:** Since our `.proto` definitions are public APIs, we must strictly adhere to semantic versioning. Fields cannot be renamed or removed without a long deprecation cycle to avoid breaking external integrations.
+- **Tooling Friction:** Debugging requires specialized tools (like `grpcurl` or Postman with gRPC support) rather than standard browsers.

@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       api: ${{ steps.filter.outputs.api }}
-      app: ${{ steps.filter.outputs.app }}
       auth: ${{ steps.filter.outputs.auth }}
       website: ${{ steps.filter.outputs.website }}
       integration: ${{ steps.filter.outputs.integration }}
@@ -25,7 +24,6 @@ jobs:
         with:
           filters: |
             api: ['api/**']
-            app: ['app/**']
             auth: ['auth/**']
             website: ['website/**']
             
@@ -33,7 +31,6 @@ jobs:
             integration:
               - 'api/**'
               - 'auth/**'
-              - 'app/**'
               - 'tests/integration/**'
               - '.devcontainer/docker-compose.yml'
             
@@ -41,14 +38,12 @@ jobs:
             e2e:
               - 'api/**'
               - 'auth/**'
-              - 'app/**'
               - 'tests/e2e/**'
               - '.devcontainer/docker-compose.yml'
               
             # Filter C: Performance (Micro-benchmarks)
             performance:
               - 'api/**'
-              - 'app/**'
               - 'auth/**'
               - 'tests/performance/**'
 
@@ -66,21 +61,6 @@ jobs:
         run: pip install -r api/requirements.txt
       - name: Run Unit Tests
         run: cd api && pytest tests/unit
-
-  # Job 3: Unit Test App (Runs in Container)
-  test-app:
-    needs: changed-files
-    if: ${{ needs.changed-files.outputs.app == 'true' || github.event_name == 'workflow_dispatch' }}
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/novaeco-tech/dev-python:latest
-      options: --user root
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install Dependencies
-        run: pip install -r app/requirements.txt
-      - name: Run Unit Tests
-        run: cd app && pytest tests/unit
 
   # Job 4: Unit Test Auth (Runs in Container)
   test-auth:
@@ -125,14 +105,14 @@ jobs:
         run: docker compose -f .devcontainer/docker-compose.yml up -d --build --wait
 
       - name: Install Integration Dependencies
-        # Installs inside the running app container
+        # Installs inside the running api container
         run: |
-          docker compose -f .devcontainer/docker-compose.yml exec -T app \
+          docker compose -f .devcontainer/docker-compose.yml exec -T api \
             pip install -r /workspace/tests/integration/requirements.txt
 
       - name: Run Integration Tests
         run: |
-          docker compose -f .devcontainer/docker-compose.yml exec -T app \
+          docker compose -f .devcontainer/docker-compose.yml exec -T api \
             pytest /workspace/tests/integration
 
   # Job 7: E2E Tests (Runs on Host to Drive Browser)

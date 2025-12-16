@@ -36,10 +36,12 @@ const config = {
     i18n: { defaultLocale: 'en', locales: ['en'] },
 
     markdown: {
+        mermaid: true,
         hooks: {
             onBrokenMarkdownLinks: 'warn',
         },
     },
+    themes: ['@docusaurus/theme-mermaid'],
 
     presets: [
         [

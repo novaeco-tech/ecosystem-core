@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       api: ${{ steps.filter.outputs.api }}
-      app: ${{ steps.filter.outputs.app }}
       auth: ${{ steps.filter.outputs.auth }}
       website: ${{ steps.filter.outputs.website }}
     steps:
@@ -22,7 +21,6 @@ jobs:
         with:
           filters: |
             api: ['api/**']
-            app: ['app/**']
             auth: ['auth/**']
             website: ['website/**']
 
@@ -31,7 +29,7 @@ jobs:
   lint-python:
     needs: changes
     # Run if ANY Python service changed
-    if: ${{ needs.changes.outputs.api == 'true' || needs.changes.outputs.app == 'true' || needs.changes.outputs.auth == 'true' }}
+    if: ${{ needs.changes.outputs.api == 'true' || needs.changes.outputs.auth == 'true' }}
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/novaeco-tech/dev-python:latest
@@ -39,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        service: [api, app, auth]
+        service: [api, auth]
     steps:
       - uses: actions/checkout@v4
       

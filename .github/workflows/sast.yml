@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # NovaEco uses Python (Api, Auth, App) and JavaScript (Website)
+        # NovaEco uses Python (Api, Auth) and JavaScript (Website)
         language: [ 'python', 'javascript' ]
 
     steps:

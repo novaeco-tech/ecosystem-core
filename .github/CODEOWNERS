@@ -6,7 +6,6 @@
 # Core Services
 # ------------------------------------------------------------------
 /api/      @novaeco-tech/maintainers-core
-/app/      @novaeco-tech/maintainers-core
 /auth/     @novaeco-tech/maintainers-core
 /website/  @novaeco-tech/maintainers-core
 

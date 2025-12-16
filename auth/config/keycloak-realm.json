@@ -26,7 +26,7 @@
       "enabled": true,
       "publicClient": true,
       "directAccessGrantsEnabled": true,
-      "redirectUris": ["http://localhost:5000/*", "https://app.novaeco.tech/*"],
+      "redirectUris": ["http://localhost:5000/*", "https://admin.novaeco.tech/*"],
       "webOrigins": ["*"]
     },
     {

@@ -48,7 +48,7 @@ This matrix maps every test type to its owner, environment, and V-Model level.
 | **L3** | **Local E2E** | Local Repo | CI (Headless) | Stubbed Backend |
 | **L3** | **Usability (Automated)** | Local Repo | CI (Headless) | Synthetic |
 | **L2** | **System Integration** | NovaEco QA | Docker Swarm | Real Inter-service Traffic |
-| **L1** | **Acceptance (Global)** | NovaEco QA | Docker Swarm | Synthetic User Flows |
+| **L1** | **Global E2E (System)** | NovaEco QA | Docker Swarm | Synthetic User Flows |
 | **L1** | **Smoke Testing** | NovaEco QA | Docker Swarm | Critical Path Only |
 | **Ops**| **Security (DAST)** | Private Ops | Staging | Anonymized Real Data |
 | **Ops**| **Performance (Load)** | Private Ops | Staging | Synthetic Traffic |
@@ -68,9 +68,9 @@ The `novaeco-qa` repository acts as the central verification hub. It follows thi
 novaeco-qa/
 ├── tests/
 │   ├── e2e/                        # End-to-End System Tests
-│   │   ├── acceptance/             # L1: Global User Journeys (Uses Level 4 Use Cases)
+│   │   ├── global/                 # L1: Global E2E User Journeys
 │   │   │   └── level4_complex/
-│   │   ├── system/                 # L2: Inter-service Functionality (Uses Level 2/3 Use Cases)
+│   │   ├── system/                 # L2: Inter-service Functionality
 │   │   │   ├── level2_easy/
 │   │   │   └── level3_medium/
 │   │   └── specs/                  # Shared test specifications (Playwright/Cypress)
@@ -102,7 +102,7 @@ Data is the fuel for testing. We use different strategies depending on the loop.
 ### 1\. Synthetic Data (Local & Global QA)
 
   * **Definition:** Generated on-the-fly using factories (e.g., `Faker`, `FactoryBoy`).
-  * **Usage:** Used for Unit, Integration, and Global Acceptance tests.
+  * **Usage:** Used for Unit, Integration, and **Global E2E** tests.
   * **Benefit:** Zero privacy risk, deterministic, fast setup.
 
 ### 2\. Seeded Data (Global QA)
@@ -153,9 +153,12 @@ make test-int
 Inside `novaeco-qa`:
 
 ```bash
-# Run all Level 2 Integration Tests
+# Run all Level 2 System Integration Tests
 pytest tests/e2e/system/level2_easy
 
-# Run a specific Global Use Case
-pytest tests/e2e/acceptance/level4_complex/test_c1_city_challenge.py
+# Run a specific L1 Global E2E Case
+pytest tests/e2e/global/level4_complex/test_c1_city_challenge.py
+```
+
+```
 ```
