@@ -1,32 +1,33 @@
 import os
-import sys
 import pytest
+import requests
 
-# Point sys.path to the 'auth' directory (parent of 'src')
-SEARCH_PATH_PRIORITY_INDEX = 0
-sys.path.insert(SEARCH_PATH_PRIORITY_INDEX, os.path.join(os.path.dirname(__file__), "../../"))
-
-from src.auth_service import app  # noqa: E402
-
-@pytest.fixture
-def client():
-    """Creates a test client for the Flask application."""
-    app.config["TESTING"] = True
-    with app.test_client() as client:
-        yield client
+# L3 E2E tests run against the deployed container.
+# We default to the local devcontainer port (9000), but CI can inject a different URL.
+BASE_URL = os.environ.get("APP_URL", "http://localhost:9000")
 
 @pytest.mark.requirement("REQ-CORE-OPS-001")
-def test_health_check(client):
+def test_health_check_live():
     """
     Sanity Check:
-    Ensures the Auth service can start and respond to HTTP requests.
-    Verifies REQ-CORE-OPS-001 (Container Health).
+    Verifies the running Auth container accepts HTTP traffic and returns JSON.
+    Trace: REQ-CORE-OPS-001 (Container Health)
     """
-    response = client.get("/health")
+    url = f"{BASE_URL}/health"
+    print(f"Connecting to {url}...")
 
-    assert response.status_code == 200
-    json_data = response.get_json()
+    try:
+        response = requests.get(url, timeout=2)
+    except requests.exceptions.ConnectionError:
+        pytest.fail(f"❌ Could not connect to {url}. Is the Auth container running?")
+
+    # 1. Check HTTP Status
+    assert response.status_code == 200, f"Expected 200 OK, got {response.status_code}"
+
+    # 2. Check Payload Structure
+    json_data = response.json()
     assert json_data["status"] == "ok"
     assert json_data["service"] == "novaeco-auth"
-    # Updated expectation: Service is now a verifier, not just http
+    
+    # 3. Verify Operational Mode (Specific to Auth)
     assert json_data["mode"] == "verifier"

@@ -42,6 +42,7 @@ def health():
     """
     Health check.
     Now reports 'verifier' mode since login is handled by Keycloak/NovaAdmin.
+    Trace: REQ-CORE-OPS-001
     """
     return jsonify({
         "status": "ok", 
@@ -53,7 +54,8 @@ def health():
 
 def run_flask():
     port = int(os.environ.get("HTTP_PORT", 9000))
-    app.run(host="0.0.0.0", port=port)
+    # Enable debug mode for better dev visibility
+    app.run(host="0.0.0.0", port=port, debug=True)
 
 
 # --- 2. gRPC Service Implementation ---
@@ -77,11 +79,12 @@ class AuthServiceImplementation(auth_pb2_grpc.AuthServiceServicer if auth_pb2_gr
 
             # 2. Verify Signature and Claims
             # We enforce RS256 and check expiration
+            # Audience 'account' is standard for Keycloak access tokens unless mapped otherwise
             data = jwt.decode(
                 token,
                 signing_key.key,
                 algorithms=["RS256"],
-                audience="account", # Default audience for Keycloak
+                audience="account", 
                 options={"verify_exp": True}
             )
 

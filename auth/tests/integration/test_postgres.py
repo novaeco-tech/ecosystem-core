@@ -1,1 +1,0 @@
-# TEST: Can I talk to the DB container?

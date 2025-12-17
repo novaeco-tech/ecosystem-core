@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: NovaEco Auth Service
+  description: |
+    The Internal Identity Verifier for the NovaEco ecosystem.
+    This service acts as a high-speed bridge to validate tokens issued by the
+    public Identity Provider (Keycloak). It exposes a gRPC interface for internal
+    validation and a REST interface for health monitoring.
+  version: 0.1.0
+  contact:
+    name: NovaEco Core Team
+    url: https://novaeco.tech
+    email: contact@novaeco.tech
+
+servers:
+  - url: http://localhost:9000
+    description: Local DevContainer (REST Port)
+  - url: https://auth.novaeco.tech
+    description: Production Auth Verifier
+
+paths:
+  /health:
+    get:
+      summary: Service Health Check
+      description: |
+        Verifies that the Auth service is running and configured as a verifier.
+        Used by the Gateway and Orchestrators to determine availability.
+        Trace: REQ-CORE-OPS-001
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: Service is unhealthy or misconfigured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "ok"
+          enum: ["ok", "degraded", "down"]
+        service:
+          type: string
+          example: "novaeco-auth"
+        mode:
+          type: string
+          example: "verifier"
+          description: Indicates the operational mode (verifier vs provider).
+        upstream:
+          type: string
+          example: "http://keycloak:8080"
+          description: The URL of the upstream Identity Provider (Keycloak).
+      required:
+        - status
+        - service
+        - mode
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal Server Error"
+        details:
+          type: string

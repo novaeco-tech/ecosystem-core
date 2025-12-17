@@ -1,1 +1,2 @@
 # Internal Nova libs used by your dependency graph analyzer
+# (Auth is a base-level service, so it has no internal dependencies)

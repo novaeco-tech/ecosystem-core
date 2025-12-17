@@ -3,9 +3,12 @@
 
 # Add Public Libs (External)
 flask==3.0.0
-grpcio==1.60.0
-grpcio-tools==1.60.0
-protobuf==4.25.1
-pyjwt[crypto]==2.8.0 
-cryptography>=41.0.0
 gunicorn==21.2.0
+
+# gRPC Runtime (Server & Client)
+grpcio==1.60.0
+protobuf==4.25.1
+
+# Crypto & JWT (Fixed formatting)
+pyjwt[crypto]==2.8.0
+cryptography>=41.0.0

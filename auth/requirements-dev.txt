@@ -1,4 +1,16 @@
 # Import the production environment
 -r requirements.txt
 
-# Add Dev/Test Tools
+# Test Runners & Benchmarking
+pytest==8.0.0
+pytest-benchmark==4.0.0
+
+# HTTP Client (Required for E2E tests to hit Keycloak/Auth)
+requests==2.31.0
+
+# Contract Verification (Required for verify_openapi.py)
+openapi-spec-validator==0.7.1
+pyyaml==6.0.1
+
+# gRPC Compiler (Required for 'novaeco build client')
+grpcio-tools==1.60.0

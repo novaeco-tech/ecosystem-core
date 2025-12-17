@@ -1,21 +1,24 @@
-# TODO check if is still needed after architecture changes
-
 import os
 import sys
 import pytest
 from unittest.mock import MagicMock, patch
 import jwt
 
-# Point sys.path to the 'auth' directory
-SEARCH_PATH_PRIORITY_INDEX = 0
-sys.path.insert(SEARCH_PATH_PRIORITY_INDEX, os.path.join(os.path.dirname(__file__), "../../"))
+# Point sys.path to the 'auth' directory (parent of 'src')
+# Path: auth/tests/unit/ -> ../../ -> auth/
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
 # Import the class to be tested
 from src.auth_service import AuthServiceImplementation
 
+@pytest.fixture
+def auth_service():
+    """Fixture to provide a fresh instance of the service for each test."""
+    return AuthServiceImplementation()
+
 @pytest.mark.requirement("REQ-CORE-SEC-001")
 @patch('src.auth_service.jwks_client')
-def test_validate_token_success(mock_jwks):
+def test_validate_token_success(mock_jwks, auth_service):
     """
     Verifies that a token signed with a valid key matches REQ-CORE-SEC-001.
     We mock the infrastructure (Keycloak JWKS) to keep this a Level 5 unit test.
@@ -27,8 +30,7 @@ def test_validate_token_success(mock_jwks):
     mock_key.key = "fake-public-key" 
     mock_jwks.get_signing_key_from_jwt.return_value = mock_key
 
-    # 2. Setup Servicer and Request
-    servicer = AuthServiceImplementation()
+    # 2. Setup Request
     request = MagicMock()
     request.token = "valid.jwt.token"
 
@@ -42,7 +44,7 @@ def test_validate_token_success(mock_jwks):
         }
         
         # 4. Execute
-        response = servicer.ValidateToken(request, None)
+        response = auth_service.ValidateToken(request, None)
 
     # 5. Assertions
     assert response.is_valid is True
@@ -54,17 +56,16 @@ def test_validate_token_success(mock_jwks):
 
 @pytest.mark.requirement("REQ-CORE-SEC-001")
 @patch('src.auth_service.jwks_client')
-def test_validate_token_failure(mock_jwks):
+def test_validate_token_failure(mock_jwks, auth_service):
     """
     Verifies that invalid signatures result in a rejected token.
     """
-    servicer = AuthServiceImplementation()
     request = MagicMock(token="bad.token")
 
     # Simulate an error from the JWT library (e.g. signature mismatch)
     mock_jwks.get_signing_key_from_jwt.side_effect = jwt.PyJWTError("Invalid Header")
 
-    response = servicer.ValidateToken(request, None)
+    response = auth_service.ValidateToken(request, None)
 
     assert response.is_valid is False
     assert response.user_id == ""

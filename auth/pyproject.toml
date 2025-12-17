@@ -5,6 +5,9 @@ target-version = "py311"
 # Same line length as Black (standard practice)
 line-length = 120
 
+# Define the source root to help with import resolution in src-layouts
+src = ["src"]
+
 # Exclude common build/cache directories
 exclude = [
     ".git",
@@ -30,7 +33,8 @@ ignore = ["E501"]
 
 [tool.ruff.lint.isort]
 # Ensure imports are grouped correctly (Standard Library -> Third Party -> Local)
-known-first-party = ["src"]
+# Added 'novaeco_auth_client' so it groups with your internal code
+known-first-party = ["src", "novaeco_auth_client"]
 
 [tool.ruff.format]
 # Use double quotes for strings (standard Python convention)

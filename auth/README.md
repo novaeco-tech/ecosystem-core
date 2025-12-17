@@ -1,125 +1,118 @@
 # 🔐 NovaEco Identity Service (Auth)
 
-**The Digital Passport of the NovaEco.**
-Centralized authentication (SSO), token verification, and user profile management.
+> **The Digital Passport of the NovaEco.**
+> A high-performance Verifier that validates identities for the internal mesh.
 
 ## 📖 Overview
 
-The Identity Service is the "Source of Truth" for users and permissions. It issues JWT tokens to users via a public web interface and validates those tokens for internal microservices via a high-performance gRPC channel.
+The **NovaEco Identity Service** acts as the internal trust anchor. While **Keycloak** manages user login and storage externally, this service provides a high-speed gRPC channel for internal microservices (Agro, Trade) to validate tokens without hitting the external Identity Provider for every request.
 
-**Role:** Identity Provider (IdP) & Trust Anchor
-**Protocol:** Hybrid
+**Role:** Token Verifier & Health Monitor
+**Protocol:** Hybrid (REST + gRPC)
 
-- **HTTP (Port 9000):** For User Login, Sign-up, and OAuth2 flows.
-- **gRPC (Port 9090):** For internal services (Agro, Trade) to validate tokens.
+-   **HTTP (Port 9000):** Health checks and status monitoring (`/health`).
+-   **gRPC (Port 9090):** High-throughput token validation for internal services.
 
-**Artifacts:** Produces the `novaeco-auth` docker image and the `novaeco-auth-client` Python/Node SDK.
+**Artifacts:** Produces the `novaeco-auth` docker image and the `novaeco-auth-client` Python SDK.
+
+---
 
 ## 🏗️ Architecture
 
-We use a "Split-Face" architecture to optimize for both user accessibility and internal performance.
+We use a **"Verifier"** pattern. The Flask app monitors health, while the gRPC server performs crypto-verification using public keys fetched from Keycloak.
 
 ```mermaid
 graph TD
-    User((User)) -->|HTTP / Login| Flask[Flask Server :9000]
-    Flask -->|Issue JWT| DB[(User DB)]
+    User((User)) -->|Login / OIDC| Keycloak[Keycloak IdP :8080]
+    Keycloak -->|Issue JWT| User
 
-    subgraph "Internal Network"
-        Agro[NovaAgro] -->|gRPC / Validate| gRPC[gRPC Server :9090]
-        Trade[NovaTrade] -->|gRPC / Validate| gRPC
-        gRPC -->|Check Signature| DB
+    subgraph "Internal Core Kernel"
+        Agro[NovaAgro] -->|gRPC / Validate| Auth[Auth Service :9090]
+        Trade[NovaTrade] -->|gRPC / Validate| Auth
+        Auth -->|Fetch Public Keys (JWKS)| Keycloak
     end
 ```
 
-## 🚀 Getting Started
+## 📜 Contracts & Specifications
+
+This service is strictly defined by its schema files. These are the **Sources of Truth**.
+
+| Interface | File | Description |
+| --- | --- | --- |
+| **REST API** | `api/openapi.yaml` | Defines health/monitoring endpoints. |
+| **gRPC API** | `api/proto/v1/auth.proto` | Defines the `ValidateToken` contract. |
+
+---
+
+## 🚀 Development
 
 ### Prerequisites
 
 * Python 3.11+
-* **NovaEco CLI** (`novaeco-cli`) installed via `pipx`
+* **NovaEco CLI** installed via `pipx`
+* Local Keycloak instance running (see `docker-compose.yml`)
 
-### Local Installation
+### Running Locally
 
-1. Navigate to the directory:
+This service runs inside the **Core DevContainer**.
+
 ```bash
-cd auth
+# Start the Hybrid Server (Flask + gRPC)
+python -m src.auth_service
+```
+
+* **Health Check:** http://localhost:9000/health
+* **gRPC Interface:** `localhost:9090`
+
+### Testing
+
+We use a **V-Model** testing strategy:
+
+1. **Unit (L5):** Verify token parsing logic (mocks Keycloak).
+```bash
+pytest tests/unit
 ```
 
 
-2. Install dependencies:
+2. **Contract (L4):** Verify implementation matches `.proto` and `openapi.yaml`.
 ```bash
-pip install -r requirements.txt
+pytest tests/integration/contracts
 ```
 
 
-3. Run the hybrid server:
+3. **Performance:** Verify validation speed (< 5ms).
 ```bash
-python src/main.py
+pytest tests/performance
+```
+
+
+4. **E2E (L3):** Full login cycle (Keycloak -> Auth Service).
+```bash
+pytest tests/e2e
 ```
 
 
 
-**Endpoints:**
-
-* HTTP: http://localhost:9000/health
-* gRPC: localhost:9090
-
-### Docker Usage
-
-We recommend running this via the root `docker-compose.yml`.
-
-```bash
-# From repository root
-docker compose up auth
-```
+---
 
 ## 📦 Client SDK Generation
 
-Other services (like NovaAgro) cannot call the gRPC endpoint directly without the generated client code. We use the standard CLI to build this SDK.
-
-To build the client locally:
+Other services (like NovaAgro) cannot call the gRPC endpoint directly without the generated client code.
 
 ```bash
-# From the auth/ directory
+# Generate the Python client
 novaeco build client
 ```
 
-This generates a `.whl` file in `dist/client/dist/` that other services can install via pip.
+This generates a `.whl` file that other services install to talk to Auth.
 
-## 🛳️ Service Packaging
-
-To package the service for deployment (Docker build context):
-
-```bash
-# From the auth/ directory
-novaeco build service
-```
-
-This creates a `dist/novaeco-auth.tar.gz` artifact containing the source code and locked requirements.
-
-## 📂 Project Structure
-
-* `src/main.py`: Entry point. Starts both Flask (Thread 1) and gRPC (Thread 2).
-* `api/proto/v1/auth.proto`: The contract definition for internal validation.
-* `requirements.txt`: Runtime dependencies (Flask, gRPC).
-* `requirements-internal.txt`: Empty for Auth (it has no internal dependencies).
+---
 
 ## ⚙️ Configuration
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `HTTP_PORT` | 9000 | Port for REST API (Login UI). |
-| `GRPC_PORT` | 9090 | Port for internal token validation. |
-| `JWT_SECRET` | dev-secret | Key for signing tokens (Change in Prod!). |
-
-## 🧪 Testing
-
-We use Pytest for unit testing the HTTP endpoints.
-
-```bash
-# Install dev dependencies
-pip install -r requirements-dev.txt
-
-# Run tests
-pytest
-```
+| `HTTP_PORT` | `9000` | Port for REST Health API. |
+| `GRPC_PORT` | `9090` | Port for internal token validation. |
+| `KEYCLOAK_URL` | `http://keycloak:8080` | URL to fetch public signing keys (JWKS). |
+| `LOG_LEVEL` | `INFO` | Logging verbosity. |
