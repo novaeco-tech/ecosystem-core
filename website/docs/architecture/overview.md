@@ -224,5 +224,5 @@ To ensure scalability, modularity, and loose coupling, the architecture enforces
   - [Functional Requirements](../requirements/functional.md)
   - [Non‑Functional Requirements](../requirements/non-functional.md)
   - [API Overview](../api/overview.md)
-  - [Use Cases Overview](../usecases/tier-1-onboarding.md)
+  - [Use Cases Overview](../usecases/tier-1-onboarding-and-control.md)
   - [Glossary](../glossary.md)

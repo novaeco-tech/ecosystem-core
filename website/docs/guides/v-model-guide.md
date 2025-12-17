@@ -34,7 +34,7 @@ Every definition artifact on the **Left** corresponds to a specific test suite o
 
 | Phase | Responsibility | Inputs | Action | Artifact (Output) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Definition**<br/>(Left) | **Product Owner**<br/>(Global) | Strategic Roadmap,<br/>Sustainability Goals | Define cross-sector User Journeys. | **Global Use Cases**<br/>`novaeco/website/docs/usecases/tier-4-complex.md`<br/>*(e.g., [C1] City Challenge)* |
+| **Definition**<br/>(Left) | **Product Owner**<br/>(Global) | Strategic Roadmap,<br/>Sustainability Goals | Define cross-sector User Journeys. | **Global Use Cases**<br/>`novaeco/website/docs/usecases/tier-4-systemic-transformation.md`<br/>*(e.g., [S1] City Challenge)* |
 | **Verification**<br/>(Right) | **NovaEco QA**<br/>(Global) | Global Use Cases,<br/>Stable Release | Simulate full user flows across containers. | **Acceptance Test Report**<br/>`novaeco-qa/tests/e2e/acceptance/`<br/>*(Pass/Fail of Use Case)* |
 
 -----

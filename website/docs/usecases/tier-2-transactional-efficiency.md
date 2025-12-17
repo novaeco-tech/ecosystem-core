@@ -1,11 +1,11 @@
-# Tier 2: Easy (Transactional Efficiency)
+# Tier 2: Transactional Efficiency
 
 **Focus:** Direct P2P/B2C interactions, Simple Logging, and Alerts.
 **Goal:** Validating that single-step actions work reliably across specific sectors.
 
 ---
 
-## [E1] The Waste Match
+## [T1] The Waste Match
 
 **Description**
 A bakery lists "Coffee Grounds" on `NovaTrade`. A mushroom farm buys them instantly. This simple transaction diverts organic waste from landfill and provides cheap local feedstock.
@@ -25,7 +25,7 @@ Bakery creates listing on `NovaTrade` → Mushroom Farm accepts offer → `NovaR
 
 ---
 
-## [E2] Print Job Request
+## [T2] Print Job Request
 
 **Description**
 A user uploads a spare part STL file to `NovaMake`. The `Slicer Check` worker automatically verifies printability before a job is accepted.
@@ -45,7 +45,7 @@ User uploads STL to `NovaMake` → `SlicerCheck` worker analyzes geometry → `N
 
 ---
 
-## [E3] Water Quality Alert
+## [T3] Water Quality Alert
 
 **Description**
 `NovaWater` detects a pH drop in a river sensor and triggers an immediate SMS alert to the city environment bureau.
@@ -65,7 +65,7 @@ Sensor sends telemetry to `NovaInfra` → `NovaWater` logic detects threshold br
 
 ---
 
-## [E4] Phone Repair Log
+## [T4] Phone Repair Log
 
 **Description**
 A technician logs a battery swap in `NovaTronix`, automatically updating the phone's `NovaMaterial` Digital Product Passport (DPP) to reflect the new component.
@@ -85,7 +85,7 @@ Technician scans phone IMEI in `NovaTronix` → Selects "Battery Replacement" �
 
 ---
 
-## [E5] Carbon Credit Buy
+## [T5] Carbon Credit Buy
 
 **Description**
 An office buys 10 "Nature Credits" via `NovaTrade` to offset a flight. The funds are routed to a verified `NovaNature` reforestation project.
@@ -105,7 +105,7 @@ Office Admin selects project in `NovaTrade` → Pays via `NovaFin` → `NovaNatu
 
 ---
 
-## [E6] The Crop Scan
+## [T6] The Crop Scan
 
 **Description**
 `DurasAGV` scans a corn field. `NovaMind` processes the imagery to identify nitrogen deficiency, enabling precise fertilizer application.
@@ -125,7 +125,7 @@ Robot uploads image batch → `NovaMind` inference engine classifies health → 
 
 ---
 
-## [E7] Smart Bin Pickup
+## [T7] Smart Bin Pickup
 
 **Description**
 A glass recycling bin reports "90% Full" to `NovaRecycle`. A pickup request is automatically generated and optimized.
@@ -145,7 +145,7 @@ Bin sensor triggers threshold in `NovaRecycle` → `NovaLogistics` adds stop to 
 
 ---
 
-## [E8] Tutor Booking
+## [T8] Tutor Booking
 
 **Description**
 A student books a "Circular Design" expert on `NovaSkills` for a 1-hour session. Payment is held in escrow until the session is complete.
@@ -165,7 +165,7 @@ Student searches `NovaSkills` → Books slot → `NovaFin` locks funds → Sessi
 
 ---
 
-## [E9] Return Initiation
+## [T9] Return Initiation
 
 **Description**
 A consumer clicks "Return" on a rented jacket via the `RetailLoop` plugin. A return label is generated, and the item's status changes to "In Transit".
@@ -185,7 +185,7 @@ User clicks return in order history → `RetailLoop` calls `NovaLogistics` API �
 
 ---
 
-## [E10] Compliance Check
+## [T10] Compliance Check
 
 **Description**
 `NovaPolicy` checks a toy's Bill of Materials (BOM) against the EU "Substances of Concern" list to ensure regulatory compliance before import.
@@ -205,7 +205,7 @@ Importer submits BOM to `NovaPolicy` → System queries `NovaChem` database → 
 
 ---
 
-## [E11] Solar Energy Log
+## [T11] Solar Energy Log
 
 **Description**
 A home inverter pushes daily kWh production to `NovaEnergy`. This data is verified and logged in `NovaBalance` for green certification.
@@ -225,7 +225,7 @@ Inverter API pushes data → `NovaEnergy` validates timestamp/signature → `Nov
 
 ---
 
-## [E12] Packaging Deposit
+## [T12] Packaging Deposit
 
 **Description**
 A user scans a reusable cup at a `NovaPack` kiosk. The deposit paid at purchase is instantly refunded to their `NovaFin` wallet.

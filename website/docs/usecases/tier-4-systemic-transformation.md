@@ -1,11 +1,11 @@
-# Tier 4: Complex (Systemic Transformation)
+# Tier 4: Systemic Transformation
 
 **Focus:** System-of-Systems, Cross-Border, Policy-as-Code, and Full Autonomy.
 **Goal:** Validating the vision of a self-correcting, regenerative planetary computer.
 
 ---
 
-## [C1] Fiber-to-Fiber
+## [S1] Fiber-to-Fiber
 
 **Description**
 Old shirts are collected via the `RetailLoop` plugin, sorted by `NovaMind` AI vision, chemically recycled into monomers by `NovaChem`, and spun into new yarn by `NovaTextile`.
@@ -26,7 +26,7 @@ Consumer initiates return → `NovaLogistics` delivers to facility → `NovaMind
 
 ---
 
-## [C2] The Innovation Lab
+## [S2] The Innovation Lab
 
 **Description**
 `NovaLab` acts as a wizard for a startup building a "Biogas from Waste" plant. It automatically secures necessary permits via `NovaPolicy` and matches the project with green funding sources via `NovaFin`.
@@ -46,7 +46,7 @@ Founder enters project parameters in `NovaLab` → System checks zoning in `Nova
 
 ---
 
-## [C3] Disaster Relief
+## [S3] Disaster Relief
 
 **Description**
 `NovaWater` sensors detect a critical drought pattern. `NovaAgro` automatically shifts regional irrigation plans. `NovaTrade` releases parametric insurance payouts to affected farmers without claims processing.
@@ -66,7 +66,7 @@ Drought threshold breached → `NovaAgro` pushes "Conserve Water" command to irr
 
 ---
 
-## [C4] Automated Factory
+## [S4] Automated Factory
 
 **Description**
 `NovaMake` receives a custom order. `NovaMind` optimizes the G-code for minimal waste. `NovaInfra` controls the printer fleet. `NovaMaterial` logs the exact grams used for the Digital Product Passport.
@@ -86,7 +86,7 @@ Order received → `NovaMind` simulates print path → `NovaInfra` executes job 
 
 ---
 
-## [C5] The Circular Hospital
+## [S5] The Circular Hospital
 
 **Description**
 A hospital leases an MRI machine through a `NovaRetail` Product-as-a-Service model. `NovaEnergy` powers it with renewable energy. `NovaRecycle` recovers rare earth magnets at the end of the lease.
@@ -106,7 +106,7 @@ Hospital signs usage contract → `NovaEnergy` monitors efficiency → Lease end
 
 ---
 
-## [C6] Global Supply Chain
+## [S6] Global Supply Chain
 
 **Description**
 A battery shipment moves through three countries. `NovaPolicy` checks compliance at each border. `NovaTrade` automatically settles customs duties and carbon taxes based on the route.
@@ -127,7 +127,7 @@ Container enters geo-fence → `NovaPolicy` queries Battery Passport → Complia
 
 ---
 
-## [C7] City-Wide Loop
+## [S7] City-Wide Loop
 
 **Description**
 The Mayor views the `UrbanMiner` dashboard (via `NovaAdmin`), which aggregates real-time circularity data for Water, Energy, and Waste flows across the entire city to drive policy decisions.
@@ -148,7 +148,7 @@ Mayor views `NovaAdmin` dashboard → Identifies "High Waste" district → Adjus
 
 ---
 
-## [C8] Regenerative Beef
+## [S8] Regenerative Beef
 
 **Description**
 Cattle graze using `NovaAgro` rotational planning. Soil carbon increases are measured by `NovaNature`. Farmers are paid credits via `NovaTrade`. The meat is traced to `NovaRetail` with a "Carbon Negative" label.
@@ -168,7 +168,7 @@ Sensors measure soil organic carbon → `NovaNature` verifies gain → `NovaTrad
 
 ---
 
-## [C9] Building-as-Bank
+## [S9] Building-as-Bank
 
 **Description**
 A building is designed in `NovaBuild`. Every material is tracked in `NovaMaterial`. The future scrap value of steel and glass is traded as futures contracts on `NovaTrade`.
@@ -188,7 +188,7 @@ Architect completes BIM model → `NovaMaterial` generates passports → "Steel 
 
 ---
 
-## [C10] E-Waste Mining
+## [S10] E-Waste Mining
 
 **Description**
 `NovaTronix` identifies valuable chips on old circuit boards. `NovaMake` robots automatically desolder them for reuse in new toys or low-spec devices.
@@ -208,7 +208,7 @@ Board scanned by vision system → `NovaTronix` ID's chips → `NovaMake` robot 
 
 ---
 
-## [C11] Water Neutrality
+## [S11] Water Neutrality
 
 **Description**
 A brewery uses `NovaWater` systems to recycle gray water for cooling. `NovaBalance` audits the flow to certify "Water Neutral" status for marketing claims.
@@ -228,7 +228,7 @@ Flow meters log intake vs. recycled volume → `NovaBalance` calculates net usag
 
 ---
 
-## [C12] The Plastic Treaty
+## [S12] The Plastic Treaty
 
 **Description**
 `NovaPolicy` enforces a global "Plastic Tax". The `TradeSettlement` worker auto-deducts tax from `NovaMake` manufacturing jobs based on the ratio of virgin to recycled plastic used.

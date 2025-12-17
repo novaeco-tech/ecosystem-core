@@ -16,4 +16,4 @@ These requirements define the **behavior** of the NovaEco Core Kernel services (
 - [Non-Functional Requirements](./non-functional.md)
 - [Sustainability Requirements](./sustainability.md)
 - [Architecture Overview](../architecture/overview.md)
-- [Use Cases: Tier 1 Onboarding](../usecases/tier-1-onboarding.md)
+- [Use Cases: Tier 1 Onboarding & Control](../usecases/tier-1-onboarding-and-control.md)

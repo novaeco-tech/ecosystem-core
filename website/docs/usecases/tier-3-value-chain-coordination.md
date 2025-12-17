@@ -1,11 +1,11 @@
-# Tier 3: Medium (Value Chain Coordination)
+# Tier 3: Value Chain Coordination
 
 **Focus:** Orchestration, Background Workers, Audits, and Optimization.
 **Goal:** Validating that multiple enablers can work together to solve a B2B problem.
 
 ---
 
-## [M1] The Circular Loop
+## [C1] The Circular Loop
 
 **Description**
 `NovaLab` matches a demolition site (`NovaBuild`) with a road paver (`NovaMake`) for concrete reuse. This orchestrates a direct material exchange between two industrial sectors.
@@ -25,7 +25,7 @@ Construction and demolition waste is one of the largest waste streams globally. 
 
 ---
 
-## [M2] Fair Wage Audit
+## [C2] Fair Wage Audit
 
 **Description**
 `NovaFin` detects a payment to a coffee co-op. `NovaEquity` automatically triggers a survey to workers to verify fair compensation.
@@ -45,7 +45,7 @@ Payment transaction logged in `NovaFin` → `NovaEquity` sends SMS survey to reg
 
 ---
 
-## [M3] Grid Balancing
+## [C3] Grid Balancing
 
 **Description**
 `NovaEnergy` detects a grid spike and commands `NovaLogistics` EV chargers to pause charging. This demand response helps stabilize the renewable energy grid.
@@ -65,7 +65,7 @@ Grid operator signals peak load → `NovaEnergy` broadcasts "Pause" command → 
 
 ---
 
-## [M4] LCA Calculation
+## [C4] LCA Calculation
 
 **Description**
 A shoe designer changes a material in their CAD software. The `LCACalc` worker recalculates the carbon footprint instantly, providing real-time feedback.
@@ -85,7 +85,7 @@ Designer updates Bill of Materials (BOM) in `NovaMake` → `LCACalc` processes n
 
 ---
 
-## [M5] Reverse Logistics
+## [C5] Reverse Logistics
 
 **Description**
 `NovaRetail` batches 50 individual returns. `NovaLogistics` optimizes a single truck route to collect them all efficiently.
@@ -105,7 +105,7 @@ Individual return shipments (one van per package) generate massive Scope 3 emiss
 
 ---
 
-## [M6] Biodiversity Audit
+## [C6] Biodiversity Audit
 
 **Description**
 The `Bioacoustics` worker analyzes audio streams from `NovaNature` sensors. It verifies the return of a specific bird species to release a credit payout.
@@ -125,7 +125,7 @@ Field sensor uploads .wav file → `Bioacoustics` worker identifies "Target Spec
 
 ---
 
-## [M7] Chemical Leasing
+## [C7] Chemical Leasing
 
 **Description**
 A car plant pays for "Degreasing Service" via `NovaChem` instead of buying solvents by the liter. The supplier retains ownership and responsibility for the chemical.
@@ -145,7 +145,7 @@ IoT sensors measure cleaning performance → `NovaChem` tracks usage → `NovaFi
 
 ---
 
-## [M8] Urban Mining Map
+## [C8] Urban Mining Map
 
 **Description**
 `UrbanMiner` aggregates data from `NovaRecycle` (bin contents) and `NovaBuild` (demolition permits) to map the city's stocks of copper and steel.
@@ -165,7 +165,7 @@ City Planner opens `UrbanMiner` dashboard → Selects "Copper" layer → Map vis
 
 ---
 
-## [M9] Textile Sorting
+## [C9] Textile Sorting
 
 **Description**
 A robot uses `NovaMind` computer vision to identify and sort clothing items by fiber type (Cotton, Poly, Blend) in a `NovaTextile` facility.
@@ -185,7 +185,7 @@ Conveyor belt moves garment → Camera captures image → `NovaMind` classifies 
 
 ---
 
-## [M10] Green Concrete
+## [C10] Green Concrete
 
 **Description**
 `NovaBuild` generates a product passport for a structural beam using `NovaMaterial`, specifically logging the carbon captured during its curing process.
@@ -205,7 +205,7 @@ Manufacturer scans beam → Logs production data in `NovaMaterial` → `NovaBala
 
 ---
 
-## [M11] Swarm Farming
+## [C11] Swarm Farming
 
 **Description**
 A fleet of `DurasAGV` units coordinates to harvest a field. They communicate via `NovaInfra` to optimize paths and avoid soil compaction.
@@ -225,7 +225,7 @@ Farmer defines field boundary in `NovaAgro` → Swarm is deployed → Robots div
 
 ---
 
-## [M12] Air Credit Minting
+## [C12] Air Credit Minting
 
 **Description**
 The `AirQuality` worker verifies a sustained drop in pollution levels in a specific zone. `NovaTrade` mints a "Clean Air Credit" for the city.

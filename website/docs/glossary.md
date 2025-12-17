@@ -30,6 +30,6 @@ This glossary defines common terms used across the NovaEco.
 ## Related Pages
 - [Architecture Overview](./architecture/overview.md)
 - [Functional Requirements](./requirements/functional.md)
-- [Use Cases: Tier 1 Onboarding](./usecases/tier-1-onboarding.md)
+- [Use Cases: Tier 1 Onboarding & Control](./usecases/tier-1-onboarding-and-control.md)
 - [API Overview](./api/overview.md)
 - [Developer Guide](./guides/dev-guide.md)
