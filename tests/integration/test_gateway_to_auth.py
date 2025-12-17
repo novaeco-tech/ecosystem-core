@@ -1,0 +1,1 @@
+# TEST: Gateway correctly proxies to Auth container

@@ -1,4 +1,4 @@
-# description: Packages API service and signals NovaEco QA.
+# description: Packages API service using NovaEco CLI.
 name: Publish API Artifact
 
 on:
@@ -25,7 +25,6 @@ jobs:
       - name: Check Version & Tag
         id: check
         run: |
-          # Read version from file
           VERSION=$(cat api/VERSION)
           
           # Define Tag Naming Convention: [component]-v[version]
@@ -47,28 +46,16 @@ jobs:
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
           pip install -r api/requirements-dev.txt
-          cd api && pytest
+          cd api && pytest tests/unit
 
       # 3. Build Package (The Artifact)
-      - name: Build and Package API
+      # Uses CLI to ensure 'src' structure and 'api' directory are preserved
+      - name: Build Service Artifact
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
-          # Create staging directory
-          mkdir -p dist
-          
-          # Copy Source Code
-          cp -r api/src/* dist/
-          
-          # Copy Dependency Files (Vital for QA Graphing)
-          cp api/requirements.txt dist/
-          if [ -f api/requirements-internal.txt ]; then
-            cp api/requirements-internal.txt dist/
-          fi
-          
-          # Create Tarball
-          # -C dist . ensures the tarball doesn't contain a parent 'dist' folder
-          cd dist
-          tar -czf ../novaeco-api.tar.gz .
+          cd api
+          # Packages 'src' and 'api' (for OpenAPI) into the tarball
+          novaeco build service --src-dir src --out-dir ../dist
 
       # 4. Generate QA Token (GitHub App)
       - name: Generate QA Token
@@ -87,7 +74,7 @@ jobs:
         with:
           tag_name: ${{ env.TAG_NAME }}
           name: "NovaEco Core API v${{ env.VERSION }}"
-          files: novaeco-api.tar.gz
+          files: dist/novaeco-api.tar.gz
           prerelease: true
           generate_release_notes: true
 

@@ -1,4 +1,4 @@
-# description: Packages Website. Fixed triggers, tar command, and QA signaling.
+# description: Packages Website using Golden Image and restricted tests.
 name: Publish Website Artifact
 
 on:
@@ -13,17 +13,26 @@ permissions:
 jobs:
   check-and-release:
     runs-on: ubuntu-latest
+    # Use the Golden Image to ensure build environment matches Dev/CI
+    container:
+      image: ghcr.io/novaeco-tech/dev-node:latest
+      options: --user root
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       # 1. Check if Version Bumped (using package.json)
+      # Replaced 'jq' with 'node -p' to be container-agnostic
       - name: Check Version & Tag
         id: check
         run: |
-          VERSION=$(jq -r .version website/package.json)
+          # Use Node to read the version directly
+          VERSION=$(node -p "require('./website/package.json').version")
           TAG_NAME="novaeco-website-v$VERSION"
+          
+          # Git safety check for container usage
+          git config --global --add safe.directory $GITHUB_WORKSPACE
           
           if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
             echo "Tag $TAG_NAME already exists. Skipping release."
@@ -36,12 +45,14 @@ jobs:
           fi
 
       # 2. Defensive Testing
+      # Use 'npm ci' for deterministic installs and restrict to unit tests
       - name: Install & Test
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
           cd website
-          npm install
-          npm test
+          npm ci
+          # Only run unit tests. E2E tests (requiring browsers) are skipped here.
+          npm test -- tests/unit
 
       # 3. Build Package
       - name: Build and Package Website
@@ -51,7 +62,6 @@ jobs:
           npm run build
           
           # Copy package.json to build dir so QA can read dependencies
-          # This corresponds to Step 1e (Dependency Graph reliability)
           cp package.json build/
           
           # Change to build dir to package

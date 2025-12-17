@@ -3,9 +3,14 @@ name: "NovaEco Security Scan (SAST)"
 on:
   push:
     branches: [ "main" ]
+    # Don't run SAST on pure documentation changes
+    paths-ignore:
+      - '**/*.md'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ "main" ]
+    paths-ignore:
+      - '**/*.md'
   schedule:
     # Run a full scan weekly (Sunday at 00:00 UTC)
     - cron: '0 0 * * 0'
@@ -23,12 +28,26 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # NovaEco uses Python (Api, Auth) and JavaScript (Website)
+        # NovaEco uses Python (Api, Auth) and JavaScript/TypeScript (Website)
         language: [ 'python', 'javascript' ]
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    # Setup runtimes to match the DevContainer versions (Python 3.11, Node 20)
+    # This ensures CodeQL parses the syntax correctly.
+    - name: Setup Python
+      if: matrix.language == 'python'
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Setup Node
+      if: matrix.language == 'javascript'
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -37,11 +56,6 @@ jobs:
         languages: ${{ matrix.language }}
         # If you have a custom config, you can point to it here
         # config-file: ./.github/codeql/codeql-config.yml
-
-    # Autobuild attempts to build any compiled languages
-    # For Python/JS this step is often skippable but good practice to keep
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v3
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3

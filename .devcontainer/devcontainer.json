@@ -16,10 +16,11 @@
         }
     },
     "forwardPorts": [
-        3000,
-        8000,
-        9000,
-        8080
+        3000, // for website
+        8000, // for API server Python/Flask port
+        9000, // for Auth server
+        8080, // for Keycloak admin console
+        9090  // for gRPC debugging
     ],
     "remoteEnv": {
         "PATH": "${containerEnv:PATH}:/home/appuser/.local/bin"

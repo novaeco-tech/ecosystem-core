@@ -2,3 +2,12 @@
 -r requirements.txt
 
 # Add Dev/Test Tools
+pytest==8.0.0
+pytest-benchmark==4.0.0
+
+# Required for Contract Tests (verify_openapi.py)
+openapi-spec-validator==0.7.1
+pyyaml==6.0.1
+
+# Required for compiling protos in dev (novaeco build client)
+grpcio-tools==1.60.0

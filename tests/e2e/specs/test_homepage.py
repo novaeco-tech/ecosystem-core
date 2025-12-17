@@ -1,3 +1,5 @@
+# TODO check if is still needed after architecture changes
+
 import pytest
 from playwright.sync_api import Page, expect
 import os

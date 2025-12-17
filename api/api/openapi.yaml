@@ -1,0 +1,95 @@
+openapi: 3.0.3
+info:
+  title: NovaEco API Gateway
+  description: |
+    The unified ingress point for the NovaEco ecosystem.
+    This service acts as a reverse proxy for internal sectors (Agro, Trade, Auth)
+    while providing centralized management and health monitoring endpoints.
+  version: 0.1.0
+  contact:
+    name: NovaEco Core Team
+    url: https://novaeco.tech
+    email: contact@novaeco.tech
+
+servers:
+  - url: http://localhost:8000
+    description: Local DevContainer
+  - url: https://api.novaeco.tech
+    description: Production Gateway
+
+paths:
+  /health:
+    get:
+      summary: System Health Check
+      description: |
+        Verifies the operational status of the Gateway container and its dependencies.
+        Trace: REQ-CORE-OPS-001
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: Service is degraded or upstream is unreachable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /:
+    get:
+      summary: Gateway Information
+      description: Returns metadata and welcome message for the Gateway service.
+      operationId: getInfo
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+
+  # Note: The Gateway dynamically proxies /{service}/{path}
+  # These dynamic routes are not explicitly defined here but are handled by the
+  # reverse proxy logic in src/api_service.py.
+
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "ok"
+          enum: ["ok", "degraded", "down"]
+        service:
+          type: string
+          example: "novaeco-api-gateway"
+      required:
+        - status
+        - service
+
+    InfoResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Welcome to the NovaEco API Gateway"
+        service:
+          type: string
+          example: "novaeco-api-gateway"
+      required:
+        - message
+        - service
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Upstream service unavailable"
+        details:
+          type: string

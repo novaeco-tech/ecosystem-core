@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Job 1: Detect changes
+  # Job 1: Detect changes in components
   changed-files:
     runs-on: ubuntu-latest
     outputs:
@@ -26,28 +26,21 @@ jobs:
             api: ['api/**']
             auth: ['auth/**']
             website: ['website/**']
-            
-            # Filter A: Integration (API Level)
             integration:
               - 'api/**'
               - 'auth/**'
               - 'tests/integration/**'
               - '.devcontainer/docker-compose.yml'
-            
-            # Filter B: E2E (UI Level)
             e2e:
               - 'api/**'
               - 'auth/**'
               - 'tests/e2e/**'
               - '.devcontainer/docker-compose.yml'
-              
-            # Filter C: Performance (Micro-benchmarks)
             performance:
               - 'api/**'
               - 'auth/**'
-              - 'tests/performance/**'
 
-  # Job 2: Unit Test API (Runs in Container)
+  # Job 2: Unit Test API (L5)
   test-api:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.api == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -62,7 +55,7 @@ jobs:
       - name: Run Unit Tests
         run: cd api && pytest tests/unit
 
-  # Job 4: Unit Test Auth (Runs in Container)
+  # Job 3: Unit Test Auth (L5)
   test-auth:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.auth == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -77,7 +70,7 @@ jobs:
       - name: Run Unit Tests
         run: cd auth && pytest tests/unit
 
-  # Job 5: Unit Test Website (Runs in Node Container)
+  # Job 4: Unit Test Website (L5)
   test-website:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.website == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -92,7 +85,7 @@ jobs:
       - name: Run Tests
         run: cd website && npm test -- tests/unit
 
-  # Job 6: Integration Tests (Runs on Host to Manage Docker)
+  # Job 5: Integration Tests (L4 & L2)
   test-integration:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.integration == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -101,21 +94,34 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Start Environment
-        # --wait ensures services pass healthchecks before proceeding
         run: docker compose -f .devcontainer/docker-compose.yml up -d --build --wait
 
-      - name: Install Integration Dependencies
-        # Installs inside the running api container
+      # --- 1. Root Integration (L2 System Wiring) ---
+      - name: Run Root Integration (Kernel Bundle)
         run: |
+          # Install root test deps into the 'api' container (acting as test runner)
           docker compose -f .devcontainer/docker-compose.yml exec -T api \
             pip install -r /workspace/tests/integration/requirements.txt
-
-      - name: Run Integration Tests
-        run: |
+          
+          # Execute Root Tests
           docker compose -f .devcontainer/docker-compose.yml exec -T api \
             pytest /workspace/tests/integration
 
-  # Job 7: E2E Tests (Runs on Host to Drive Browser)
+      # --- 2. API Component Integration (L4 Local) ---
+      - name: Run API Local Integration
+        run: |
+          # The API container is already set up with requirements-dev.txt via docker-compose command
+          docker compose -f .devcontainer/docker-compose.yml exec -T api \
+            pytest /workspace/api/tests/integration
+
+      # --- 3. Auth Component Integration (L4 Local) ---
+      - name: Run Auth Local Integration
+        run: |
+          # Execute inside the AUTH container to verify local DB/Contract logic
+          docker compose -f .devcontainer/docker-compose.yml exec -T auth \
+            pytest /workspace/auth/tests/integration
+
+  # Job 6: E2E Tests (L3 & L1) - UPDATED
   test-e2e:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.e2e == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -134,15 +140,29 @@ jobs:
           playwright install --with-deps
 
       - name: Start Environment
-        # --wait ensures services pass healthchecks before proceeding
         run: docker compose -f .devcontainer/docker-compose.yml up -d --wait
 
-      - name: Run Playwright Tests
+      # --- 1. Root E2E (L1 Smoke/Critical Path) ---
+      - name: Run Root E2E
         run: pytest tests/e2e
         env:
           APP_URL: http://localhost:5000
 
-  # Job 8: Performance Tests (Runs in Container)
+      # --- 2. API Local E2E (L3) ---
+      - name: Run API Local E2E
+        if: hashFiles('api/tests/e2e/') != ''
+        run: pytest api/tests/e2e
+        env:
+          APP_URL: http://localhost:8000 # Targets Gateway directly
+
+      # --- 3. Auth Local E2E (L3) ---
+      - name: Run Auth Local E2E
+        if: hashFiles('auth/tests/e2e/') != ''
+        run: pytest auth/tests/e2e
+        env:
+          AUTH_URL: http://localhost:9000 # Targets Auth Service directly
+
+  # Job 7: Performance Matrix (L5) - Unchanged
   test-performance:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.performance == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -150,11 +170,20 @@ jobs:
     container:
       image: ghcr.io/novaeco-tech/dev-python:latest
       options: --user root
+    strategy:
+      matrix:
+        component: [api, auth]
     steps:
       - uses: actions/checkout@v4
-      
       - name: Install Dependencies
-        run: pip install -r tests/performance/requirements.txt
-        
+        run: |
+          if [ -f ${{ matrix.component }}/requirements-dev.txt ]; then
+            pip install -r ${{ matrix.component }}/requirements-dev.txt
+          fi
       - name: Run Micro-benchmarks
-        run: pytest tests/performance/micro
+        run: |
+          if [ -d "${{ matrix.component }}/tests/performance" ]; then
+            cd ${{ matrix.component }} && pytest tests/performance
+          else
+            echo "No performance tests found for ${{ matrix.component }}"
+          fi

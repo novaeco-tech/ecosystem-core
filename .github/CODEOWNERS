@@ -3,18 +3,34 @@
 # These owners will be automatically requested for review when someone opens a pull request.
 
 # ------------------------------------------------------------------
-# Core Services
+# Global Governance (Root Files)
 # ------------------------------------------------------------------
-/api/      @novaeco-tech/maintainers-core
-/auth/     @novaeco-tech/maintainers-core
-/website/  @novaeco-tech/maintainers-core
+# Protects versioning, license, and catch-all
+* @novaeco-tech/maintainers-core
+GLOBAL_VERSION   @novaeco-tech/maintainers-core
+LICENSE          @novaeco-tech/maintainers-core
 
 # ------------------------------------------------------------------
-# Testing & Quality
+# Core Services (Source + Local Tests + Contracts)
 # ------------------------------------------------------------------
-/tests/    @novaeco-tech/maintainers-core
+# Covers api/src, api/tests, api/api (OpenAPI)
+/api/            @novaeco-tech/maintainers-core
+
+# Covers auth/src, auth/tests, auth/api (Proto)
+/auth/           @novaeco-tech/maintainers-core
+
+# Covers docs, ADRs, and website code
+/website/        @novaeco-tech/maintainers-core
 
 # ------------------------------------------------------------------
-# Workflows & Config (Optional but recommended)
+# System Verification
 # ------------------------------------------------------------------
-/.github/  @novaeco-tech/maintainers-core
+# Covers root-level Kernel Integration tests only
+/tests/          @novaeco-tech/maintainers-core
+
+# ------------------------------------------------------------------
+# DevOps & Infrastructure
+# ------------------------------------------------------------------
+/.github/        @novaeco-tech/maintainers-core
+/.devcontainer/  @novaeco-tech/maintainers-core
+/docker-compose.yml @novaeco-tech/maintainers-core

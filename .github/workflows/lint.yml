@@ -51,19 +51,21 @@ jobs:
 
       - name: Run Ruff (Linting)
         if: steps.check.outputs.should_run == 'true'
+        # cd into the directory to ensure local pyproject.toml is respected
         run: |
           echo "🔍 Linting ${{ matrix.service }}..."
-          # Run check on the service directory
-          ruff check ${{ matrix.service }}
+          cd ${{ matrix.service }}
+          ruff check .
           
       - name: Run Ruff (Formatting Check)
         if: steps.check.outputs.should_run == 'true'
+        # cd into the directory
         run: |
           echo "🔍 Checking format for ${{ matrix.service }}..."
-          # Fails if code is not formatted correctly
-          ruff format --check ${{ matrix.service }}
+          cd ${{ matrix.service }}
+          ruff format --check .
 
-# Job 3: Lint Website
+  # Job 3: Lint Website
   lint-website:
     needs: changes
     if: ${{ needs.changes.outputs.website == 'true' }}

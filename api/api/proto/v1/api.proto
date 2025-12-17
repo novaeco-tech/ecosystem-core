@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package novaeco.api.v1;
+
+// GatewayService defines the management and metadata interface for the Core Gateway.
+// While the Gateway primarily acts as a reverse proxy for other services (Agro, Auth),
+// this service handles direct requests to the Gateway itself (e.g. Health checks).
+service GatewayService {
+  // GetHealth checks the operational status of the Gateway and its ability 
+  // to reach upstream Core services (Identity, Auth).
+  // Verification: REQ-CORE-FUNC-004 (Health Aggregation)
+  rpc GetHealth (HealthRequest) returns (HealthResponse);
+
+  // GetInfo returns metadata about the Gateway instance, typically used for
+  // discovery or "Mission Control" dashboards.
+  rpc GetInfo (InfoRequest) returns (InfoResponse);
+}
+
+// --- Request/Response Definitions ---
+
+message HealthRequest {
+  // Empty: Health checks typically require no input parameters.
+}
+
+message HealthResponse {
+  // Status string: "ok", "degraded", or "down".
+  string status = 1;
+  
+  // The identifier of the service responding (e.g. "novaeco-api-gateway").
+  string service = 2;
+  
+  // Optional: Details about upstream connectivity (e.g. "Auth: Connected").
+  // This supports the "Collective Status" requirement.
+  map<string, string> dependencies = 3;
+}
+
+message InfoRequest {
+  // Empty
+}
+
+message InfoResponse {
+  // Welcome message or MOTD.
+  string message = 1;
+  
+  // Service name.
+  string service = 2;
+  
+  // The semantic version of the running Gateway artifact.
+  string version = 3;
+}

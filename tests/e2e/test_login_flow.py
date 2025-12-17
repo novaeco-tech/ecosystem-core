@@ -1,0 +1,1 @@
+# TEST: Admin login via Gateway works

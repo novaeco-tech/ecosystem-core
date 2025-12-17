@@ -1,3 +1,5 @@
+# TODO check if is still needed after architecture changes
+
 import pytest
 import requests
 import os
