@@ -1,4 +1,4 @@
-# description: Packages Auth service and Auth Client SDK. Signals NovaEco QA.
+# description: Packages Auth service and Auth Client SDK using standard CLI tools. Signals NovaEco QA.
 name: Publish Auth Artifact
 
 on:
@@ -15,12 +15,18 @@ jobs:
   check-and-release:
     runs-on: ubuntu-latest
     container:
+      # Use the Golden Image which contains Python, Pip, and Protoc
       image: ghcr.io/novaeco-tech/dev-python:latest
       options: --user root # Required to write artifacts to the mounted volume
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Needed to check existing tags
+
+      # 0. Install NovaEco CLI (Critical First Step)
+      # This pulls the logic for 'novaeco build' from your devtools repo
+      - name: Install NovaEco CLI
+        run: pip install "git+https://github.com/novaeco-tech/novaeco-devtools.git@main#subdirectory=novaeco-cli"
 
       # 1. Check if Version Bumped
       - name: Check Version & Tag
@@ -47,33 +53,24 @@ jobs:
           cd auth && pytest
 
       # 3. Build Service Package (The Dockerable Code)
-      - name: Build and Package Auth Service
+      - name: Build Service Artifact
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
-          mkdir -p dist_service
-          cp -r auth/src/* dist_service/
-          
-          # Copy Dependencies (External & Internal) for QA Graphing
-          cp auth/requirements.txt dist_service/
-          if [ -f auth/requirements-internal.txt ]; then
-            cp auth/requirements-internal.txt dist_service/
-          fi
-          
-          cd dist_service
-          tar -czf ../novaeco-auth.tar.gz .
+          # Usage: novaeco build service --src-dir <path> --out-dir <path>
+          cd auth
+          novaeco build service --src-dir src --out-dir ../dist
 
       # 4. Build Client SDK (The gRPC Library for other sectors)
       # This corresponds to Step 1c: "novaeco-auth-client is the internal ProtoBuf auth client"
-      - name: Build Auth Client SDK
+      - name: Build Client SDK
         if: steps.check.outputs.SHOULD_RELEASE == 'true'
-        run: |          
-          # Ensure script is executable and run it
-          chmod +x scripts/build_client.sh
-          ./scripts/build_client.sh
-          
-          # The script outputs the .whl file to dist/client/dist/
-          # We move it to root for easier release attachment
-          mv dist/client/dist/*.whl ./novaeco-auth-client.whl
+        run: |
+          # Usage: novaeco build client --proto-dir <path> --out-dir <path>
+          cd auth
+          novaeco build client \
+            --proto-dir api/proto/v1 \
+            --out-dir ../dist \
+            --service-name novaeco-auth
 
       # 5. Generate QA Token
       - name: Generate QA Token
@@ -93,8 +90,8 @@ jobs:
           tag_name: ${{ env.TAG_NAME }}
           name: "NovaEco Core Auth v${{ env.VERSION }}"
           files: |
-            novaeco-auth.tar.gz
-            novaeco-auth-client.whl
+            dist/novaeco-auth.tar.gz
+            dist/*.whl
           prerelease: true
           generate_release_notes: true
 
